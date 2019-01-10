@@ -49,7 +49,6 @@ void mergeSort (int *A, int p, int r)
 	}
 }
 
-
 int main()
 {
 	int arr[100];
