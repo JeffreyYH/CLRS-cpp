@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/run.dir/main.cpp.o  -o run libbinTree_lib.a 

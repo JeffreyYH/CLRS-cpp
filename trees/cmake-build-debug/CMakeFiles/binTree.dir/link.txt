@@ -1,2 +1,0 @@
-/usr/bin/ar qc libbinTree.a  CMakeFiles/binTree.dir/binTree.cpp.o
-/usr/bin/ranlib libbinTree.a

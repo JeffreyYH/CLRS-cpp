@@ -1,4 +1,0 @@
-/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/cmake-build-debug/CMakeFiles/binTree_lib.dir
-/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/cmake-build-debug/CMakeFiles/run.dir

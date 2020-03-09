@@ -1,4 +1,0 @@
-/home/jeffrey/software/clion-2019.2.1/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees
--- Configuring done
--- Generating done
--- Build files have been written to: /home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/cmake-build-debug
