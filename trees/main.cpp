@@ -11,12 +11,13 @@ int main()
     //    B      C
     //   / \    / \
     //  D   E  F
+
     const int LEN = 6;
     char in[LEN] = {'D', 'B', 'E', 'A', 'F', 'C'};
     char pre[LEN] = {'A', 'B', 'D', 'E', 'C', 'F'};
 
     // create new tree node for initialization, left and right is NULL
-    BinTree bintree;
+    BinTree<char> bintree;
 
     // obtain the rebuilt tree
     BinTree::Node *root = bintree.rebuildTree(in, pre, 0, LEN - 1);
