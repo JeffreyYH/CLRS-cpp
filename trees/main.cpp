@@ -17,7 +17,7 @@ int main()
     char pre[LEN] = {'A', 'B', 'D', 'E', 'C', 'F'};
 
     // create new tree node for initialization, left and right is NULL
-    BinTree<char> bintree;
+    BinTree bintree;
 
     // obtain the rebuilt tree
     BinTree::Node *root = bintree.rebuildTree(in, pre, 0, LEN - 1);
