@@ -1,0 +1,1 @@
+/usr/bin/c++  -g  -rdynamic CMakeFiles/ongoing.dir/main.cpp.o  -o ongoing 

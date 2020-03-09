@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/binTree.cpp
+iostream
+-
+algorithm
+-
+binTree.h
+/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/binTree.h
+
+/home/jeffrey/jeffDrive/exercice/data-structures-and-algorithms/trees/binTree.h
+iostream
+-
+algorithm
+-
+
