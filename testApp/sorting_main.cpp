@@ -11,25 +11,25 @@ int main()
 
     Sorting sortObj;
 
-    vector<int> sortedA = sortObj.bubbleSort(A);
+    vector<int> A_bubbleSort = sortObj.bubbleSort(A);
     cout << "result after bubble sort:" << endl;
-    for(int sa:sortedA)
-        cout << sa << " ";
+    for(int a_bs: A_bubbleSort)
+        cout << a_bs << " ";
     cout << endl;
 
-    sortedA = sortObj.insertionSort(A);
+    vector<int> A_insertionSort = sortObj.insertionSort(A);
     cout << "result after insertion sort:" << endl;
-    for(int i=0; i<sortedA.size(); i++)
-        cout<<sortedA[i]<<' ';
+    for(int a_is: A_insertionSort)
+        cout << a_is << ' ';
     cout << endl;
 
     // TODO: check the problem
-//    int arr[5] = {0, 9, 3, 10, -1};
-//    sortObj.quickSort(arr, 1, n);
-//	cout << "result after quick sort:" << endl;
-//	for (int i = 0; i < 5; i++)
-//		cout << arr[i] <<' ';
-//	cout << endl;
+    int arr[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
+    sortObj.quickSort(arr, 0, n);
+	cout << "result after quick sort:" << endl;
+	for (int i = 0; i < n; i++)
+		cout << arr[i] <<' ';
+	cout << endl;
 
 //    sortObj.mergeSort(A, 1, n);
 //    cout << "result after merge sort:" << endl;

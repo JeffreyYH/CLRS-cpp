@@ -102,6 +102,7 @@ void Sorting::mergeSort (int *A, int p, int r)
     }
 }
 
+// quick sort
 int Sorting::partition(int A[], int p, int r)
 {
     int x, i;
@@ -114,7 +115,6 @@ int Sorting::partition(int A[], int p, int r)
             i ++;
             mySwap(A[i], A[j]);
         }
-
     }
     mySwap(A[i+1], A[r]);
 
