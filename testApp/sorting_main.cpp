@@ -23,22 +23,20 @@ int main()
         cout << a_is << ' ';
     cout << endl;
 
-    // TODO: check the problem
-//    int A_mergeSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
     vector<int> A_mergeSort = A;
+    // from the first element, 0th to the last element, (n-1)th
     sortObj.mergeSort(A_mergeSort, 0, n-1);
     cout << "result after merge sort:" << endl;
     for (int i = 0; i < n; i++)
         cout << A_mergeSort[i] <<' ';
     cout << endl;
 
-/*    int A_quickSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
-    sortObj.quickSort(A_quickSort, 0, 8);
+    vector<int> A_quickSort = A;
+    sortObj.quickSort(A_quickSort, 0, n-1);
 	cout << "result after quick sort:" << endl;
 	for (int i = 0; i < n; i++)
 		cout << A_quickSort[i] <<' ';
-	cout << endl;*/
-
+	cout << endl;
 
 
     /*// if you want to input A, uncomment the following code:
@@ -55,6 +53,7 @@ int main()
         vector<int> sortedA = insertionSort(A);
         for(int i=0; i<sortedA.size(); i++)
             cout<<sortedA[i]<<' ';
+        cout << endl;
     }*/
     
     return 0;

@@ -105,7 +105,7 @@ void Sorting::mergeSort (vector<int> &A, int p, int r)
 }
 
 // quick sort
-int Sorting::partition(int A[], int p, int r)
+int Sorting::partition(vector<int> &A, int p, int r)
 {
     int x, i;
     x = A[r];
@@ -129,7 +129,7 @@ int Sorting::partition(int A[], int p, int r)
     return (i+1);
 }
 
-void Sorting::quickSort (int A[], int p, int r)
+void Sorting::quickSort (vector<int> &A, int p, int r)
 {
     if(p < r)
     {

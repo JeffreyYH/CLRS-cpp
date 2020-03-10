@@ -19,9 +19,9 @@ public:
     void mergeSort (vector<int> &A, int p, int r);
 
     // quick sort
-    int partition(int A[], int p, int r);
+    int partition(vector<int> &A, int p, int r);
 
-    void quickSort (int A[], int p, int r);
+    void quickSort (vector<int> &A, int p, int r);
 };
 
 
