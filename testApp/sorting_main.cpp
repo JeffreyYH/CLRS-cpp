@@ -24,17 +24,20 @@ int main()
     cout << endl;
 
     // TODO: check the problem
+    sortObj.mergeSort(A, 0, n);
+    cout << "result after merge sort:" << endl;
+    for (int i = 0; i < n; i++)
+        cout << A[i] <<' ';
+    cout << endl;
+
     int arr[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
-    sortObj.quickSort(arr, 0, n);
+    sortObj.quickSort(A, 0, n);
 	cout << "result after quick sort:" << endl;
 	for (int i = 0; i < n; i++)
-		cout << arr[i] <<' ';
+		cout << A[i] <<' ';
 	cout << endl;
 
-//    sortObj.mergeSort(A, 1, n);
-//    cout << "result after merge sort:" << endl;
-//    for (int i = 1; i <= n; i++)
-//        cout << A[i] <<' ';
+
 
     /*// if you want to input A, uncomment the following code:
     vector<int> A;
