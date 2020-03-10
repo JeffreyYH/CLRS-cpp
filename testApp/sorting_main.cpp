@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    vector<int> A = {0, 9, 3, 10, -1, 6 ,4, 2};
+    vector<int> A = {0, 9, 3, 10, -1, 6, 4, 2};
     int n = A.size();
 
     Sorting sortObj;
@@ -26,7 +26,7 @@ int main()
     // TODO: check the problem
 //    int A_mergeSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
     vector<int> A_mergeSort = A;
-    sortObj.mergeSort(A_mergeSort, 0, n);
+    sortObj.mergeSort(A_mergeSort, 0, n-1);
     cout << "result after merge sort:" << endl;
     for (int i = 0; i < n; i++)
         cout << A_mergeSort[i] <<' ';

@@ -64,18 +64,18 @@ void Sorting::merge (vector<int> &A, int p, int q, int r)
     int n2 = r-q;
     
     // left and right parts L and R
-    int L[100], R[100];
-    for (int i = 1; i <= n1; i++)
-        L[i] = A[i + p - 1];
-    for (int i = 1; i <= n2; i++)
-        R[i] = A[i + q];
+    vector<int> L, R;
+    for (int i = 0; i < n1; i++)
+        L.push_back(A[i + p]);
+    for (int i = 0; i < n2; i++)
+        R.push_back(A[i + q + 1]);
 
     // put a very large value in the end of L and R
-    L[n1 + 1] = INT_MAX;
-    R[n2 + 1] = INT_MAX;
+    L.push_back(INT_MAX);
+    R.push_back(INT_MAX);
 
     //compare L and R and pick the smaller one to put in A
-    int i = 1, j = 1;
+    int i = 0, j = 0;
     for (int k = p; k <= r; k++)
     {
         if ( L[i] <= R[j])
