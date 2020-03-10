@@ -16,10 +16,10 @@ public:
     vector<int> insertionSort(vector<int> A);
 
     // merge sort
-    void merge (int *A, int p, int q, int r);
+    void merge (vector<int> &A, int p, int q, int r);
 
     // arguments can also be written as (int *A, int p, int r)  
-    void mergeSort (int *A, int p, int r);
+    void mergeSort (vector<int> &A, int p, int r);
 
     // quick sort
     int partition(int A[], int p, int r);

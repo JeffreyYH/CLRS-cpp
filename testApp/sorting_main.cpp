@@ -24,8 +24,9 @@ int main()
     cout << endl;
 
     // TODO: check the problem
-    int A_mergeSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
-    sortObj.mergeSort(A_mergeSort, 0, 8);
+//    int A_mergeSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
+    vector<int> A_mergeSort = A;
+    sortObj.mergeSort(A_mergeSort, 0, n);
     cout << "result after merge sort:" << endl;
     for (int i = 0; i < n; i++)
         cout << A_mergeSort[i] <<' ';
