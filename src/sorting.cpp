@@ -56,7 +56,7 @@ vector<int> Sorting::insertionSort(vector<int> A)
 }
 
 
-void Sorting::merge (vector<int> &A, int p, int q, int r)
+void Sorting::merge (int *A, int p, int q, int r)
 {
     // length of left and right parts
     int n1 = q-p+1;
@@ -91,7 +91,7 @@ void Sorting::merge (vector<int> &A, int p, int q, int r)
 }
 
 // arguments can also be written as (int *A, int p, int r)  
-void Sorting::mergeSort (vector<int> &A, int p, int r)
+void Sorting::mergeSort (int *A, int p, int r)
 {
     if (p < r)
     {
@@ -103,7 +103,7 @@ void Sorting::mergeSort (vector<int> &A, int p, int r)
 }
 
 // quick sort
-int Sorting::partition(vector<int> &A, int p, int r)
+int Sorting::partition(int A[], int p, int r)
 {
     int x, i;
     x = A[r];
@@ -127,7 +127,7 @@ int Sorting::partition(vector<int> &A, int p, int r)
     return (i+1);
 }
 
-void Sorting::quickSort (vector<int> &A, int p, int r)
+void Sorting::quickSort (int A[], int p, int r)
 {
     if(p < r)
     {

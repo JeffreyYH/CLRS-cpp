@@ -24,18 +24,19 @@ int main()
     cout << endl;
 
     // TODO: check the problem
-    sortObj.mergeSort(A, 0, n);
+    int A_mergeSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
+    sortObj.mergeSort(A_mergeSort, 0, 8);
     cout << "result after merge sort:" << endl;
     for (int i = 0; i < n; i++)
-        cout << A[i] <<' ';
+        cout << A_mergeSort[i] <<' ';
     cout << endl;
 
-    int arr[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
-    sortObj.quickSort(A, 0, n);
+/*    int A_quickSort[8] = {0, 9, 3, 10, -1, 6 ,4, 2};
+    sortObj.quickSort(A_quickSort, 0, 8);
 	cout << "result after quick sort:" << endl;
 	for (int i = 0; i < n; i++)
-		cout << A[i] <<' ';
-	cout << endl;
+		cout << A_quickSort[i] <<' ';
+	cout << endl;*/
 
 
 
