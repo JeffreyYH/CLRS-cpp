@@ -4,9 +4,6 @@ using namespace std;
 
 class Sorting
 {
-private:
-    const int MAX = 10000;
-
 public:
     void mySwap(int &x, int &y);
 

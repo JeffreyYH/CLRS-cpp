@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 #include "sorting.h"
 
 using namespace std;
@@ -70,8 +71,8 @@ void Sorting::merge (vector<int> &A, int p, int q, int r)
         R[i] = A[i + q];
 
     // put a very large value in the end of L and R
-    L[n1 + 1] = MAX;
-    R[n2 + 1] = MAX;
+    L[n1 + 1] = INT_MAX;
+    R[n2 + 1] = INT_MAX;
 
     //compare L and R and pick the smaller one to put in A
     int i = 1, j = 1;
