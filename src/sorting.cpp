@@ -60,15 +60,15 @@ vector<int> Sorting::insertionSort(vector<int> A)
 void Sorting::merge (vector<int> &A, int p, int q, int r)
 {
     // length of left and right parts
-    int n1 = q-p+1;
-    int n2 = r-q;
+    int Nl = q-p+1;
+    int Nr = r-q;
     
     // left and right parts L and R
     vector<int> L, R;
-    for (int i = 0; i < n1; i++)
-        L.push_back(A[i + p]);
-    for (int i = 0; i < n2; i++)
-        R.push_back(A[i + q + 1]);
+    for (int i = p; i <= q; i++)
+        L.push_back(A[i]);
+    for (int i = q+1; i <= r; i++)
+        R.push_back(A[i]);
 
     // put a very large value in the end of L and R
     L.push_back(INT_MAX);
@@ -91,12 +91,13 @@ void Sorting::merge (vector<int> &A, int p, int q, int r)
     }
 }
 
-// arguments can also be written as (int *A, int p, int r)  
+// argument A can also be written as *A or A[] if using array
 void Sorting::mergeSort (vector<int> &A, int p, int r)
 {
     if (p < r)
     {
         int q = (p + r) / 2;
+        // deal the first half part and then the second half part
         mergeSort (A, p, q);
         mergeSort (A, q+1, r);
         merge (A, p, q, r);
