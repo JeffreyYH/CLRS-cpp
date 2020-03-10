@@ -12,16 +12,17 @@ public:
     // sort a list in ASCENDING order with insertion sort
     vector<int> insertionSort(vector<int> A);
 
-    // merge sort
+    // merge sort: divide and conquer
     void merge (vector<int> &A, int p, int q, int r);
-
-    // arguments can also be written as (int *A, int p, int r)  
     void mergeSort (vector<int> &A, int p, int r);
 
-    // quick sort
+    // quick sort: divide and conquer
     int partition(vector<int> &A, int p, int r);
-
     void quickSort (vector<int> &A, int p, int r);
+
+    // TODO: heap sort
+
+    // TODO: linear time sorting
 };
 
 
