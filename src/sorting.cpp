@@ -11,7 +11,6 @@ void Sorting::mySwap(int &x, int &y)
     y = temp;
 }
 
-
 vector<int> Sorting::bubbleSort(vector<int> A)
 {
     // compare current element with the next element,
@@ -92,7 +91,7 @@ void Sorting::merge (int *A, int p, int q, int r)
 }
 
 // arguments can also be written as (int *A, int p, int r)  
-void Sorting::mergeSort (int *A, int p, int r)  
+void Sorting::mergeSort (int *A, int p, int r)
 {
     if (p < r)
     {
