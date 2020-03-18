@@ -20,8 +20,6 @@ public:
     int partition(vector<int> &A, int p, int r);
     void quickSort (vector<int> &A, int p, int r);
 
-    // TODO: heap sort
-
     // TODO: linear time sorting
 };
 
