@@ -2,11 +2,18 @@
 #define BINTREE_HEAP_H
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class MaxHeap
 {
+private:
+    vector<int> A;
 public:
+    MaxHeap(vector<int> A_para)
+    {
+        A = A_para;
+    }
     maxHeapify();
     buildMaxHeap();
     heapSort();
