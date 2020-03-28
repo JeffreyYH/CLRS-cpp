@@ -58,7 +58,7 @@ void MaxHeap<T>::maxHeapify(std::vector<T> &A, int i)
 {
     int l = leftChild_idx(i);
     int r = rightChild_idx(i);
-    if ( l==-1 && r == -1)
+    if (l == -1 && r == -1)
         return;
 
     // idx of largest element
