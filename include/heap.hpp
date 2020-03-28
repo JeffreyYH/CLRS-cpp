@@ -7,13 +7,26 @@ class MaxHeap
 {
 private:
     MyUtils myUtils;
+    std::vector<T> A;
 
 public:
-    int parent_idx(int i) {return i/2;}
-    int leftChild_idx(int i) {return 2*i;}
-    int rightChild_idx(int i) {return 2 * i + 1;}
-
-    void maxHeapify(std::vector<T> &A, int i);
+    explicit MaxHeap(std::vector<T> &A_) {A = A_;}
+    int parent_idx(int i) {return (i/2);}
+    int leftChild_idx(int i)
+    {
+        if ((2*i+1) < A.size())
+            return 2*i + 1;
+        else
+            return -1;
+    }
+    int rightChild_idx(int i)
+    {
+        if ((2*i+2) < A.size())
+            return (2*i+2);
+        else
+            return -1;
+    }
+    void maxHeapify(std::vector<T> &A,  int i);
     void buildMaxHeap(std::vector<T> &A);
     void heapSort(std::vector<T> &A);
 
@@ -23,7 +36,6 @@ public:
 //    void heap_insert();
 //    void heap_increaseKey();
 
-
 };
 
 //================= member function implementation ==================//
@@ -32,14 +44,17 @@ void MaxHeap<T>::maxHeapify(std::vector<T> &A, int i)
 {
     int l = leftChild_idx(i);
     int r = rightChild_idx(i);
+    if ( l==-1 || r == -1)
+        return;
+
     // idx of largest element
     int largest = 0;
-    if (l <= A.size() && A[l] > A[i])
+    if (l < A.size() && A[l] > A[i])
         largest = l;
     else
         largest = i;
 
-    if (r <= A.size() && A[r] > A[i])
+    if (r < A.size() && A[r] > A[i])
         largest = r;
 
     if (largest != i)
