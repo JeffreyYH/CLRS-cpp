@@ -5,13 +5,6 @@
 
 using namespace std;
 
-void Sorting::mySwap(int &x, int &y)
-{
-    int temp = x;
-    x = y;
-    y = temp;
-}
-
 vector<int> Sorting::bubbleSort(vector<int> A)
 {
     // compare current element with the next element,
@@ -23,7 +16,7 @@ vector<int> Sorting::bubbleSort(vector<int> A)
         for(int j=0; j<A.size()-i-1; j++)
         {
             if(A[j] > A[j+1])
-                mySwap(A[j], A[j+1]);
+                myUtils.swap(A[j], A[j+1]);
                 // you can also use std::swap()
                 // std::swap(A[j], A[j+1]);
         }
@@ -115,10 +108,10 @@ int Sorting::partition(vector<int> &A, int p, int r)
         if (A[j] <= x)
         {
             i ++;
-            mySwap(A[i], A[j]);
+            myUtils.swap(A[i], A[j]);
         }
     }
-    mySwap(A[i+1], A[r]);
+    myUtils.swap(A[i+1], A[r]);
 
     // // print the results of each partition
     // for (int idx = p; idx < r; idx ++)

@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
+#include "myUtils.hpp"
 using namespace std;
 
 class Sorting
 {
-public:
-    void mySwap(int &x, int &y);
+private:
+    MyUtils myUtils;
 
+public:
     vector<int> bubbleSort(vector<int> A);
 
     // sort a list in ASCENDING order with insertion sort
