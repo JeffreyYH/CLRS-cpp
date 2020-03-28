@@ -21,10 +21,10 @@ public:
     void heapSort(std::vector<T> &A);
 
     // member functions for max-priority queue
-//    void heap_maximum();
-//    void heap_extractMax();
-//    void heap_insert();
-//    void heap_increaseKey();
+    void heap_maximum(std::vector<T> &A);
+    void heap_extractMax();
+    void heap_insert();
+    void heap_increaseKey();
 
 };
 
@@ -99,9 +99,28 @@ void MaxHeap<T>::heapSort(std::vector<T> &A)
     }
 }
 
-//void MaxHeap::heap_maximum();
-//void MaxHeap::heap_extractMax();
-//void MaxHeap::heap_insert();
-//void MaxHeap::heap_increaseKey();
+template <class T>
+void MaxHeap<T>::heap_maximum(std::vector<T> &A)
+{
+    return A[0];
+}
+
+template <class T>
+void MaxHeap<T>::heap_extractMax()
+{
+    return;
+}
+
+template <class T>
+void MaxHeap<T>::heap_insert()
+{
+    return;
+}
+
+template <class T>
+void MaxHeap<T>::heap_increaseKey()
+{
+    return;
+}
 
 
