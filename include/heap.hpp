@@ -11,7 +11,7 @@ private:
 
 public:
     // Uncomment this line if you need a constructor
-    // explicit MaxHeap() {A = A_; heap_size = A.size();}
+    // explicit MaxHeap() {}
 
     int parent_idx(int i);
     int leftChild_idx(int i);
