@@ -11,21 +11,9 @@ private:
 
 public:
     explicit MaxHeap(std::vector<T> &A_) {A = A_;}
-    int parent_idx(int i) {return (i/2);}
-    int leftChild_idx(int i)
-    {
-        if ((2*i+1) < A.size())
-            return 2*i + 1;
-        else
-            return -1;
-    }
-    int rightChild_idx(int i)
-    {
-        if ((2*i+2) < A.size())
-            return (2*i+2);
-        else
-            return -1;
-    }
+    int parent_idx(int i);
+    int leftChild_idx(int i);
+    int rightChild_idx(int i);
     void maxHeapify(std::vector<T> &A,  int i);
     void buildMaxHeap(std::vector<T> &A);
     void heapSort(std::vector<T> &A);
@@ -39,6 +27,30 @@ public:
 };
 
 //================= member function implementation ==================//
+template <class T>
+int MaxHeap<T>::parent_idx(int i)
+{
+    return (i/2);
+}
+
+template <class T>
+int MaxHeap<T>::leftChild_idx(int i)
+{
+    if ((2*i+1) < A.size())
+        return 2*i + 1;
+    else
+        return -1;
+}
+
+template <class T>
+int MaxHeap<T>::rightChild_idx(int i)
+{
+    if ((2*i+2) < A.size())
+        return (2*i+2);
+    else
+        return -1;
+}
+
 template <class T>
 void MaxHeap<T>::maxHeapify(std::vector<T> &A, int i)
 {
@@ -76,7 +88,7 @@ template <class T>
 void MaxHeap<T>::heapSort(std::vector<T> &A)
 {
     buildMaxHeap(A);
-    for (int i=A.size()/2; i>=1; --i)
+    for (int i=A.size()/2; i>=0; --i)
     {
         myUtils.swap(A[0], A[i]);
         maxHeapify(A, i);
