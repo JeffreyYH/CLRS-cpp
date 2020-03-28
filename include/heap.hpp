@@ -11,7 +11,7 @@ private:
 
 public:
     // Uncomment this line if you need a constructor
-    // explicit MaxHeap(std::vector<T> &A_) {A = A_; heap_size = A.size();}
+    // explicit MaxHeap() {A = A_; heap_size = A.size();}
 
     int parent_idx(int i);
     int leftChild_idx(int i);
@@ -38,7 +38,7 @@ int MaxHeap<T>::parent_idx(int i)
 template <class T>
 int MaxHeap<T>::leftChild_idx(int i)
 {
-    if ((2*i+1) < A.size())
+    if ((2*i+1) < heap_size)
         return 2*i + 1;
     else
         return -1;
@@ -47,7 +47,7 @@ int MaxHeap<T>::leftChild_idx(int i)
 template <class T>
 int MaxHeap<T>::rightChild_idx(int i)
 {
-    if ((2*i+2) < A.size())
+    if ((2*i+2) < heap_size)
         return (2*i+2);
     else
         return -1;
@@ -91,11 +91,11 @@ template <class T>
 void MaxHeap<T>::heapSort(std::vector<T> &A)
 {
     buildMaxHeap(A);
-    for (int i=(A.size()/2-1); i>=0; --i)
+    for (int i=(A.size()-1); i>=1; --i)
     {
-        myUtils.swap(A[0], A[i]);
+        myUtils.swap(A[i], A[0]);
         heap_size --;
-        maxHeapify(A, i);
+        maxHeapify(A, 0);
     }
 }
 
