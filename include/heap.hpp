@@ -98,6 +98,8 @@ void MaxHeap<T>::heapSort(std::vector<T> &A)
         heap_size --;
         maxHeapify(A, 0);
     }
+    // recover the previous heap size after heap sort
+    heap_size = A.size();
 }
 
 template <class T>
