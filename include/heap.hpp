@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <limits>
 #include "myUtils.hpp"
 
 template <class T>
@@ -135,7 +136,7 @@ template <class T>
 void MaxHeap<T>::heap_insert(std::vector<T> &A, T key)
 {
     heap_size ++;
-    A[heap_size-1] = -10000;
+    A[heap_size-1] = std::numeric_limits<T>::min();
     heap_increaseKey(A, heap_size, key);
 }
 
