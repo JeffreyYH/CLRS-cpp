@@ -21,10 +21,10 @@ public:
     void heapSort(std::vector<T> &A);
 
     // member functions for max-priority queue
-    void heap_maximum(std::vector<T> &A);
-    void heap_extractMax();
-    void heap_insert();
-    void heap_increaseKey();
+    T heap_maximum(std::vector<T> &A);
+    T heap_extractMax(std::vector<T> &A);
+    void heap_increaseKey(std::vector<T> &A, T i, T key);
+    void heap_insert(std::vector<T> &A, T key);
 
 };
 
@@ -100,27 +100,43 @@ void MaxHeap<T>::heapSort(std::vector<T> &A)
 }
 
 template <class T>
-void MaxHeap<T>::heap_maximum(std::vector<T> &A)
+T MaxHeap<T>::heap_maximum(std::vector<T> &A)
 {
     return A[0];
 }
 
 template <class T>
-void MaxHeap<T>::heap_extractMax()
+T MaxHeap<T>::heap_extractMax(std::vector<T> &A)
 {
-    return;
+    if (heap_size < 1)
+        std::cerr << "heap underflow" << std::endl;
+    T max = A[0];
+    // change the first element as the last
+    A[0] = A[heap_size-1];
+    heap_size --;
+    maxHeapify(A, 0);
+    return max;
 }
 
 template <class T>
-void MaxHeap<T>::heap_insert()
+void MaxHeap<T>::heap_increaseKey(std::vector<T> &A, T i, T key)
 {
-    return;
+    if (key < A[i])
+        std::cerr << "new key is smaller than current key" << std::endl;
+    A[i] = key;
+    while (i>0 && A[parent_idx(i) < A[i]])
+    {
+        myUtils.swap(A[i], A[parent_idx(i)]);
+        i = parent_idx(i);
+    }
 }
 
 template <class T>
-void MaxHeap<T>::heap_increaseKey()
+void MaxHeap<T>::heap_insert(std::vector<T> &A, T key)
 {
-    return;
+    heap_size ++;
+    A[heap_size-1] = -10000;
+    heap_increaseKey(A, heap_size, key);
 }
 
 
