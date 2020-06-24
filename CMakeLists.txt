@@ -10,7 +10,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 add_executable(run_bintTree testApp/binTree_main.cpp)
 add_executable(run_linkedList testApp/linkedList_main.cpp)
 add_executable(run_sorting testApp/sorting_main.cpp)
-add_executable(run_binSearch testApp/binSearch_main.cpp)
+add_executable(run_binSearch testApp/search_main.cpp)
 add_executable(run_heap testApp/heap_main.cpp)
 
 

@@ -2,15 +2,16 @@
 #include <vector>
 using namespace std;
 
-class BinSearch
+template <class T>
+class Search
 {
 public:
     int binSearch_recursive (vector<int> &A, int low, int high, int element);
     int binSearch_iterative(vector<int> &A, int element);
 };
 
-
-int BinSearch::binSearch_recursive (vector<int> &A, int low, int high, int element)
+template <class T>
+int Search<T>::binSearch_recursive (vector<int> &A, int low, int high, int element)
 {
     // int mid = (low + high) / 2;
     int mid = low + (high - low) / 2;  // a better way for mid
@@ -22,7 +23,8 @@ int BinSearch::binSearch_recursive (vector<int> &A, int low, int high, int eleme
         return mid;
 }
 
-int BinSearch::binSearch_iterative(vector<int> &A, int element)
+template <class T>
+int Search<T>::binSearch_iterative(vector<int> &A, int element)
 {
     int low = 0, high = A.size() - 1;
     while (low < high)

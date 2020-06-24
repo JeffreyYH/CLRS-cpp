@@ -1,20 +1,20 @@
 #include <iostream>
 #include <vector>
-#include "binSearch.hpp"
+#include "search.hpp"
 
 using namespace std;
 
 int main ()
 {
-    BinSearch binsearchObj;
+    Search searchObj;
     // given a SORTED array
     vector<int> testA = {1,8,9,10,18,20,49};
     int element = 18;
     int low = 0, high = testA.size()-1;
     // results of bin search with recursive approach
-    cout << binsearchObj.binSearch_recursive(testA, low, high, element) << endl;
+    cout << searchObj.binSearch_recursive(testA, low, high, element) << endl;
     // results of bin search with iterative approach
-    cout << binsearchObj.binSearch_iterative(testA, element)<< endl;
+    cout << searchObj.binSearch_iterative(testA, element)<< endl;
 	return 0;
 }
 
