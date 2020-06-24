@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "sorting.h"
+#include "sorting.hpp"
 
 using namespace std;
 

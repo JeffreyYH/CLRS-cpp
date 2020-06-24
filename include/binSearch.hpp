@@ -1,8 +1,14 @@
 #include <iostream>
 #include <vector>
-#include "binSearch.h"
-
 using namespace std;
+
+class BinSearch
+{
+public:
+    int binSearch_recursive (vector<int> &A, int low, int high, int element);
+    int binSearch_iterative(vector<int> &A, int element);
+};
+
 
 int BinSearch::binSearch_recursive (vector<int> &A, int low, int high, int element)
 {
@@ -28,7 +34,7 @@ int BinSearch::binSearch_iterative(vector<int> &A, int element)
             high = mid - 1;
         else
             return mid;
-    }    
+    }
 }
 
 

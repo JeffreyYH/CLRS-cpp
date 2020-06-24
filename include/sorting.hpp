@@ -27,7 +27,7 @@ public:
     // TODO: linear time sorting
 };
 
-//
+// TODO: MAKE template
 vector<int> Sorting::bubbleSort(vector<int> A)
 {
     // compare current element with the next element,
