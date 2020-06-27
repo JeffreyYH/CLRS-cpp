@@ -9,7 +9,7 @@ int main()
     vector<int> A = {0, 9, 3, 10, -1, 6, 4, 2};
     int n = A.size();
 
-    Sorting sortObj;
+    Sorting<int> sortObj;
 
     vector<int> A_bubbleSort = sortObj.bubbleSort(A);
     cout << "result after bubble sort:" << endl;
@@ -39,7 +39,7 @@ int main()
 	cout << endl;
 
 
-    /*// if you want to input A, uncomment the following code:
+    /*// if you want to input A via terminal, uncomment the following code:
     vector<int> A;
     int n;  // number of element
     while (cin>>n && n!=0)

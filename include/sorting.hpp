@@ -5,30 +5,31 @@
 
 using namespace std;
 
+template <class T>
 class Sorting
 {
 private:
     MyUtils myUtils;
 
 public:
-    vector<int> bubbleSort(vector<int> A);
+    vector<T> bubbleSort(vector<T> A);
 
     // sort a list in ASCENDING order with insertion sort
-    vector<int> insertionSort(vector<int> A);
+    vector<T> insertionSort(vector<T> A);
 
     // merge sort: divide and conquer
-    void merge (vector<int> &A, int p, int q, int r);
-    void mergeSort (vector<int> &A, int p, int r);
+    void merge (vector<T> &A, int p, int q, int r);
+    void mergeSort (vector<T> &A, int p, int r);
 
     // quick sort: divide and conquer
-    int partition(vector<int> &A, int p, int r);
-    void quickSort (vector<int> &A, int p, int r);
+    int partition(vector<T> &A, int p, int r);
+    void quickSort (vector<T> &A, int p, int r);
 
     // TODO: linear time sorting
 };
 
-// TODO: MAKE template
-vector<int> Sorting::bubbleSort(vector<int> A)
+template <class T>
+vector<T> Sorting<T>::bubbleSort(vector<T> A)
 {
     // compare current element with the next element,
     // move the larger one right side(ascending order),
@@ -48,7 +49,8 @@ vector<int> Sorting::bubbleSort(vector<int> A)
 }
 
 // sort a list in ASCENDING order with insertion sort
-vector<int> Sorting::insertionSort(vector<int> A)
+template <class T>
+vector<T> Sorting<T>::insertionSort(vector<T> A)
 {
     int key = 0;
     // start with the second element of A
@@ -73,7 +75,8 @@ vector<int> Sorting::insertionSort(vector<int> A)
 }
 
 
-void Sorting::merge (vector<int> &A, int p, int q, int r)
+template <class T>
+void Sorting<T>::merge (vector<T> &A, int p, int q, int r)
 {
     // length of left and right parts
     int Nl = q-p+1;
@@ -108,7 +111,8 @@ void Sorting::merge (vector<int> &A, int p, int q, int r)
 }
 
 // argument A can also be written as *A or A[] if using array
-void Sorting::mergeSort (vector<int> &A, int p, int r)
+template <class T>
+void Sorting<T>::mergeSort (vector<T> &A, int p, int r)
 {
     if (p < r)
     {
@@ -121,7 +125,8 @@ void Sorting::mergeSort (vector<int> &A, int p, int r)
 }
 
 // quick sort
-int Sorting::partition(vector<int> &A, int p, int r)
+template <class T>
+int Sorting<T>::partition(vector<T> &A, int p, int r)
 {
     int x, i;
     x = A[r];
@@ -145,7 +150,8 @@ int Sorting::partition(vector<int> &A, int p, int r)
     return (i+1);
 }
 
-void Sorting::quickSort (vector<int> &A, int p, int r)
+template <class T>
+void Sorting<T>::quickSort (vector<T> &A, int p, int r)
 {
     if(p < r)
     {
