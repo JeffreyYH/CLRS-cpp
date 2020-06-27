@@ -6,7 +6,7 @@ using namespace std;
 
 int main ()
 {
-    Search searchObj;
+    Search<int> searchObj;
     // given a SORTED array
     vector<int> testA = {1,8,9,10,18,20,49};
     int element = 18;
