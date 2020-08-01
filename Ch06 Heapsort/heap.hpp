@@ -30,17 +30,20 @@ public:
 };
 
 //================= member function implementation ==================//
+// NOTE we use indices starting 0,
+// so parent, lef and right child index will be different original book //
+
 template <class T>
 int MaxHeap<T>::parent_idx(int i)
 {
-    return ((i-1)/2);
+    return (i-1)/2;
 }
 
 template <class T>
 int MaxHeap<T>::leftChild_idx(int i)
 {
     if ((2*i+1) < heap_size)
-        return 2*i + 1;
+        return 2*i+1;
     else
         return -1;
 }
@@ -75,7 +78,7 @@ void MaxHeap<T>::maxHeapify(std::vector<T> &A, int i)
     if (largest != i)
     {
         myUtils.swap(A[i], A[largest]);
-        maxHeapify(A, i);
+        maxHeapify(A, largest);
     }
 }
 
