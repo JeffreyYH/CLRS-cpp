@@ -64,12 +64,12 @@ void MaxHeap<T>::maxHeapify(std::vector<T> &A, int i)
 
     // idx of largest element
     int largest = 0;
-    if (l != -1 && l < heap_size && A[l] > A[i])
+    if (l != -1 && l <= heap_size && A[l] > A[i])
         largest = l;
     else
         largest = i;
 
-    if (r != -1 && r < heap_size && A[r] > A[i])
+    if (r != -1 && r <= heap_size && A[r] > A[largest])
         largest = r;
 
     if (largest != i)
