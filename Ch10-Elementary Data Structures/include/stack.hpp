@@ -2,13 +2,13 @@
 using namespace std;
 
 template <class T>
-class Stacks
+class Stack
 {
 public:
     int *S;
     int top;
-    Stacks(int size);       // constructor
-    ~Stacks();              // destructor
+    Stack(int L);       // constructor
+    ~Stack();              // destructor
     bool stack_empty();
     void push(T x);
     T pop();
@@ -16,36 +16,38 @@ public:
 };
 
 template <class T>
-Stacks<T>::Stacks(int size)
+Stack<T>::Stack(int maxSize)
 {
-    S = new T[size];
+    S = new T[maxSize];
     top = -1;
+    // Note top should NOT be assigned as 0,
+    // since if top is 0 that means there is 1 element S[0] in S
 }
 
 template <class T>
-Stacks<T>::~Stacks()
+Stack<T>::~Stack()
 {
     delete[] S;
 }
 
 template <class T>
-bool Stacks<T>::stack_empty()
+bool Stack<T>::stack_empty()
 {
-    if (top == 0)
+    if (top == -1)
         return true;
     else
         return false;
 }
 
 template <class T>
-void Stacks<T>::push(T x)
+void Stack<T>::push(T x)
 {
     top ++;
     S[top] = x;
 }
 
 template <class T>
-T Stacks<T>::pop()
+T Stack<T>::pop()
 {
     if (stack_empty())
         cerr << "stack underflow" << endl;
@@ -55,8 +57,10 @@ T Stacks<T>::pop()
 }
 
 template <class T>
-void Stacks<T>::printStack()
+void Stack<T>::printStack()
 {
+    cout << "Stack length " << top+1 << ", ";
+    cout << "elements: ";
     for (int i=0; i<=top; i++)
         cout << S[i] << ' ';
     cout << endl;

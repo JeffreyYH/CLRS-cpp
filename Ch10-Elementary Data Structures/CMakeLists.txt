@@ -5,4 +5,5 @@ project(ElementaryDataStructures)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(include)
-add_executable(run_stack src/stacks_main.cpp)
+add_executable(run_stack src/stack_main.cpp)
+#add_executable(run_queue src/queue_main.cpp)
