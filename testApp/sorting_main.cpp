@@ -31,14 +31,6 @@ int main()
         cout << A_mergeSort[i] <<' ';
     cout << endl;
 
-    vector<int> A_quickSort = A;
-    sortObj.quickSort(A_quickSort, 0, n-1);
-	cout << "result after quick sort:" << endl;
-	for (int i = 0; i < n; i++)
-		cout << A_quickSort[i] <<' ';
-	cout << endl;
-
-
     /*// if you want to input A via terminal, uncomment the following code:
     vector<int> A;
     int n;  // number of element

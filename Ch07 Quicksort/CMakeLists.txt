@@ -5,6 +5,6 @@ project(heapsort)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(../utils)
-add_executable(run_quicksort quicksort_main.cpp)
+add_executable(run_quicksort main_quicksort.cpp)
 
 

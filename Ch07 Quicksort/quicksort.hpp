@@ -16,13 +16,11 @@ public:
     // quick sort: divide and conquer
     int partition(vector<T> &A, int p, int r);
     void quickSort (vector<T> &A, int p, int r);
-
- 
 };
 
 
 template <class T>
-int Sorting<T>::partition(vector<T> &A, int p, int r)
+int QuickSort<T>::partition(vector<T> &A, int p, int r)
 {
     int x, i;
     x = A[r];
@@ -47,7 +45,7 @@ int Sorting<T>::partition(vector<T> &A, int p, int r)
 }
 
 template <class T>
-void Sorting<T>::quickSort (vector<T> &A, int p, int r)
+void QuickSort<T>::quickSort (vector<T> &A, int p, int r)
 {
     if(p < r)
     {
