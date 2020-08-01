@@ -52,7 +52,7 @@ T Stack<T>::pop()
     if (stack_empty())
         cerr << "stack underflow" << endl;
     else
-        (top --);
+        top --;
     return S[top+1];
 }
 

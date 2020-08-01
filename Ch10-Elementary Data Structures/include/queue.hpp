@@ -7,7 +7,7 @@ class Queue
 public:
     int *Q;
     int head, tail;
-    Queue(int length);       // constructor
+    Queue(int maxSize);       // constructor
     ~Queue();              // destructor
     void enqueue(T x);
     T dequeue();
@@ -15,9 +15,9 @@ public:
 };
 
 template <class T>
-Queue::Queue(int length)
+Queue::Queue(int maxSize)
 {
-    Q = new T[length];
+    Q = new T[maxSize];
     head = 0;
     tail = 0;
 }
@@ -31,5 +31,7 @@ Queue::~Queue()
 template <class T>
 void Queue::enqueue(T x)
 {
+    Q[tail] = x;
+    if
 
 }
