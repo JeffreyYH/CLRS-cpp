@@ -17,4 +17,12 @@ int main()
     for (auto a:A_quickSort)
         cout << a <<' ';
     cout << endl;
+
+    // use randomized version of quicksort
+    vector<int> A_randquicksort = A;
+    quicksortObj.randomized_quicksort(A_randquicksort, 0, N-1);
+    cout << "After randomized quick sort: " << endl;
+    for (auto a:A_randquicksort)
+        cout << a << ' ';
+    cout << endl;
 }
