@@ -17,10 +17,10 @@ int main()
     char pre[LEN] = {'A', 'B', 'D', 'E', 'C', 'F'};
 
     // create new tree node for initialization, left and right is NULL
-    BinTree bintree;
+    BinTree<char> bintree;
 
     // obtain the rebuilt tree
-    BinTree::Node *root = bintree.rebuildTree(in, pre, 0, LEN - 1);
+    BinTree::treeNode *root = bintree.rebuildTree(in, pre, 0, LEN - 1);
 
     // print the tree in in-order
     cout << "In-order traversal of the tree is " << endl;

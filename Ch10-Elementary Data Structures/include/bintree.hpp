@@ -2,57 +2,51 @@
 #include <algorithm>
 using namespace std;
 
+template <class T>
 class BinTree
 {
 public:
-    struct Node {
-        char data;
-        Node *left;
-        Node *right;
+    struct treeNode {
+        T data;
+        treeNode *left;
+        treeNode *right;
+        treeNode (T value): data(value), left(NULL), right(NULL) {};
     };
 
 public:
     // search for index
-    int searchIdx(char arr[], int start, int end, char value);
+    int searchIdx(T arr[], int start, int end, T value);
 
     // rebuild binary tree with In-order traversal in[] and Pre-order traversal pre[]
     // Initial values of idxStart and idxEnd should be 0 and len - 1
-    Node *rebuildTree(char in[], char pre[], int idxStart, int idxEnd);
+    treeNode *rebuildTree(T in[], T pre[], int idxStart, int idxEnd);
 
     //=========================Three different tree traversal methods==========================//
     // printer function in in-order
-    void printInorder(Node *node);
+    void printInorder(treeNode *node);
 
     // printer function in pre-order
-    void printPreOrder(Node *node);
+    void printPreOrder(treeNode *node);
 
     // printer function in post-order
-    void printPostOrder(Node *node);
+    void printPostOrder(treeNode *node);
 
     // print tree by level
-    void printbyLevel(Node *root, int level);
+    void printbyLevel(treeNode *root, int level);
 
     //get the depth of the tree (max depth)
-    static int getDepth(Node *node);
+    static int getDepth(treeNode *node);
 
-    int getDepth_2(Node *root);
+    int getDepth_2(treeNode *root);
 
     // print the whole tree level by level
-    void printAllLevels(Node *root, int depth);
+    void printAllLevels(treeNode *root, int depth);
 };
 
 
-
-BinTree::Node* newNode(char value) {
-    BinTree::Node* node = new BinTree::Node;
-    node->data = value;
-    node->left = NULL;
-    node->right = NULL;
-    return node;
-}
-
 // search for index
-int BinTree::searchIdx (char arr[], int start, int end, char value)
+template <class T>
+int BinTree<T>::searchIdx (T arr[], int start, int end, T value)
 {
     for(int i = start; i <= end; i++)
     {
@@ -61,39 +55,10 @@ int BinTree::searchIdx (char arr[], int start, int end, char value)
     }
 }
 
-// rebuild binary tree with In-order traversal in[] and Pre-order traversal pre[]
-// Initial values of idxStart and idxEnd should be 0 and len - 1
-BinTree::Node* BinTree::rebuildTree (char in[], char pre[], int idxStart, int idxEnd)
-{
-    static int preIndex = 0;
-    if(idxStart > idxEnd)
-        return NULL;
-
-    // allocates a new node
-    // pick current node from Pre-order traversal using preIndex and increment preIndex
-    Node* tNode = newNode (pre[preIndex]) ;
-    preIndex ++;
-
-    // cout << "pre index is" << endl;
-    // cout << preIndex << endl;
-
-    // if this node has no children then return
-    if(idxStart  == idxEnd)
-        return tNode;
-
-    // else find the index of this node in In-order traversal to get the inIndex
-    int inIndex = searchIdx(in, idxStart, idxEnd, tNode->data);
-
-    // construct left and right subtree
-    tNode->left = rebuildTree(in, pre, idxStart, inIndex-1);
-    tNode->right = rebuildTree(in, pre, inIndex+1, idxEnd);
-
-    return tNode;
-}
-
 //=========================Three different tree traversal methods==========================//
 // printer function in in-order
-void BinTree::printInorder(Node* node)
+template <class T>
+void BinTree<T>::printInorder(treeNode* node)
 {
     if (node == NULL)
         return;
@@ -103,7 +68,8 @@ void BinTree::printInorder(Node* node)
 }
 
 // printer function in pre-order
-void BinTree::printPreOrder(Node* node)
+template <class T>
+void BinTree<T>::printPreOrder(treeNode* node)
 {
     if (node == NULL)
         return;
@@ -113,7 +79,8 @@ void BinTree::printPreOrder(Node* node)
 }
 
 // printer function in post-order
-void BinTree::printPostOrder(Node* node)
+template <class T>
+void BinTree<T>::printPostOrder(treeNode* node)
 {
     if (node == NULL)
         return;
@@ -123,7 +90,8 @@ void BinTree::printPostOrder(Node* node)
 }
 
 // print tree by level
-void BinTree::printbyLevel (Node * root, int level)
+template <class T>
+void BinTree<T>::printbyLevel (treeNode * root, int level)
 {
     if (!root || level < 0)
         return;
@@ -134,7 +102,8 @@ void BinTree::printbyLevel (Node * root, int level)
 }
 
 //get the depth of the tree (max depth)
-int BinTree::getDepth(Node * node)
+template <class T>
+int BinTree<T>::getDepth(treeNode * node)
 {
     if (node == NULL)
         return 0;
@@ -152,13 +121,14 @@ int BinTree::getDepth(Node * node)
     }
 }
 
-int BinTree::getDepth_2(Node *root)
+template <class T>
+int BinTree<T>::getDepth_2(treeNode *root)
 {
     // Corner case. Should never be hit unless the code is called on root = NULL
     if (root == NULL)
         return 0;
 
-    // Base case : Leaf Node. This accounts for height = 1.
+    // Base case : Leaf treeNode. This accounts for height = 1.
     if (root->left == NULL && root->right == NULL)
         return 1;
 
@@ -176,13 +146,45 @@ int BinTree::getDepth_2(Node *root)
 }
 
 // print the whole tree level by level
-void BinTree::printAllLevels (Node * root, int depth)
+template <class T>
+void BinTree<T>::printAllLevels (treeNode * root, int depth)
 {
     for (int level=0; level < depth; level++)
     {
         BinTree::printbyLevel (root, level);
         cout << endl;
     }
+}
+
+// rebuild binary tree with In-order traversal in[] and Pre-order traversal pre[]
+// Initial values of idxStart and idxEnd should be 0 and len - 1
+template <class T>
+treeNode* BinTree<T>::rebuildTree (T in[], T pre[], int idxStart, int idxEnd)
+{
+    static int preIndex = 0;
+    if(idxStart > idxEnd)
+        return NULL;
+
+    // allocates a new node
+    // pick current node from Pre-order traversal using preIndex and increment preIndex
+    treeNode *tNode = new treeNode (pre[preIndex]) ;
+    preIndex ++;
+
+    // cout << "pre index is" << endl;
+    // cout << preIndex << endl;
+
+    // if this node has no children then return
+    if(idxStart  == idxEnd)
+        return tNode;
+
+    // else find the index of this node in In-order traversal to get the inIndex
+    int inIndex = searchIdx(in, idxStart, idxEnd, tNode->data);
+
+    // construct left and right subtree
+    tNode->left = rebuildTree(in, pre, idxStart, inIndex-1);
+    tNode->right = rebuildTree(in, pre, inIndex+1, idxEnd);
+
+    return tNode;
 }
 
 

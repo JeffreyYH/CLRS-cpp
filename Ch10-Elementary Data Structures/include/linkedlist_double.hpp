@@ -13,5 +13,27 @@ public:
     };
 
     ListNode *head, *tail;
+
+public:
+    void list_insert(T x);
+}
+
+template <class T>
+void list_insert(T val)
+{
+    ListNode *x = new ListNode(val);
+    x->next = head
+    ListNode *tempNode = NULL;
+    if (head == NULL && tail == NULL)
+    {
+        head = newNode;
+        tail = newNode;
+    }
+    else
+    {
+        tempNode = head;
+        head = newNode;
+        head->next = tempNode;
+    }
 }
 
