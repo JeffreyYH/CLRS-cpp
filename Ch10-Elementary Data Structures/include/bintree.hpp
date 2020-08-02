@@ -14,10 +14,6 @@ template <class T>
 class BinTree
 {
 public:
-    // search for index
-    int searchIdx(T arr[], int start, int end, T value);
-
-    //=========================Three different tree traversal methods==========================//
     // printer function in in-order
     void printInorder(treeNode<T> *node);
 
@@ -39,17 +35,6 @@ public:
     void printAllLevels(treeNode<T> *root, int depth);
 };
 
-
-// search for index
-template <class T>
-int BinTree<T>::searchIdx (T arr[], int start, int end, T value)
-{
-    for(int i = start; i <= end; i++)
-    {
-        if(arr[i] == value)
-            return i;
-    }
-}
 
 //=========================Three different tree traversal methods==========================//
 // printer function in in-order
