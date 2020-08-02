@@ -1,5 +1,5 @@
 #include <iostream>
-#include "binTree.hpp"
+#include "bintree.hpp"
 
 using namespace std;
 
