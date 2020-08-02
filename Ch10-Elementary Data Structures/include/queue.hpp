@@ -20,7 +20,7 @@ Queue<T>::Queue(int maxSize, int initHead)
     Q = new T[maxSize];
     length = maxSize;
     head = initHead;
-    tail = initHead + 1;
+    tail = initHead;
 }
 
 template <class T>
@@ -33,7 +33,7 @@ template <class T>
 void Queue<T>::enqueue(T x)
 {
     Q[tail] = x;
-    if (tail == length)
+    if (tail == length - 1)
         tail = 0;
     else
         tail ++;
@@ -43,7 +43,7 @@ template <class T>
 T Queue<T>::dequeue()
 {
     int x = Q[head];
-    if (head == length)
+    if (head == length - 1)
         head = 0;
     else
         head ++;
