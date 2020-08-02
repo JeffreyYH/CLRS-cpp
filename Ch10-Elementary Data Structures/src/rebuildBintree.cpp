@@ -2,10 +2,12 @@
 #include "bintree.hpp"
 using namespace std;
 
+BinTree<char> bintreeUtils;
+
 // rebuild binary tree with In-order traversal in[] and Pre-order traversal pre[]
 // Initial values of idxStart and idxEnd should be 0 and len - 1
 template <typename T>
-treeNode<T>* BinTree<T>::rebuildTree (T in[], T pre[], int idxStart, int idxEnd)
+treeNode<T>* rebuildTree (T in[], T pre[], int idxStart, int idxEnd)
 {
     static int preIndex = 0;
     if(idxStart > idxEnd)
@@ -24,7 +26,7 @@ treeNode<T>* BinTree<T>::rebuildTree (T in[], T pre[], int idxStart, int idxEnd)
         return tNode;
 
     // else find the index of this node in In-order traversal to get the inIndex
-    int inIndex = searchIdx(in, idxStart, idxEnd, tNode->data);
+    int inIndex = bintreeUtils.searchIdx(in, idxStart, idxEnd, tNode->data);
 
     // construct left and right subtree
     tNode->left = rebuildTree(in, pre, idxStart, inIndex-1);
@@ -46,10 +48,8 @@ int main() {
     char in[LEN] = {'D', 'B', 'E', 'A', 'F', 'C'};
     char pre[LEN] = {'A', 'B', 'D', 'E', 'C', 'F'};
 
-    BinTree<char> bintreeUtils;
-
     // obtain the rebuilt tree
-    treeNode<char> *root = bintreeUtils.rebuildTree(in, pre, 0, LEN - 1);
+    treeNode<char> *root = rebuildTree(in, pre, 0, LEN - 1);
 
     // print the tree of level by level
     int depth = bintreeUtils.getDepth(root);
