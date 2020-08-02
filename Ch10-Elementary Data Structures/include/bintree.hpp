@@ -136,11 +136,3 @@ void BinTree<T>::printAllLevels (treeNode<T> * root, int depth)
         cout << endl;
     }
 }
-
-
-
-
-
-
-
-

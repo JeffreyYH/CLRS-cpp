@@ -12,7 +12,6 @@ int main()
     //   / \    / \
     //  D   E  F   G
 
-    // create new tree node for initialization, left and right is NULL
     BinTree<char> bintree;
 
     // root
