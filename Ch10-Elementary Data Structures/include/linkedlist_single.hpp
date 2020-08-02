@@ -9,7 +9,7 @@ public:
     {
         T data;
         ListNode *next;
-        ListNode (int x): data(x), next(NULL) {}
+        ListNode (T x): data(x), next(NULL) {}
     };
 
     ListNode *head, *tail;
