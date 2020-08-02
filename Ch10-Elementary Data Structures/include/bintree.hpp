@@ -84,15 +84,15 @@ void BinTree<T>::printbyLevel (treeNode<T> * root, int level)
 
 //get the depth of the tree (max depth)
 template <class T>
-int BinTree<T>::getDepth(treeNode<T> * node)
+int BinTree<T>::getDepth(treeNode<T> * root)
 {
-    if (node == NULL)
+    if (root == NULL)
         return 0;
     else
     {
         // compute the depth of each subtree
-        int lDepth = getDepth(node->left);
-        int rDepth = getDepth(node->right);
+        int lDepth = getDepth(root->left);
+        int rDepth = getDepth(root->right);
 
         // use the larger one as the depth of the tree
         if (lDepth > rDepth)
@@ -115,13 +115,13 @@ int BinTree<T>::getDepth_2(treeNode<T> *root)
 
     // If left subtree is NULL, recur for right subtree
     if (root->left == NULL)
-        getDepth(root->right);
+        getDepth_2(root->right);
 
     // If right subtree is NULL, recur for left subtree
     if (root->right == NULL)
-        getDepth(root->left);
+        getDepth_2(root->left);
 
-    int maxDepth = max(getDepth(root->left), getDepth(root->right)) + 1;
+    int maxDepth = max(getDepth_2(root->left), getDepth_2(root->right)) + 1;
 
     return maxDepth;
 }
