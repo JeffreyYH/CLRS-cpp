@@ -1,18 +1,19 @@
 #include <iostream>
 using namespace std;
 
+template <typename Dtype>
+struct ListNode
+{
+    Dtype data;
+    ListNode *next;
+    ListNode (Dtype x): data(x), next(NULL) {}
+};
+
 template <class T>
 class SingleLinkedList
 {
 public:
-    struct ListNode
-    {
-        T data;
-        ListNode *next;
-        ListNode (T x): data(x), next(NULL) {}
-    };
-
-    ListNode *head, *tail;
+    ListNode<T> *head, *tail;
 
 public:
     // constructor
@@ -40,7 +41,7 @@ public:
 template <class T>
 void SingleLinkedList<T>::addTail(T val)
 {
-    ListNode * newNode = new ListNode(val);
+    ListNode<T> *newNode = new ListNode(val);
     // if the list the empty
     if (head == NULL && tail == NULL)
     {
@@ -58,8 +59,8 @@ void SingleLinkedList<T>::addTail(T val)
 template <class T>
 void SingleLinkedList<T>::addHead(T val)
 {
-    ListNode *newNode = new ListNode(val);
-    ListNode *tempNode = NULL;
+    ListNode<T> *newNode = new ListNode(val);
+    ListNode<T> *tempNode = NULL;
     if (head == NULL && tail == NULL)
     {
         head = newNode;
@@ -77,13 +78,13 @@ void SingleLinkedList<T>::addHead(T val)
 template <class T>
 void SingleLinkedList<T>::insertAfterElement(T targetElement, T element)
 {
-    ListNode *currNode = head;
-    ListNode *nodeInsert = new ListNode(element);
+    ListNode<T> *currNode = head;
+    ListNode<T> *nodeInsert = new ListNode(element);
     while(currNode)
     {
         if(currNode->data == targetElement)
         {
-            ListNode *temp = currNode->next;
+            ListNode<T> *temp = currNode->next;
             currNode->next = nodeInsert;
             nodeInsert->next = temp;
             return;
@@ -96,14 +97,14 @@ void SingleLinkedList<T>::insertAfterElement(T targetElement, T element)
 template <class T>
 void SingleLinkedList<T>::insertAfterPosition(int pos, T element)
 {
-    ListNode *currNode = head;
-    ListNode *nodeInsert = new ListNode(element);
+    ListNode<T> *currNode = head;
+    ListNode<T> *nodeInsert = new ListNode(element);
     int i = 0;
     while(currNode)
     {
         if (i==pos)
         {
-            ListNode *temp = currNode->next;
+            ListNode<T> *temp = currNode->next;
             currNode->next = nodeInsert;
             nodeInsert->next = temp;
             return;
@@ -120,15 +121,15 @@ void SingleLinkedList<T>::deleteNode(T element)
     // if the element is head
     if (head->data == element)
     {
-        ListNode *tempHead = head;
+        ListNode<T> *tempHead = head;
         head = head->next;
         delete tempHead;
         return;
     }
 
     // keep in mind that we need to track the previous node too
-    ListNode *prevNode = head;
-    ListNode *currNode = prevNode->next;
+    ListNode<T> *prevNode = head;
+    ListNode<T> *currNode = prevNode->next;
     while(currNode)
     {
         if (currNode->data == element)
@@ -157,7 +158,7 @@ template <class T>
 void SingleLinkedList<T>::printList()
 {
     // assign head pointer to a temp pointer
-    ListNode *currNode = head;
+    ListNode<T> *currNode = head;
     while(currNode)
     {
         cout << currNode->data << ' ';
