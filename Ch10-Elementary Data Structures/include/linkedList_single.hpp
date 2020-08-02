@@ -2,12 +2,13 @@
 #include <vector>
 using namespace std;
 
-class List
+template <class T>
+class SingleLinkedList
 {
 public:
     struct ListNode
     {
-        int data;
+        T data;
         ListNode *next;
         ListNode (int x): data(x), next(NULL) {}
     };
@@ -15,34 +16,30 @@ public:
     ListNode *head, *tail;
 
 public:
-
     // constructor
-    List()
-    {
-        head = NULL;
-        tail = NULL;
-    }
+    SingleLinkedList() { head = NULL; tail = NULL;}
 
     // create new node and add new node to the tail
-    void addTail(int val);
+    void addTail(T val);
 
     // create new node and add to the head
-    void addHead(int val);
+    void addHead(T val);
 
     //insert an element after a certain target element
-    void insertAfterElement(int targetElement, int element);
+    void insertAfterElement(T targetElement, T element);
 
     //insert an element after a certain element
-    void insertAfterPosition(int pos, int element);
+    void insertAfterPosition(int pos, T element);
 
     // delete one element
-    void deleteNode(int element);
+    void deleteNode(T element);
 
     void printList();
 };
 
 // create new node and add new node to the tail
-void List::addTail(int val)
+template <class T>
+void SingleLinkedList<T>::addTail(T val)
 {
     ListNode * newNode = new ListNode(val);
     // if the list the empty
@@ -59,7 +56,8 @@ void List::addTail(int val)
 }
 
 // create new node and add to the head
-void List::addHead(int val)
+template <class T>
+void SingleLinkedList<T>::addHead(T val)
 {
     ListNode *newNode = new ListNode(val);
     ListNode *tempNode = NULL;
@@ -77,7 +75,8 @@ void List::addHead(int val)
 }
 
 //insert an element after a certain target element
-void List::insertAfterElement(int targetElement, int element)
+template <class T>
+void SingleLinkedList<T>::insertAfterElement(T targetElement, T element)
 {
     ListNode *currNode = head;
     ListNode *nodeInsert = new ListNode(element);
@@ -95,7 +94,8 @@ void List::insertAfterElement(int targetElement, int element)
 }
 
 //insert an element after a certain element
-void List::insertAfterPosition(int pos, int element)
+template <class T>
+void SingleLinkedList<T>::insertAfterPosition(int pos, T element)
 {
     ListNode *currNode = head;
     ListNode *nodeInsert = new ListNode(element);
@@ -115,7 +115,8 @@ void List::insertAfterPosition(int pos, int element)
 }
 
 // delete one element
-void List::deleteNode(int element)
+template <class T>
+void SingleLinkedList<T>::deleteNode(T element)
 {
     // if the element is head
     if (head->data == element)
@@ -153,7 +154,8 @@ void List::deleteNode(int element)
     }
 }
 
-void List::printList()
+template <class T>
+void SingleLinkedList<T>::printList()
 {
     // assign head pointer to a temp pointer
     ListNode *currNode = head;

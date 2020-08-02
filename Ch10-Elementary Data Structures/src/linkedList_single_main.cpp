@@ -6,7 +6,7 @@ using namespace std;
 
 int main()
 {
-    List listObj;
+    SingleLinkedList<int> listObj;
     vector<int> testArr {5, 8, 9, 10, 12};
     for (int i:testArr)
         listObj.addTail(i);
