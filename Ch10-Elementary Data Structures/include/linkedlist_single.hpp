@@ -17,7 +17,7 @@ public:
 
 public:
     // constructor
-    SingleLinkedList() { head = NULL; tail = NULL;}
+    SingleLinkedList() {head = NULL; tail = NULL;}
 
     // create new node and add new node to the tail
     void addTail(T val);
