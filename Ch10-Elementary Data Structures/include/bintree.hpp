@@ -7,7 +7,7 @@ struct treeNode {
     DtypeTree data;
     treeNode *left;
     treeNode *right;
-    treeNode (DtypeTree value): data(value), left(NULL), right(NULL) {};
+    treeNode (DtypeTree value) {data = value; left = NULL; right = NULL;};
 };
 
 template <class T>
