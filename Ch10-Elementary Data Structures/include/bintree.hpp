@@ -58,9 +58,9 @@ void BinTree<T>::printInorder(treeNode<T>* node)
 {
     if (node == NULL)
         return;
-    BinTree::printInorder(node->left);
+    printInorder(node->left);
     cout << node->data << ' ';
-    BinTree::printInorder(node->right);
+    printInorder(node->right);
 }
 
 // printer function in pre-order
@@ -70,8 +70,8 @@ void BinTree<T>::printPreOrder(treeNode<T>* node)
     if (node == NULL)
         return;
     cout << node->data << ' ';
-    BinTree::printPreOrder(node->left);
-    BinTree::printPreOrder(node->right);
+    printPreOrder(node->left);
+    printPreOrder(node->right);
 }
 
 // printer function in post-order
@@ -80,8 +80,8 @@ void BinTree<T>::printPostOrder(treeNode<T>* node)
 {
     if (node == NULL)
         return;
-    BinTree::printPostOrder(node->left);
-    BinTree::printPostOrder(node->right);
+    printPostOrder(node->left);
+    printPostOrder(node->right);
     cout << node->data << ' ';
 }
 
@@ -93,8 +93,8 @@ void BinTree<T>::printbyLevel (treeNode<T> * root, int level)
         return;
     if (level == 0)
         cout << root->data << ' ' ;
-    BinTree::printbyLevel(root->left, level-1);
-    BinTree::printbyLevel(root->right, level-1);
+    printbyLevel(root->left, level-1);
+    printbyLevel(root->right, level-1);
 }
 
 //get the depth of the tree (max depth)
@@ -106,8 +106,8 @@ int BinTree<T>::getDepth(treeNode<T> * node)
     else
     {
         // compute the depth of each subtree
-        int lDepth = BinTree::getDepth(node->left);
-        int rDepth = BinTree::getDepth(node->right);
+        int lDepth = getDepth(node->left);
+        int rDepth = getDepth(node->right);
 
         // use the larger one as the depth of the tree
         if (lDepth > rDepth)
@@ -147,7 +147,7 @@ void BinTree<T>::printAllLevels (treeNode<T> * root, int depth)
 {
     for (int level=0; level < depth; level++)
     {
-        BinTree::printbyLevel (root, level);
+        printbyLevel (root, level);
         cout << endl;
     }
 }
