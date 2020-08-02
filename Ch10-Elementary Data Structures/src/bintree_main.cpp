@@ -10,17 +10,23 @@ int main()
     //     /   \
     //    B      C
     //   / \    / \
-    //  D   E  F
-
-    const int LEN = 6;
-    char in[LEN] = {'D', 'B', 'E', 'A', 'F', 'C'};
-    char pre[LEN] = {'A', 'B', 'D', 'E', 'C', 'F'};
+    //  D   E  F   G
 
     // create new tree node for initialization, left and right is NULL
     BinTree<char> bintree;
 
-    // obtain the rebuilt tree
-    BinTree::treeNode *root = bintree.rebuildTree(in, pre, 0, LEN - 1);
+    // root
+    treeNode<char> *root = new treeNode('A');
+
+    // first level
+    root->left = new treeNode('B');
+    root->right = new treeNode('C');
+
+    // second level
+    root->left->left = new treeNode('D');
+    root->left->right = new treeNode('E');
+    root->right->left = new treeNode('F');
+    root->right->right = new treeNode('G');
 
     // print the tree in in-order
     cout << "In-order traversal of the tree is " << endl;
@@ -41,7 +47,7 @@ int main()
     cout << "the depth of the tree is " << depth << endl;
 
     // print the tree of level 1
-    int level = 1;
+    int level = 2;
     cout << "print tree of level " << level << endl;
     bintree.printbyLevel(root, level);
     cout << endl;
@@ -53,5 +59,7 @@ int main()
 
     return 0;
 }
+
+
 
 
