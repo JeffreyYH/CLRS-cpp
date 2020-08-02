@@ -30,10 +30,10 @@ public:
     void addHead(int val);
 
     //insert an element after a certain target element
-    void insertNodeAfterElement(int targetElement, int element);
+    void insertAfterElement(int targetElement, int element);
 
     //insert an element after a certain element
-    void insertNodeAfterPosition(int pos, int element);
+    void insertAfterPosition(int pos, int element);
 
     // delete one element
     void deleteNode(int element);
@@ -77,7 +77,7 @@ void List::addHead(int val)
 }
 
 //insert an element after a certain target element
-void List::insertNodeAfterElement(int targetElement, int element)
+void List::insertAfterElement(int targetElement, int element)
 {
     ListNode *currNode = head;
     ListNode *nodeInsert = new ListNode(element);
@@ -95,7 +95,7 @@ void List::insertNodeAfterElement(int targetElement, int element)
 }
 
 //insert an element after a certain element
-void List::insertNodeAfterPosition(int pos, int element)
+void List::insertAfterPosition(int pos, int element)
 {
     ListNode *currNode = head;
     ListNode *nodeInsert = new ListNode(element);

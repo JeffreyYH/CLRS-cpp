@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "linkedList.hpp"
+#include "linkedList_single.hpp"
 
 using namespace std;
 
@@ -16,11 +16,11 @@ int main()
     listObj.printList();
 
     // insert node with data 18 after 9,
-    listObj.insertNodeAfterElement(9, 18);
+    listObj.insertAfterElement(9, 18);
     listObj.printList();
 
     // insert node with data 32 after the 6th element (start with 0)
-    listObj.insertNodeAfterPosition(6, 32);
+    listObj.insertAfterPosition(6, 32);
     listObj.printList();
 
     // delete element
