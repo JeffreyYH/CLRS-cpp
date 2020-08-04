@@ -7,6 +7,7 @@ using namespace std;
 
 int main()
 {
+    //===== test single linked list =======//
     SingleLinkedList<int> listObj;
     vector<int> testArr {5, 8, 9, 10, 12};
     for (int i:testArr)
@@ -28,6 +29,8 @@ int main()
     listObj.deleteNode(32);
     listObj.printList();
     cout << listObj.tail->data << endl;
+
+    //===== test double linked list =======//
 
     return 0;
 }

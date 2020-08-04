@@ -2,11 +2,11 @@
 using namespace std;
 
 template <typename Dtype>
-struct ListNode {
+struct doubleListNode {
     Dtype key;
-    ListNode *prev;
-    ListNode *next;
-    ListNode(Dtype x) {data=x; prev=NULL; next=NULL;};
+    doubleListNode *prev;
+    doubleListNode *next;
+    doubleListNode(Dtype x) {data=x; prev=NULL; next=NULL;};
 };
 
 
