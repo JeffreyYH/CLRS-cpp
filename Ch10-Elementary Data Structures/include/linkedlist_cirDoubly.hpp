@@ -3,13 +3,13 @@
 using namespace std;
 
 template <class T>
-class DoubleLinkedList
+class CirDoublyLinkedList
 {
 public:
-    cirDoublyListNode<T> *head, *tail;
+    cirDoublyListNode<T> sentinel, *head, *tail;
 
 public:
-    DoubleLinkedList() {head = NULL; tail = NULL;};   // constructor
+    CirDoublyLinkedList() {head = NULL; tail = NULL;};   // constructor
     doubleListNode<T>* list_search(T k, bool printSearching);
     void list_insert(T k);
     void list_delete(doubleListNode<T> *xNode);
