@@ -26,7 +26,19 @@ public:
 template <class T>
 void DoubleLinkedList<T>::list_search(T k)
 {
-    return;
+    doubleListNode<T> *xNode = this->head;
+    int idx = 0;
+    while (xNode != NULL)
+    {
+        if (xNode->key == k)
+        {
+            cout << "element " << k << " found in position " << idx << endl;
+            return;
+        }
+        xNode = xNode ->next;
+        idx ++;
+    }
+    cout << "element not found" << endl;
 }
 
 // insert a node in front of head
@@ -41,6 +53,12 @@ void DoubleLinkedList<T>::list_insert(T x)
     xNode->prev = NULL;
 }
 
+template <class T>
+void DoubleLinkedList<T>::list_delete(T k)
+{
+
+}
+
 // print from head to tail
 template <class T>
 void DoubleLinkedList<T>::list_print()
@@ -48,9 +66,10 @@ void DoubleLinkedList<T>::list_print()
     doubleListNode<T> *tempNode = head;
     while(tempNode)
     {
-        cout << tempNode->key << ' ';
+        cout << tempNode->key << " -> ";
         tempNode = tempNode->next;
     }
+    cout << "NIL" << endl;
 }
 
 

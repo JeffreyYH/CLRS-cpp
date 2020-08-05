@@ -40,6 +40,9 @@ void test_doublelist()
     dblistObj.list_insert(16);
     dblistObj.list_insert(9);
     dblistObj.list_print();
+    dblistObj.list_insert(25);
+    dblistObj.list_print();
+    dblistObj.list_search(4);
 }
 
 int main()

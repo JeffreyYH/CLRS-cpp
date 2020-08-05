@@ -161,7 +161,7 @@ void SingleLinkedList<T>::printList()
     ListNode<T> *currNode = head;
     while(currNode)
     {
-        cout << currNode->data << ' ';
+        cout << currNode->data << " -> ";
         currNode = currNode->next;
     }
     cout << endl;
