@@ -42,7 +42,9 @@ void test_doublelist()
     dblistObj.list_print();
     dblistObj.list_insert(25);
     dblistObj.list_print();
-    dblistObj.list_search(4);
+    dblistObj.list_search(4, true);
+    dblistObj.delete_element(9);
+    dblistObj.list_print();
 }
 
 int main()

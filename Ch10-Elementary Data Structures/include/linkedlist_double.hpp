@@ -17,7 +17,7 @@ public:
 
 public:
     DoubleLinkedList() {head = NULL; tail = NULL;};   // constructor
-    doubleListNode<T>* list_search(T k);
+    doubleListNode<T>* list_search(T k, bool printSearching);
     void list_insert(T k);
     void list_delete(doubleListNode<T> *xNode);
     void delete_element(T k);
@@ -25,7 +25,7 @@ public:
 };
 
 template <class T>
-doubleListNode<T>* DoubleLinkedList<T>::list_search(T k)
+doubleListNode<T>* DoubleLinkedList<T>::list_search(T k, bool printSearching)
 {
     doubleListNode<T>* xNode = this->head;
     int idx = 0;
@@ -33,13 +33,15 @@ doubleListNode<T>* DoubleLinkedList<T>::list_search(T k)
     {
         if (xNode->key == k)
         {
-            cout << "element " << k << " found in position " << idx << endl;
+            if (printSearching)
+                cout << "element " << k << " found in position " << idx << endl;
             return xNode;
         }
         xNode = xNode ->next;
         idx ++;
     }
-    cout << "element not found" << endl;
+    if (printSearching)
+        cout << "element " << k << " not found" << endl;
 }
 
 // insert a node in front of head
@@ -70,9 +72,8 @@ void DoubleLinkedList<T>::list_delete(doubleListNode<T> *xNode)
 template <class T>
 void DoubleLinkedList<T>::delete_element(T k)
 {
-
-    return;
-
+    doubleListNode<T>* tgtNode = list_search(k, false);
+    list_delete(tgtNode);
 }
 
 // print from head to tail
