@@ -35,25 +35,25 @@ void test_singlelist()
 void test_doublelist()
 {
     //===== test double linked list =======//
-    DoubleLinkedList<int> dblistObj;
-    dblistObj.list_insert(1);
-    dblistObj.list_insert(4);
-    dblistObj.list_insert(16);
-    dblistObj.list_insert(9);
-    dblistObj.list_print();
-    dblistObj.list_insert(25);
-    dblistObj.list_print();
-    dblistObj.list_search(4, true);
-    dblistObj.delete_element(9);
-    dblistObj.list_print();
+//    DoubleLinkedList<int> dblistObj;
+//    dblistObj.list_insert(1);
+//    dblistObj.list_insert(4);
+//    dblistObj.list_insert(16);
+//    dblistObj.list_insert(9);
+//    dblistObj.list_print();
+//    dblistObj.list_insert(25);
+//    dblistObj.list_print();
+//    dblistObj.list_search(4, true);
+//    dblistObj.delete_element(9);
+//    dblistObj.list_print();
 
     //===== test circular double linked list =======//
     CirDoublyLinkedList<int> cirDblistObj;
     cirDblistObj.list_insert(1);
-    cirDblistObj.list_insert(4);
-    cirDblistObj.list_insert(16);
-    cirDblistObj.list_insert(9);
-    cirDblistObj.list_print();
+//    cirDblistObj.list_insert(4);
+//    cirDblistObj.list_insert(16);
+//    cirDblistObj.list_insert(9);
+//    cirDblistObj.list_print();
 }
 
 int main()
