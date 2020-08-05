@@ -46,6 +46,14 @@ void test_doublelist()
     dblistObj.list_search(4, true);
     dblistObj.delete_element(9);
     dblistObj.list_print();
+
+    //===== test circular double linked list =======//
+    CirDoublyLinkedList<int> cirDblistObj;
+    cirDblistObj.list_insert(1);
+    cirDblistObj.list_insert(4);
+    cirDblistObj.list_insert(16);
+    cirDblistObj.list_insert(9);
+    cirDblistObj.list_print();
 }
 
 int main()

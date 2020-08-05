@@ -6,13 +6,19 @@ template <class T>
 class CirDoublyLinkedList
 {
 public:
-    cirDoublyListNode<T> sentinel, *head, *tail;
+    doubleListNode<T> *nil;
 
 public:
-    CirDoublyLinkedList() {head = NULL; tail = NULL;};   // constructor
-    doubleListNode<T>* list_search(T k, bool printSearching);
+    CirDoublyLinkedList() {nil->next = nil; nil->prev = nil;};   // constructor
+//    doubleListNode<T>* list_search(T k, bool printSearching);
     void list_insert(T k);
-    void list_delete(doubleListNode<T> *xNode);
-    void delete_element(T k);
-    void list_print();
+//    void list_delete(doubleListNode<T> *xNode);
+//    void delete_element(T k);
+//    void list_print();
 };
+
+template <class T>
+void CirDoublyLinkedList<T>::list_insert(T k)
+{
+    return;
+}
