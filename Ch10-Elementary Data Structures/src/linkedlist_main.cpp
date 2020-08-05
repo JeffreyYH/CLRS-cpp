@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main()
+void test_singlelist()
 {
     //===== test single linked list =======//
     SingleLinkedList<int> listObj;
@@ -29,9 +29,22 @@ int main()
     listObj.deleteNode(32);
     listObj.printList();
     cout << listObj.tail->data << endl;
+}
 
+void test_doublelist()
+{
     //===== test double linked list =======//
+    DoubleLinkedList<int> dblistObj;
+    dblistObj.list_insert(1);
+    dblistObj.list_insert(4);
+    dblistObj.list_insert(16);
+    dblistObj.list_insert(9);
+    dblistObj.list_print();
+}
 
-
+int main()
+{
+    // test_singlelist();
+    test_doublelist();
     return 0;
 }
