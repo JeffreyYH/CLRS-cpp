@@ -10,14 +10,14 @@ struct ListNode
 };
 
 template <class T>
-class SingleLinkedList
+class SinglyLinkedList
 {
 public:
     ListNode<T> *head, *tail;
 
 public:
     // constructor
-    SingleLinkedList() {head = NULL; tail = NULL;}
+    SinglyLinkedList() {head = NULL; tail = NULL;}
 
     // create new node and add new node to the tail
     void addTail(T val);
@@ -39,7 +39,7 @@ public:
 
 // create new node and add new node to the tail
 template <class T>
-void SingleLinkedList<T>::addTail(T val)
+void SinglyLinkedList<T>::addTail(T val)
 {
     ListNode<T> *newNode = new ListNode(val);
     // if the list the empty
@@ -57,7 +57,7 @@ void SingleLinkedList<T>::addTail(T val)
 
 // create new node and add to the head
 template <class T>
-void SingleLinkedList<T>::addHead(T val)
+void SinglyLinkedList<T>::addHead(T val)
 {
     ListNode<T> *newNode = new ListNode(val);
     ListNode<T> *tempNode = NULL;
@@ -76,7 +76,7 @@ void SingleLinkedList<T>::addHead(T val)
 
 //insert an element after a certain target element
 template <class T>
-void SingleLinkedList<T>::insertAfterElement(T targetElement, T element)
+void SinglyLinkedList<T>::insertAfterElement(T targetElement, T element)
 {
     ListNode<T> *currNode = head;
     ListNode<T> *nodeInsert = new ListNode(element);
@@ -95,7 +95,7 @@ void SingleLinkedList<T>::insertAfterElement(T targetElement, T element)
 
 //insert an element after a certain element
 template <class T>
-void SingleLinkedList<T>::insertAfterPosition(int pos, T element)
+void SinglyLinkedList<T>::insertAfterPosition(int pos, T element)
 {
     ListNode<T> *currNode = head;
     ListNode<T> *nodeInsert = new ListNode(element);
@@ -116,7 +116,7 @@ void SingleLinkedList<T>::insertAfterPosition(int pos, T element)
 
 // delete one element
 template <class T>
-void SingleLinkedList<T>::deleteNode(T element)
+void SinglyLinkedList<T>::deleteNode(T element)
 {
     // if the element is head
     if (head->data == element)
@@ -155,7 +155,7 @@ void SingleLinkedList<T>::deleteNode(T element)
 }
 
 template <class T>
-void SingleLinkedList<T>::printList()
+void SinglyLinkedList<T>::printList()
 {
     // assign head pointer to a temp pointer
     ListNode<T> *currNode = head;

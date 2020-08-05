@@ -1,15 +1,15 @@
 #include <iostream>
 #include <vector>
 #include "linkedlist_doubly.hpp"
-#include "linkedlist_single.hpp"
+#include "linkedlist_singly.hpp"
 #include "linkedlist_cirDoubly.hpp"
 
 using namespace std;
 
-void test_singlelist()
+void test_singlylist()
 {
     //===== test single linked list =======//
-    SingleLinkedList<int> listObj;
+    SinglyLinkedList<int> listObj;
     vector<int> testArr {5, 8, 9, 10, 12};
     for (int i:testArr)
         listObj.addTail(i);
@@ -64,8 +64,8 @@ void test_cirDoublyList()
 
 int main()
 {
-    // test_singlelist();
-    // test_doublylist();
+//    test_singlylist();
+//    test_doublylist();
     test_cirDoublyList();
     return 0;
 }
