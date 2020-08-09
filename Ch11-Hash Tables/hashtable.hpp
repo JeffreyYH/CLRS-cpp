@@ -1,4 +1,5 @@
 #include <iostream>
+#include "linkedlist_doubly.hpp"
 using namespace std;
 
 template <typename Dtype>
@@ -54,17 +55,23 @@ void HashTable<T>::print_table()
     cout << endl;
 }
 
-
+// ================== chained hashed table ==================== //
 template <class T>
 class ChainedHashTable
 {
 public:
-    tableNode<T> **chtable;
+    doublyListNode<T> **chtable;
     int length;
-    ChainedHashTable(int L) { length = L; chtable = new tableNode<T> * [length];};
+    ChainedHashTable(int L);
     T chained_hash_search(int k);
     void chained_hash_insert(int k, T x);
     void chained_hash_delete(int k);
     void print_chained_table();
 };
 
+template <class T>
+ChainedHashTable<T>::ChainedHashTable(int L)
+{
+    length = L;
+    chtable = new doublyListNode<T> * [length];
+}

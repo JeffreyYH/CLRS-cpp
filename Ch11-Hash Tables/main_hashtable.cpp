@@ -13,5 +13,7 @@ int main()
     htObj.print_table();
     htObj.direct_address_delete(3);
     htObj.print_table();
+
+    ChainedHashTable<std::string> chtObj(10);
     return 0;
 }
