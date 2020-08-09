@@ -2,22 +2,22 @@
 using namespace std;
 
 template <typename Dtype>
-Struct tableNode
+struct tableNode
 {
     Dtype value;
     int key;
-}
+};
 
 template <class T>
 class HashTable
 {
 public:
-    int *table;
-    HashTable(int length) { table = new table[length];};
-    direct_address_search(k) { return table[k]}
-    direct_address_insert(x) { table[k] = x;};
-    direct_address_delete(x) {table};
-    hash_insert(k)
-    hash_search(k)
+    tableNode<T> *htable;
+    HashTable(int length) { htable = new tableNode<T> [length];};
+    void direct_address_search(int k) { return htable[k];};
+//    void direct_address_insert(tableNode<T> *x) { table[k] = x;};
+//    void direct_address_delete(tableNode<T> *x) {table};
+//    void hash_insert(int k);
+//    void hash_search(int k);
 };
 
