@@ -64,8 +64,13 @@ void test_cirDoublyList()
 
 int main()
 {
-    test_singlylist(); cout << endl;
-    test_doublylist();  cout << endl;
+    cout << endl << "Test singly list" << endl;
+    test_singlylist();
+
+    cout << endl << "Test doubly list" << endl;
+    test_doublylist();
+
+    cout << endl << "Test circular doubly list" << endl;
     test_cirDoublyList();
     return 0;
 }
