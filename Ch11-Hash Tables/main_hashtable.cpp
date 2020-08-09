@@ -5,7 +5,11 @@ using namespace std;
 
 int main()
 {
-    HashTable<std::string> htObj;
-
+    HashTable<std::string> htObj(10);
+    htObj.direct_address_insert(2, "B");
+    htObj.direct_address_insert(3, "C");
+    htObj.direct_address_insert(5, "E");
+    htObj.direct_address_insert(8, "H");
+    htObj.print_table();
     return 0;
 }
