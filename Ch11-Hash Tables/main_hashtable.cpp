@@ -11,5 +11,7 @@ int main()
     htObj.direct_address_insert(5, "E");
     htObj.direct_address_insert(8, "H");
     htObj.print_table();
+    htObj.direct_address_delete(3);
+    htObj.print_table();
     return 0;
 }
