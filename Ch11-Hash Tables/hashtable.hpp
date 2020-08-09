@@ -55,3 +55,16 @@ void HashTable<T>::print_table()
 }
 
 
+template <class T>
+class ChainedHashTable
+{
+public:
+    tableNode<T> **chtable;
+    int length;
+    ChainedHashTable(int L) { length = L; chtable = new tableNode<T> * [length];};
+    T chained_hash_search(int k);
+    void chained_hash_insert(int k, T x);
+    void chained_hash_delete(int k);
+    void print_chained_table();
+};
+
