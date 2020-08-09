@@ -48,7 +48,7 @@ doublyListNode<T>* DoublyLinkedList<T>::list_search(T k, bool printSearching)
 template <class T>
 void DoublyLinkedList<T>::list_insert(T k)
 {
-    doublyListNode<T> *xNode = new doublyListNode(k);
+    doublyListNode<T> *xNode = new doublyListNode<T>(k);
     xNode->next = head;
     if (head != NULL)
         head->prev = xNode;

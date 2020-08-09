@@ -64,8 +64,8 @@ void test_cirDoublyList()
 
 int main()
 {
-//    test_singlylist();
-//    test_doublylist();
+    test_singlylist(); cout << endl;
+    test_doublylist();  cout << endl;
     test_cirDoublyList();
     return 0;
 }

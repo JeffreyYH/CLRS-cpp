@@ -26,7 +26,7 @@ public:
 template <class T>
 CirDoublyLinkedList<T>::CirDoublyLinkedList()
 {
-    listNil =new cirDbNode(-1);
+    listNil =new cirDbNode<T>(-1);
     listNil->next = listNil;
     listNil->prev = listNil;
 }
@@ -54,7 +54,7 @@ cirDbNode<T>*  CirDoublyLinkedList<T>::list_search(T k, bool printSearching)
 template <class T>
 void CirDoublyLinkedList<T>::list_insert(T k)
 {
-    cirDbNode<T> * xNode = new cirDbNode(k);
+    cirDbNode<T> * xNode = new cirDbNode<T>(k);
     xNode->next = listNil->next;
     listNil->next->prev = xNode;
     listNil->next = xNode;

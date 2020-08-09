@@ -41,7 +41,7 @@ public:
 template <class T>
 void SinglyLinkedList<T>::addTail(T val)
 {
-    ListNode<T> *newNode = new ListNode(val);
+    ListNode<T> *newNode = new ListNode<T>(val);
     // if the list the empty
     if (head == NULL && tail == NULL)
     {
@@ -59,7 +59,7 @@ void SinglyLinkedList<T>::addTail(T val)
 template <class T>
 void SinglyLinkedList<T>::addHead(T val)
 {
-    ListNode<T> *newNode = new ListNode(val);
+    ListNode<T> *newNode = new ListNode<T>(val);
     ListNode<T> *tempNode = NULL;
     if (head == NULL && tail == NULL)
     {
@@ -79,7 +79,7 @@ template <class T>
 void SinglyLinkedList<T>::insertAfterElement(T targetElement, T element)
 {
     ListNode<T> *currNode = head;
-    ListNode<T> *nodeInsert = new ListNode(element);
+    ListNode<T> *nodeInsert = new ListNode<T>(element);
     while(currNode)
     {
         if(currNode->data == targetElement)
@@ -98,7 +98,7 @@ template <class T>
 void SinglyLinkedList<T>::insertAfterPosition(int pos, T element)
 {
     ListNode<T> *currNode = head;
-    ListNode<T> *nodeInsert = new ListNode(element);
+    ListNode<T> *nodeInsert = new ListNode<T>(element);
     int i = 0;
     while(currNode)
     {
@@ -164,5 +164,5 @@ void SinglyLinkedList<T>::printList()
         cout << currNode->data << " -> ";
         currNode = currNode->next;
     }
-    cout << endl;
+    cout << "NIL" << endl;
 }
