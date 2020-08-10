@@ -73,9 +73,9 @@ public:
     chainedTableNode<T> **chtable;
     int length;
     ChainedHashTable(int L);
-    chainedTableNode<T>*  chained_hash_search(int hvalue); // hvalue is k in the book
+    chainedTableNode<T>*  chained_hash_search(T tgtData, bool printSearching); // hvalue is k in the book
     void chained_hash_insert(int hvalue, T data);
-    void chained_hash_delete(int hvalue);
+    void chained_hash_delete(T tgtData);
     void print_chainedTable();
 };
 
@@ -123,10 +123,36 @@ void ChainedHashTable<T>::print_chainedTable()
     cout << endl;
 }
 
-// TODO
-/*template <class T>
-chainedTableNode<T>* ChainedHashTable<T>::chained_hash_search(int k)
+template <class T>
+chainedTableNode<T>* ChainedHashTable<T>::chained_hash_search(T tgtData, bool printSearching)
 {
+    for (int i=0; i<length; i++)
+    {
+        if (chtable[i] != NULL)
+        {
+            chainedTableNode<T> * curNode = chtable[i];
+            while(curNode)
+            {
+                if (curNode->data == tgtData)
+                {
+                    if (printSearching)
+                        cout << curNode->data << " found in " << i << endl;
+                    return curNode;
+                }
+                curNode = curNode ->next;
+            }
+        }
+    }
+    if (printSearching)
+        cout << tgtData<< " not found " << endl;
+}
 
-}*/
-
+template <class T>
+void ChainedHashTable<T>::chained_hash_delete(T tgtData)
+{
+    chainedTableNode<T> * tgtNode = chained_hash_search(tgtData, false);
+    if(tgtNode->prev != NULL)     // xNode not head
+        tgtNode->prev->next = tgtNode->next;
+    else                        // xNode is head
+        chtable[tgtNode->hashvalue] = tgtNode->next;
+}

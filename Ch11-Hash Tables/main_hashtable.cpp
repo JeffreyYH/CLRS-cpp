@@ -24,5 +24,8 @@ int main()
     chtObj.chained_hash_insert(8, "H");
     chtObj.chained_hash_insert(8, "HH");
     chtObj.print_chainedTable();
+    chtObj.chained_hash_search("EE", true);
+    chtObj.chained_hash_delete("E");
+    chtObj.print_chainedTable();
     return 0;
 }
