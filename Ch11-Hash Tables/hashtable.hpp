@@ -75,3 +75,10 @@ ChainedHashTable<T>::ChainedHashTable(int L)
     length = L;
     chtable = new doublyListNode<T> * [length];
 }
+
+template <class T>
+ChainedHashTable<T>::chained_hash_search(int k)
+{
+
+}
+
