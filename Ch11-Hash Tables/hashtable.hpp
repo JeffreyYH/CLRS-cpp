@@ -87,15 +87,17 @@ ChainedHashTable<T>::ChainedHashTable(int L)
 }
 
 template <class T>
-ChainedHashTable<T>::chained_hash_insert(T hvalue, int k)
+void ChainedHashTable<T>::chained_hash_insert(T hvalue, int k)
 {
     chainedTableNode<T> *xNode = new chainedTableNode<T> (hvalue, k);
     if (chtable[k] == NULL)
         chtable[k] = xNode;
     else
     {
-        xNode->prev = chtable[k];
-        chtable[k]->next = xNode;
+        chainedTableNode<T> *tempNode = chtable[k];
+        chtable[k] = xNode;
+        xNode->next = tempNode;
+        tempNode->prev = xNode;
     }
 }
 
