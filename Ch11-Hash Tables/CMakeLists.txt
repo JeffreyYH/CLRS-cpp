@@ -4,4 +4,3 @@ project(HashTable)
 
 include_directories("../Ch10-Elementary Data Structures/include/")
 set(CMAKE_CXX_STANDARD 17)
-add_executable(run_hashTable main_hashtable.cpp)
