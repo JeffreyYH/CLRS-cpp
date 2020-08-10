@@ -74,7 +74,7 @@ public:
     int length;
     ChainedHashTable(int L);
     T chained_hash_search(int k);
-    void chained_hash_insert(int k, T x);
+    void chained_hash_insert(T hvalue, int k);
     void chained_hash_delete(int k);
     void print_chained_table();
 };
@@ -87,8 +87,15 @@ ChainedHashTable<T>::ChainedHashTable(int L)
 }
 
 template <class T>
-ChainedHashTable<T>::chained_hash_search(int k)
+ChainedHashTable<T>::chained_hash_insert(T hvalue, int k)
 {
-
+    chainedTableNode<T> *xNode = new chainedTableNode<T> (hvalue, k);
+    if (chtable[k] == NULL)
+        chtable[k] = xNode;
+    else
+    {
+        xNode->prev = chtable[k];
+        chtable[k]->next = xNode;
+    }
 }
 
