@@ -59,10 +59,10 @@ template <typename Dtype>
 struct chainedTableNode
 {
     int hashvalue;
-    Dtype key;
-    Dtype *prev, *next;
-    chainedTableNode(int hvalue, Dtype k) {
-        hashvalue=hvalue; key=k; prev=NULL; next=NULL;
+    Dtype data;
+    chainedTableNode *prev, *next;
+    chainedTableNode(int hvalue, Dtype d) {
+        hashvalue=hvalue; data=d; prev=NULL; next=NULL;
     };
 };
 
@@ -74,7 +74,7 @@ public:
     int length;
     ChainedHashTable(int L);
     T chained_hash_search(int k);
-    void chained_hash_insert(T hvalue, int k);
+    void chained_hash_insert(int hvalue, T data);
     void chained_hash_delete(int k);
     void print_chained_table();
 };
@@ -87,15 +87,15 @@ ChainedHashTable<T>::ChainedHashTable(int L)
 }
 
 template <class T>
-void ChainedHashTable<T>::chained_hash_insert(T hvalue, int k)
+void ChainedHashTable<T>::chained_hash_insert(int hvalue, T data)
 {
-    chainedTableNode<T> *xNode = new chainedTableNode<T> (hvalue, k);
-    if (chtable[k] == NULL)
-        chtable[k] = xNode;
+    chainedTableNode<T> *xNode = new chainedTableNode<T> (hvalue, data);
+    if (chtable[hvalue] == NULL)
+        chtable[hvalue] = xNode;
     else
     {
-        chainedTableNode<T> *tempNode = chtable[k];
-        chtable[k] = xNode;
+        chainedTableNode<T> *tempNode = chtable[hvalue];
+        chtable[hvalue] = xNode;
         xNode->next = tempNode;
         tempNode->prev = xNode;
     }
