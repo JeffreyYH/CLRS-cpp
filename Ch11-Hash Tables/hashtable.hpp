@@ -76,7 +76,7 @@ public:
     T chained_hash_search(int k);
     void chained_hash_insert(int hvalue, T data);
     void chained_hash_delete(int k);
-    void print_chained_table();
+    void print_chainedTable();
 };
 
 template <class T>
@@ -99,5 +99,27 @@ void ChainedHashTable<T>::chained_hash_insert(int hvalue, T data)
         xNode->next = tempNode;
         tempNode->prev = xNode;
     }
+}
+
+template <class T>
+void ChainedHashTable<T>::print_chainedTable()
+{
+    cout << endl;
+    for (int i=0; i<length; i++) {
+        if (chtable[i] == NULL)
+            cout << i << ": NULL " << endl;
+        else
+        {
+            cout << i << ": ";
+            chainedTableNode<T> * curNode = chtable[i];
+            while(curNode)
+            {
+                cout << curNode->data << "->";
+                curNode = curNode ->next;
+            }
+            cout << "NULL" << endl;
+        }
+    }
+    cout << endl;
 }
 

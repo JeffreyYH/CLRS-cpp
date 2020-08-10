@@ -17,5 +17,12 @@ int main()
     ChainedHashTable<std::string> chtObj(10);
     chtObj.chained_hash_insert(1, "A");
     chtObj.chained_hash_insert(1, "AA");
+    chtObj.chained_hash_insert(5, "E");
+    chtObj.chained_hash_insert(5, "EE");
+    chtObj.chained_hash_insert(5, "EEE");
+    chtObj.chained_hash_insert(7, "F");
+    chtObj.chained_hash_insert(8, "H");
+    chtObj.chained_hash_insert(8, "HH");
+    chtObj.print_chainedTable();
     return 0;
 }
