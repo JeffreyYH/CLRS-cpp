@@ -73,9 +73,9 @@ public:
     chainedTableNode<T> **chtable;
     int length;
     ChainedHashTable(int L);
-    T chained_hash_search(int k);
+    chainedTableNode<T>*  chained_hash_search(int hvalue); // hvalue is k in the book
     void chained_hash_insert(int hvalue, T data);
-    void chained_hash_delete(int k);
+    void chained_hash_delete(int hvalue);
     void print_chainedTable();
 };
 
@@ -122,4 +122,11 @@ void ChainedHashTable<T>::print_chainedTable()
     }
     cout << endl;
 }
+
+// TODO
+/*template <class T>
+chainedTableNode<T>* ChainedHashTable<T>::chained_hash_search(int k)
+{
+
+}*/
 
