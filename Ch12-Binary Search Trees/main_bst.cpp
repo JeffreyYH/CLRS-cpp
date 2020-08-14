@@ -14,5 +14,9 @@ int main()
 
     // search
     BST<int> bst;
-    bst.tree_search(root, 55);
+    bst.tree_search(root, 17);
+
+    // min and max
+    bst.tree_minimum(root);
+    bst.tree_maximum(root);
 }

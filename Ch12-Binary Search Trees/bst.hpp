@@ -7,9 +7,9 @@ class BST
 {
 public:
     treeNode<T>* tree_search(treeNode<T>* xNode, T k);
-    treeNode<T> * iterative_tree_search(treeNode<T>* xNode, T k);
-    void tree_minimum(treeNode<T>* xNode);
-    void tree_maximum(treeNode<T>* xNode);
+    treeNode<T>* iterative_tree_search(treeNode<T>* xNode, T k);
+    treeNode<T>* tree_minimum(treeNode<T>* xNode);
+    treeNode<T>* tree_maximum(treeNode<T>* xNode);
     void tree_successor(treeNode<T>* xNode);
     void tree_insert(treeNode<T>* xNode, T z);
     void transplant(treeNode<T>* xNode);
@@ -47,4 +47,27 @@ treeNode<T> * BST<T>::iterative_tree_search(treeNode<T> *xNode, T k)
             xNode = xNode->right;
     }
     return xNode;
+}
+
+template <class T>
+treeNode<T>* BST<T>::tree_minimum(treeNode<T>* xNode)
+{
+    while (xNode->left != nullptr)
+    {
+        xNode = xNode ->left;
+    }
+    cout << "min of this BST: " << xNode->data << endl;
+    return xNode;
+}
+
+template <class T>
+treeNode<T>* BST<T>::tree_maximum(treeNode<T>* xNode)
+{
+    while (xNode->right != nullptr)
+    {
+        xNode = xNode ->right;
+    }
+    cout << "max of this BST " << xNode->data << endl;
+    return xNode;
+
 }
