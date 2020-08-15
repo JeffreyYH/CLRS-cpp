@@ -102,6 +102,7 @@ void BST<T>::tree_insert(treeNode<T>* root, T val)
     treeNode<T> * parentNode = nullptr;
     treeNode<T> * tgtNode = new treeNode<T>(val);
 
+    // find the position to insert iteratively
     while (xNode != nullptr)
     {
         parentNode = xNode;
