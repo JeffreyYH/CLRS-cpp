@@ -34,6 +34,4 @@ int main()
     bst.tree_minimum(root);
     bst.tree_maximum(root);
 
-//    // successor and predecessor
-//    bst.tree_successor(root);
 }

@@ -99,23 +99,22 @@ template <class T>
 void BST<T>::tree_insert(treeNode<T>* root, T val)
 {
     treeNode<T> * xNode = root;
-    treeNode<T> * yNode = nullptr;
-    treeNode<T> * zNode = new treeNode<T>(val);
+    treeNode<T> * parentNode = nullptr;
+    treeNode<T> * tgtNode = new treeNode<T>(val);
 
     while (xNode != nullptr)
     {
-        yNode = xNode;
-        if (zNode->data < xNode->data)
+        parentNode = xNode;
+        if (tgtNode->data < xNode->data)
             xNode = xNode ->left;
         else
             xNode = xNode->right;
     }
-    zNode->parent = yNode;
-    if (yNode == nullptr)
-        root = zNode;
-    else if (zNode->data < yNode->data)
-        yNode->left = zNode;
+    tgtNode->parent = parentNode;
+    if (parentNode == nullptr)
+        root = tgtNode;
+    else if (tgtNode->data < parentNode->data)
+        parentNode->left = tgtNode;
     else
-        yNode->right = zNode;
-
+        parentNode->right = tgtNode;
 }
