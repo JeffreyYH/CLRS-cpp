@@ -4,34 +4,17 @@
 
 int main()
 {
-    treeNode<int> * root = new treeNode(12);
-    vector<int> treeData = {5, 18, 2, 9, 15, 19, 13, 17};
-    BST<int> bst;
+    vector<int> treeData = {12, 5, 18, 2, 9, 15, 19, 13, 17};
+    BST<int> bst(treeData[0]);
 
     // insert
-    for (auto d:treeData)
-        bst.tree_insert(root, d);
-
-//    root->left = new treeNode(6);
-//    root->left->parent = root;
-//    root->left->left = new treeNode(3);
-//    root->left->left->parent = root->left;
-//    root->left->right = new treeNode(7);
-//    root->left->left->parent = root->left;
-//
-//    root->right = new treeNode(18);
-//    root->right->parent = root;
-//    root->right->left = new treeNode(17);
-//    root->right->right = new treeNode(20);
-//
-//    root->right->left->parent =root->right;
-//    root->right->right->parent = root->right;
+    for (int i=1; i<treeData.size(); i++)
+        bst.tree_insert(treeData[i]);
 
     // search
-    bst.tree_search(root, 17);
+    bst.tree_search(bst.root, 17);
 
     // min and max
-    bst.tree_minimum(root);
-    bst.tree_maximum(root);
-
+    bst.tree_minimum();
+    bst.tree_maximum();
 }

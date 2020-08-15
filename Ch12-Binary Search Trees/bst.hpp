@@ -15,18 +15,22 @@ template <class T>
 class BST
 {
 public:
-    treeNode<T>* tree_search(treeNode<T>* xNode, T k);
-    treeNode<T>* iterative_tree_search(treeNode<T>* xNode, T k);
-    treeNode<T>* tree_minimum(treeNode<T>* xNode);
-    treeNode<T>* tree_maximum(treeNode<T>* xNode);
-    treeNode<T>* tree_successor(treeNode<T>* xNode);
-    void tree_insert(treeNode<T>* root, T z);
-    void transplant(treeNode<T>* xNode);
-    void tree_delete(treeNode<T>* xNode, T z);
+    treeNode<T> * root;
+public:
+    BST(T rootVal) { root = new treeNode<T>(rootVal); };
+    treeNode<T>* tree_search(treeNode<T> * xNode, T k);
+    treeNode<T>* iterative_tree_search(T k);
+    treeNode<T>* tree_minimum();
+    treeNode<T>* tree_maximum();
+    treeNode<T>* tree_successor();
+
+    void tree_insert(T val);
+    void transplant();
+    void tree_delete(T z);
 };
 
 template <class T>
-treeNode<T>* BST<T>:: tree_search(treeNode<T>* xNode, T k)
+treeNode<T>* BST<T>:: tree_search(treeNode<T> * xNode, T k)
 {
     if (xNode == nullptr || k == xNode->data)
     {
@@ -46,8 +50,9 @@ treeNode<T>* BST<T>:: tree_search(treeNode<T>* xNode, T k)
 }
 
 template <class T>
-treeNode<T> * BST<T>::iterative_tree_search(treeNode<T> *xNode, T k)
+treeNode<T> * BST<T>::iterative_tree_search(T k)
 {
+    treeNode<T> * xNode = root;
     while ( xNode != nullptr || xNode->data != k)
     {
         if (k < xNode->data)
@@ -59,8 +64,9 @@ treeNode<T> * BST<T>::iterative_tree_search(treeNode<T> *xNode, T k)
 }
 
 template <class T>
-treeNode<T>* BST<T>::tree_minimum(treeNode<T>* xNode)
+treeNode<T>* BST<T>::tree_minimum()
 {
+    treeNode<T> * xNode = root;
     while (xNode->left != nullptr)
     {
         xNode = xNode ->left;
@@ -70,8 +76,9 @@ treeNode<T>* BST<T>::tree_minimum(treeNode<T>* xNode)
 }
 
 template <class T>
-treeNode<T>* BST<T>::tree_maximum(treeNode<T>* xNode)
+treeNode<T>* BST<T>::tree_maximum()
 {
+    treeNode<T> * xNode = root;
     while (xNode->right != nullptr)
     {
         xNode = xNode ->right;
@@ -96,7 +103,7 @@ treeNode<T>* BST<T>::tree_successor(treeNode<T>* xNode)
 }*/
 
 template <class T>
-void BST<T>::tree_insert(treeNode<T>* root, T val)
+void BST<T>::tree_insert(T val)
 {
     treeNode<T> * xNode = root;
     treeNode<T> * parentNode = nullptr;
