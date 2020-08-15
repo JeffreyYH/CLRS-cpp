@@ -1,6 +1,15 @@
 #include <iostream>
-#include "bintree.hpp"
 using namespace std;
+
+template <typename Dtype>
+struct treeNode {
+    Dtype data;
+    treeNode *left;
+    treeNode *right;
+    treeNode *parent;
+    treeNode (Dtype value) {data = value; left = nullptr; right = nullptr; parent=nullptr;};
+};
+
 
 template <class T>
 class BST
@@ -69,5 +78,4 @@ treeNode<T>* BST<T>::tree_maximum(treeNode<T>* xNode)
     }
     cout << "max of this BST " << xNode->data << endl;
     return xNode;
-
 }

@@ -4,5 +4,5 @@ project(BST)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories("../Ch10-Elementary Data Structures/include/")
+#include_directories("../Ch10-Elementary Data Structures/include/")
 add_executable(run_bst main_bst.cpp)
