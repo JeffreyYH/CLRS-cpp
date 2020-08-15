@@ -19,8 +19,8 @@ public:
     treeNode<T>* iterative_tree_search(treeNode<T>* xNode, T k);
     treeNode<T>* tree_minimum(treeNode<T>* xNode);
     treeNode<T>* tree_maximum(treeNode<T>* xNode);
-    void tree_successor(treeNode<T>* xNode);
-    void tree_insert(treeNode<T>* xNode, T z);
+    treeNode<T>* tree_successor(treeNode<T>* xNode);
+    void tree_insert(treeNode<T>* root, T z);
     void transplant(treeNode<T>* xNode);
     void tree_delete(treeNode<T>* xNode, T z);
 };
@@ -78,4 +78,44 @@ treeNode<T>* BST<T>::tree_maximum(treeNode<T>* xNode)
     }
     cout << "max of this BST " << xNode->data << endl;
     return xNode;
+}
+
+// TODO
+/*template <class T>
+treeNode<T>* BST<T>::tree_successor(treeNode<T>* xNode)
+{
+    if (xNode->right != nullptr)
+        return tree_minimum(xNode->right);
+    treeNode<T> *yNode = xNode->parent;
+    while (yNode != nullptr && xNode == yNode->right)
+    {
+        xNode = yNode;
+        yNode = yNode->parent;
+    }
+    return yNode;
+}*/
+
+template <class T>
+void BST<T>::tree_insert(treeNode<T>* root, T val)
+{
+    treeNode<T> * xNode = root;
+    treeNode<T> * yNode = nullptr;
+    treeNode<T> * zNode = new treeNode<T>(val);
+
+    while (xNode != nullptr)
+    {
+        yNode = xNode;
+        if (zNode->data < xNode->data)
+            xNode = xNode ->left;
+        else
+            xNode = xNode->right;
+    }
+    zNode->parent = yNode;
+    if (yNode == nullptr)
+        root = zNode;
+    else if (zNode->data < yNode->data)
+        yNode->left = zNode;
+    else
+        yNode->right = zNode;
+
 }
