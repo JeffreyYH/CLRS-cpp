@@ -130,7 +130,12 @@ void BST<T>::tree_insert(T val)
 template <class T>
 void BST<T>::transplant(treeNode<T>* uNode, treeNode<T>* vNode)
 {
-    if(uNode->parent == nullptr)
+    if (uNode->parent == nullptr)
         root = vNode;
-
+    else if (uNode == uNode->parent->left)
+        uNode->parent->left = vNode;
+    else
+        uNode->parent->right = vNode;
+    if (vNode != nullptr)
+        vNode->parent = uNode->parent;
 }
