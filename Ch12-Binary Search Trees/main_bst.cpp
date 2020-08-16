@@ -20,4 +20,6 @@ int main()
 
     // delete
     bst.tree_delete_byValue(18);
+
+    return 0;
 }
