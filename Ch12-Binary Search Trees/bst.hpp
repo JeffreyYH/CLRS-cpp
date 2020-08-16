@@ -25,7 +25,7 @@ public:
     treeNode<T>* tree_successor();
 
     void tree_insert(T val);
-    void transplant();
+    void transplant(treeNode<T>* u, treeNode<T>* v);
     void tree_delete(T z);
 };
 
@@ -125,4 +125,10 @@ void BST<T>::tree_insert(T val)
         parentNode->left = tgtNode;
     else
         parentNode->right = tgtNode;
+}
+
+template <class T>
+void BST<T>::transplant(treeNode<T>* u, treeNode<T>* v)
+{
+
 }
