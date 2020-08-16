@@ -19,14 +19,15 @@ public:
 public:
     BST(T rootVal) { root = new treeNode<T>(rootVal); };
     treeNode<T>* tree_search(treeNode<T> * xNode, T k);
-    treeNode<T>* iterative_tree_search(T k);
-    treeNode<T>* tree_minimum();
-    treeNode<T>* tree_maximum();
+    treeNode<T>* iterative_tree_search(treeNode<T> * xNode, T k);
+    treeNode<T>* tree_minimum(treeNode<T> * thisRoot);
+    treeNode<T>* tree_maximum(treeNode<T> * thisRoot);
     treeNode<T>* tree_successor();
 
     void tree_insert(T val);
-    void transplant(treeNode<T>* u, treeNode<T>* v);
-    void tree_delete(T z);
+    void transplant(treeNode<T>* uNode, treeNode<T>* vNode);
+    void tree_delete(treeNode<T>* zNode);
+    void tree_delete_byValue(T val);
 };
 
 template <class T>
@@ -50,9 +51,8 @@ treeNode<T>* BST<T>:: tree_search(treeNode<T> * xNode, T k)
 }
 
 template <class T>
-treeNode<T> * BST<T>::iterative_tree_search(T k)
+treeNode<T> * BST<T>::iterative_tree_search(treeNode<T> * xNode,  T k)
 {
-    treeNode<T> * xNode = root;
     while ( xNode != nullptr || xNode->data != k)
     {
         if (k < xNode->data)
@@ -64,26 +64,24 @@ treeNode<T> * BST<T>::iterative_tree_search(T k)
 }
 
 template <class T>
-treeNode<T>* BST<T>::tree_minimum()
+treeNode<T>* BST<T>::tree_minimum(treeNode<T> * thisRoot)
 {
-    treeNode<T> * xNode = root;
+    treeNode<T> * xNode = thisRoot;
     while (xNode->left != nullptr)
     {
         xNode = xNode ->left;
     }
-    cout << "min of this BST: " << xNode->data << endl;
     return xNode;
 }
 
 template <class T>
-treeNode<T>* BST<T>::tree_maximum()
+treeNode<T>* BST<T>::tree_maximum(treeNode<T> * thisRoot)
 {
-    treeNode<T> * xNode = root;
+    treeNode<T> * xNode = thisRoot;
     while (xNode->right != nullptr)
     {
         xNode = xNode ->right;
     }
-    cout << "max of this BST " << xNode->data << endl;
     return xNode;
 }
 
@@ -138,4 +136,34 @@ void BST<T>::transplant(treeNode<T>* uNode, treeNode<T>* vNode)
         uNode->parent->right = vNode;
     if (vNode != nullptr)
         vNode->parent = uNode->parent;
+}
+
+template <class T>
+void BST<T>::tree_delete(treeNode<T> * zNode)
+{
+    if (zNode->left == nullptr)
+        transplant(zNode, zNode->right);
+    else if (zNode->right == nullptr)
+        transplant(zNode, zNode->left);
+    else
+    {
+        treeNode<T> * yNode = tree_minimum(zNode->right);
+        if (yNode->parent != zNode)
+        {
+            transplant(yNode, yNode->right);
+            yNode->right = zNode->right;
+            yNode->right->parent = yNode;
+        }
+        transplant(zNode, yNode);
+        yNode->left = zNode->left;
+        yNode->left->parent = yNode;
+    }
+}
+
+template <class T>
+void BST<T>::tree_delete_byValue(T val)
+{
+    treeNode<T>* xNode = root;
+    treeNode<T>* tgtNode = tree_search(xNode, val);
+    tree_delete(tgtNode);
 }

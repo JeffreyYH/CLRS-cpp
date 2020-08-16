@@ -15,6 +15,9 @@ int main()
     bst.tree_search(bst.root, 17);
 
     // min and max
-    bst.tree_minimum();
-    bst.tree_maximum();
+    bst.tree_minimum(bst.root);
+    bst.tree_maximum(bst.root);
+
+    // delete
+    bst.tree_delete_byValue(18);
 }
