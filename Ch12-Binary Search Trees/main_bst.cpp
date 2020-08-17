@@ -18,6 +18,9 @@ int main()
     bst.tree_minimum(bst.root);
     bst.tree_maximum(bst.root);
 
+    // successor
+    bst.tree_successor(bst.root);
+
     // delete
     bst.tree_delete_byValue(18);
 
