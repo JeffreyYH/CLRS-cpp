@@ -22,7 +22,7 @@ public:
     treeNode<T>* iterative_tree_search(treeNode<T> * xNode, T k);
     treeNode<T>* tree_minimum(treeNode<T> * thisRoot);
     treeNode<T>* tree_maximum(treeNode<T> * thisRoot);
-    treeNode<T>* tree_successor();
+    treeNode<T>* tree_successor(treeNode<T>* xNode);
 
     void tree_insert(T val);
     void transplant(treeNode<T>* uNode, treeNode<T>* vNode);
@@ -85,8 +85,7 @@ treeNode<T>* BST<T>::tree_maximum(treeNode<T> * thisRoot)
     return xNode;
 }
 
-// TODO
-/*template <class T>
+template <class T>
 treeNode<T>* BST<T>::tree_successor(treeNode<T>* xNode)
 {
     if (xNode->right != nullptr)
@@ -98,7 +97,7 @@ treeNode<T>* BST<T>::tree_successor(treeNode<T>* xNode)
         yNode = yNode->parent;
     }
     return yNode;
-}*/
+}
 
 template <class T>
 void BST<T>::tree_insert(T val)
