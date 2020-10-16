@@ -1,8 +1,7 @@
 #include <iostream>
 
-#include "graphRep.hpp" 
-#include "dfs.hpp"
-#include "bfs.hpp"
+// #include "graphRep.hpp" 
+#include "basicSearch.hpp"
 using namespace std;
 
 int main()
