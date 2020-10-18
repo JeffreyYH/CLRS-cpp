@@ -16,7 +16,7 @@ int main()
                             };
 
     // construct adj matrix
-    GraphRep<int> g_rep;
+    graphAlgorithms::GraphRep<int> g_rep;
 
     cout << "Adjacency matrix:" << endl;
     vector<vector<int>> adjMat = g_rep.construct_adjMat(size, edges);
