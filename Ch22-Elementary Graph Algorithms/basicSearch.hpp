@@ -30,7 +30,7 @@ namespace graphAlgo
                 std:: cout << "Expanding vertex " << u << std::endl;
                 for (auto v:adjList[u])
                 {
-                    // only update visited vertices
+                    // only update unvisited vertices
                     if (level.find(v) == level.end())
                     {
                         level[v] = i;
