@@ -2,7 +2,7 @@
 #include <list>
 #include <vector>
 
-namespace graphAlgorithms
+namespace graphAlgo
 {
     template <class T>
     class GraphRep
