@@ -33,9 +33,7 @@ int main()
     {
         cout << i << "->";
         for (list<int>::iterator it = adjList[i].begin(); it!=adjList[i].end(); it++)
-        {
             cout << *it << ' ';
-        }
         cout << endl;
     }
 
