@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <memory>
 #include "basicSearch.hpp"
 using namespace std;
 
@@ -14,10 +14,14 @@ int main()
                             };
 
     // construct adj matrix
-    graphAlgo::GraphRep graphRep;
+    
+    // graphAlgo::GraphRep graphRep;
+
+    // use smart pointer
+    shared_ptr<graphAlgo::GraphRep> graphRep(new graphAlgo::GraphRep());
 
     cout << "Adjacency matrix:" << endl;
-    vector<vector<int>> adjMat = graphRep.construct_adjMat(vertices, edges);
+    vector<vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges);
     for(size_t i=0; i<adjMat.size(); ++i)
     {
         for (size_t j=0; j<adjMat[0].size(); ++j)
@@ -27,7 +31,7 @@ int main()
 
     // construct adj list
     cout << "Adjacency list:" << endl;
-    vector<list<int>> adjList = graphRep.construct_adjList(vertices, edges);
+    vector<list<int>> adjList = graphRep->construct_adjList(vertices, edges);
     for (size_t i=0; i<adjList.size(); ++i)
     {
         cout << i << "->";
@@ -38,13 +42,14 @@ int main()
 
     // do BFS
     cout << "BFS: " << endl;
-    graphAlgo::BasicSearch<int> basicSearch;
+    // graphAlgo::BasicSearch<int> basicSearch;
+    shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
     int start = 0;
-    basicSearch.BFS(adjList, start);
+    basicSearch->BFS(adjList, start);
 
     // do DFS
     cout << "DFS: " << endl;
-    basicSearch.DFS(vertices, adjList);
+    basicSearch->DFS(vertices, adjList);
 
     return 0;
 }
