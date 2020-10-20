@@ -10,7 +10,7 @@ namespace graphAlgo
         // input graph represented as adjacency lists
         void BFS(std::vector<std::list<T>> adjList, T s);
         // DFS constists of DFS_visit and DFS
-        void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s);
+        void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s, std::unordered_map<T, bool> &visited);
         void DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList);
     };
 
@@ -49,16 +49,16 @@ namespace graphAlgo
 
     // DFS-visit
     template <class T>
-    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s)
+    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s, std::unordered_map<T, bool> &visited)
     {
         for (auto v: adjList[s])
         {
             // is v not in parent, which means no visited
-            if (parent.find(v) == parent.end())
+            if (!visited[v])
             {
-                parent[v] -> *s;
+                visited[v] = true;
                 std:: cout << "Expanding vertex " << v << std::endl;
-                DFS_visit(vertices, adjList, v);
+                DFS_visit(vertices, adjList, v, visited);
             }
         }
     }
@@ -67,15 +67,15 @@ namespace graphAlgo
     template <class T>
     void BasicSearch<T>::DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList)
     {
-        std::unordered_map<T, bool> visted;
-        std::unordered_map<T, *T> parent;
+        std::unordered_map<T, bool> visited;
+        std::unordered_map<T, T> parent;
         for (auto s:vertices)
         {
-            if (!visted[s]
+            if (!visited[s])
             {
-                visted[s] = True;
-                parent[s] = NULL;
-                DFS_visit(vertices, adjList, s, &parent);
+                visited[s] = true;
+                std:: cout << "Expanding vertex " << s << std::endl;
+                DFS_visit(vertices, adjList, s, visited);
             }
         }
     }
