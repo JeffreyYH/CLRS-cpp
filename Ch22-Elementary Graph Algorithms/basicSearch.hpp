@@ -9,6 +9,7 @@ namespace graphAlgo
     public:
         // input graph represented as adjacency lists
         void BFS(std::vector<std::list<T>> adjList, T s);
+        void DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList);
     };
 
     template <class T>
