@@ -51,14 +51,12 @@ namespace graphAlgo
     template <class T>
     void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s)
     {
-        std::unordered_map<T, T> parent;
-        parent[s] = INT16_MIN;
         for (auto v: adjList[s])
         {
             // is v not in parent, which means no visited
             if (parent.find(v) == parent.end())
             {
-                parent[v] = s;
+                parent[v] -> *s;
                 std:: cout << "Expanding vertex " << v << std::endl;
                 DFS_visit(vertices, adjList, v);
             }
@@ -69,13 +67,15 @@ namespace graphAlgo
     template <class T>
     void BasicSearch<T>::DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList)
     {
-        std::unordered_map<T, T> parent;
+        std::unordered_map<T, bool> visted;
+        std::unordered_map<T, *T> parent;
         for (auto s:vertices)
         {
-            if (parent.find(s) == parent.end())
+            if (!visted[s]
             {
-                parent[s] = INT16_MIN;
-                DFS_visit(vertices, adjList, s);
+                visted[s] = True;
+                parent[s] = NULL;
+                DFS_visit(vertices, adjList, s, &parent);
             }
         }
     }
