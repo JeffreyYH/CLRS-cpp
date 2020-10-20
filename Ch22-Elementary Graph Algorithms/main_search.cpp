@@ -37,13 +37,13 @@ int main()
     }
 
     // do BFS
-    cout << "Doing BFS: " << endl;
+    cout << "BFS: " << endl;
     graphAlgo::BasicSearch<int> basicSearch;
     int start = 0;
     basicSearch.BFS(adjList, start);
 
     // do DFS
-    cout << "Doing DFS: " << endl;
+    cout << "DFS: " << endl;
     basicSearch.DFS(vertices, adjList);
 
     return 0;
