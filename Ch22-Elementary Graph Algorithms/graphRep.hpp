@@ -5,6 +5,13 @@
 
 namespace graphAlgo
 {
+    template <class T>
+    class graphNode
+    {
+
+    }
+
+
     class GraphRep
     {
         public:

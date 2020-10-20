@@ -41,5 +41,8 @@ int main()
     int start = 0;
     basicSearch.BFS(adjList, start);
 
+    // do DFS
+    basicSearch.DFS(vertices, adjList);
+
     return 0;
 }

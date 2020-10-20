@@ -9,6 +9,8 @@ namespace graphAlgo
     public:
         // input graph represented as adjacency lists
         void BFS(std::vector<std::list<T>> adjList, T s);
+        // DFS constists of DFS_visit and DFS
+        void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s);
         void DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList);
     };
 
@@ -42,6 +44,39 @@ namespace graphAlgo
             }
             frontier = next;
             i++;
+        }
+    }
+
+    // DFS-visit
+    template <class T>
+    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s)
+    {
+        std::unordered_map<T, T> parent;
+        parent[s] = INT16_MIN;
+        for (auto v: adjList[s])
+        {
+            // is v not in parent, which means no visited
+            if (parent.find(v) == parent.end())
+            {
+                parent[v] = s;
+                std:: cout << "Expanding vertex " << v << std::endl;
+                DFS_visit(vertices, adjList, v);
+            }
+        }
+    }
+
+    // DFS
+    template <class T>
+    void BasicSearch<T>::DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList)
+    {
+        std::unordered_map<T, T> parent;
+        for (auto s:vertices)
+        {
+            if (parent.find(s) == parent.end())
+            {
+                parent[s] = INT16_MIN;
+                DFS_visit(vertices, adjList, s);
+            }
         }
     }
 
