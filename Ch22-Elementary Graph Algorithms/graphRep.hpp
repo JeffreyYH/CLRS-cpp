@@ -10,7 +10,7 @@ namespace graphAlgo
     {
         private:
         T idx;
-        std::string color; // color option: WHITE, BLACK, GRAY
+        std::string color; // WHITE: not expanded, BLACK: , GRAY:
         graphNode * pred;
         
         public:
