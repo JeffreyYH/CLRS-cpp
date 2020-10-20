@@ -8,7 +8,21 @@ struct treeNode {
     treeNode *left;
     treeNode *right;
     treeNode (DtypeTree value) {data = value; left = NULL; right = NULL;};
+    ~treeNode () {delete left; delete right;};
 };
+
+// class treeNode
+/*
+template <class DtypeTree>
+class treeNode {
+    public:
+    DtypeTree data;
+    treeNode *left;
+    treeNode *right;
+    treeNode (DtypeTree value) {data = value; left = NULL; right = NULL;};
+    ~treeNode () {delete left; delete right;};
+};
+*/
 
 template <class T>
 class BinTree
