@@ -49,7 +49,8 @@ namespace graphAlgo
 
     // DFS-visit
     template <class T>
-    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, T s, std::unordered_map<T, bool> &visited)
+    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, 
+                                    T s, std::unordered_map<T, bool> &visited)
     {
         for (auto v: adjList[s])
         {
@@ -68,7 +69,7 @@ namespace graphAlgo
     void BasicSearch<T>::DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList)
     {
         std::unordered_map<T, bool> visited;
-        std::unordered_map<T, T> parent;
+        // std::unordered_map<T, T> parent;
         for (auto s:vertices)
         {
             if (!visited[s])
