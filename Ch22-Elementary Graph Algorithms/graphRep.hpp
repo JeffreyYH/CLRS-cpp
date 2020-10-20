@@ -8,8 +8,11 @@ namespace graphAlgo
     template <class T>
     class graphNode
     {
-
-    }
+        private:
+        T idx;
+        graphNode * pred;
+        std::string color; // color option: WHITE, BLACK, GRAY
+    };
 
 
     class GraphRep
