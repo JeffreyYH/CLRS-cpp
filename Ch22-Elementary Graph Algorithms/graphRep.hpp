@@ -52,4 +52,4 @@ namespace graphAlgo
         return adjList;
     }
 
-} // end of namespace
+} // namespace graphAlgo

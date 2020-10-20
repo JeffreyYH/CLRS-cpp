@@ -45,4 +45,4 @@ namespace graphAlgo
         }
     }
 
-} // end of namespace
+} // namespace graphAlgo
