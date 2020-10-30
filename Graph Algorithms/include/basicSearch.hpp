@@ -1,5 +1,6 @@
 #include "graphRep.hpp"
 #include <unordered_map>
+#include <queue>
 
 #define None -100000
 
@@ -11,6 +12,8 @@ namespace graphAlgo
     public:
         // input graph represented as adjacency lists
         void BFS(std::vector<std::list<T>> adjList, T s);
+        void BFS_nodeObject(std::vector<std::list<T>> adjList, T s);
+
         // DFS constists of DFS_visit and DFS
         void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, 
                     T s, std::unordered_map<T, T> &parent);
@@ -49,6 +52,33 @@ namespace graphAlgo
             i++;
         }
     }
+
+    // // implement CLRS pg.595, BFS
+    // template <class T>
+    // void BasicSearch<T>::BFS_nodeObject(std::vector<std::list<T>> adjList, T s)
+    // {
+    //     for (auto u:adjList[s])
+    //     {
+    //         std::shared_ptr<graphAlgo::GraphNode<T>> u_node (new graphAlgo::GraphNode<T>(u));
+    //         u_node -> color = "WHITE";
+    //         u_node -> pred = nullptr;       
+    //     }
+    //     std::shared_ptr<graphAlgo::GraphNode<T>> s_node (new graphAlgo::GraphNode<T>(s)); 
+    //     s_node->color = "GRAY";
+    //     s_node->pred = nullptr;
+    //     s_node->pred = nullptr;
+
+    //     std::queue<T> Q;
+    //     Q.push(s);
+    //     while(!Q.empty())
+    //     {
+    //         T u = Q.pop();
+    //         for (auto v:adjList[u])
+    //         {
+    //         }
+
+    //     }
+    // }
 
     // DFS-visit
     template <class T>

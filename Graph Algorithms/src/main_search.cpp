@@ -17,10 +17,8 @@ int main()
 
     // construct adj matrix
     
-    // graphAlgo::GraphRep graphRep;
-
     // use smart pointer
-    std::shared_ptr<graphAlgo::GraphRep> graphRep(new graphAlgo::GraphRep());
+    std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
 
     cout << "Adjacency matrix:" << endl;
     std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges);
