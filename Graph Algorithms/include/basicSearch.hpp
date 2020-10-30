@@ -1,5 +1,4 @@
 #include "graphRep.hpp"
-#include <unordered_map>
 #include <queue>
 
 #define None -100000
@@ -91,26 +90,30 @@ namespace graphAlgo
     void BasicSearch<T>::BFS_queue(std::vector<std::list<graphAlgo::nodePtr<T>>> adjListObj, 
                                 graphAlgo::nodePtr<T> s_node)
     {
-        for (auto u:adjList[s])
-        {
-            std::shared_ptr<graphAlgo::GraphNode<T>> u_node (new graphAlgo::GraphNode<T>(u));
-            u_node -> color = "WHITE";
-            u_node -> pred = nullptr;       
-        }
-        std::shared_ptr<graphAlgo::GraphNode<T>> s_node (new graphAlgo::GraphNode<T>(s)); 
         s_node->color = "GRAY";
-        s_node->pred = nullptr;
+        s_node->level = 0;
         s_node->pred = nullptr;
 
-        std::queue<T> Q;
-        Q.push(s);
+        std::queue<graphAlgo::nodePtr<T>> Q;
+        Q.push(s_node);
         while(!Q.empty())
         {
-            T u = Q.pop();
-            for (auto v:adjList[u])
-            {
+            auto u_node = Q.front();
+            std::cout << "visiting vertex " << u_node->nodeIdx << std::endl;
+            Q.pop();
+            for (auto v_node:adjListObj[u_node->nodeIdx])
+            {   
+                // white means unvisited
+                if (v_node->color == "WHITE")
+                {
+                    v_node->color = "GRAY";
+                    v_node->level = u_node->level + 1;
+                    v_node->pred = u_node;
+                    Q.push(v_node);
+                }
             }
-
+            // black means visited
+            u_node->color = "BLACK";
         }
     }
 

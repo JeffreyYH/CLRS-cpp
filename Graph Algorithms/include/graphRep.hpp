@@ -2,6 +2,8 @@
 #include <list>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
+#include <bits/stdc++.h>
 
 namespace graphAlgo
 {   
@@ -9,11 +11,12 @@ namespace graphAlgo
     class GraphNode
     {
         public:
-        std::string color; // WHITE: not expanded, BLACK: , GRAY:
-        std::shared_ptr<graphAlgo::GraphNode<T>> pred;
         T nodeIdx;
+        std::string color; // WHITE: not visted, BLACK: visited, GRAY: prepare to visit
+        std::shared_ptr<graphAlgo::GraphNode<T>> pred;  // predecessor
+        int level;
         
-        GraphNode(T idx) {nodeIdx = idx; pred = nullptr;};
+        GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; level = INT_MAX;};
     };
     
     // define a smart pointer for GraphNode object
@@ -30,7 +33,7 @@ namespace graphAlgo
         std::vector<std::list<T>> 
         construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges);
 
-        std::vector<std::list<nodePtr<T>>> 
+        std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> 
         construct_adjList_obj(std::vector<T> vertices, std::vector<std::vector<T>> edges);
 
     };
@@ -75,19 +78,25 @@ namespace graphAlgo
 
      // adj list of graph node object
     template <class T>
-    std::vector<std::list<nodePtr<T>>> 
+    std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> 
     GraphRep<T>::construct_adjList_obj(std::vector<T> vertices, std::vector<std::vector<T>> edges)
     {
         size_t size = vertices.size();
-        std::vector<std::list<nodePtr<T>>> adjListObj(size);
-        // first use adjList to get idx
+        // use hashtable to map idx to object
+        std::unordered_map<T,graphAlgo::nodePtr<T>> idxToNode; 
+        for (auto v:vertices)
+        {
+            graphAlgo::nodePtr<T> node (new graphAlgo::GraphNode<T>(v));
+            idxToNode[v] = node;
+        }
+
+        std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>>  adjListObj;
         std::vector<std::list<T>> adjList = construct_adjList(vertices, edges);
         for (size_t i=0; i<adjList.size(); i++)
         {
             for (auto it=adjList[i].begin(); it!=adjList[i].end(); ++it)
             {
-                graphAlgo::nodePtr<T> node (new graphAlgo::GraphNode<T>(*it));
-                adjListObj[i].push_back(node);
+                adjListObj[idxToNode[i]].push_back(idxToNode[*it]);
             }
         }
 
