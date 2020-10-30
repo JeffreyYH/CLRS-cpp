@@ -12,13 +12,14 @@ int main()
                                 {2,3}, 
                                 {3,4}
                             };
+    std::string graph_type = "undirected";
 
     // construct adj matrix
     // use smart pointer
     std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
 
     cout << "Adjacency matrix:" << endl;
-    std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges);
+    std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges, graph_type);
     for(size_t i=0; i<adjMat.size(); ++i)
     {
         for (size_t j=0; j<adjMat[0].size(); ++j)
@@ -28,7 +29,7 @@ int main()
 
     // construct adj list
     cout << "Adjacency list:" << endl;
-    std::vector<std::list<int>> adjList = graphRep->construct_adjList(vertices, edges);
+    std::vector<std::list<int>> adjList = graphRep->construct_adjList(vertices, edges, graph_type);
     for (size_t i=0; i<adjList.size(); ++i)
     {
         cout << i << "->";
@@ -40,7 +41,7 @@ int main()
     // construct adj list object, represented as a hashtable fron object to list of object
     cout << "Adjacency list object:" << endl;
     std::unordered_map<graphAlgo::nodePtr<int>, std::list<graphAlgo::nodePtr<int>>> 
-    adjListObj = graphRep->construct_adjList_obj(vertices, edges);
+    adjListObj = graphRep->construct_adjList_obj(vertices, edges, graph_type);
     for (auto l:adjListObj)
     {
         // print key
