@@ -55,20 +55,23 @@ int main()
     cout << "BFS: " << endl;
     // graphAlgo::BasicSearch<int> basicSearch;
     std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
+    std::shared_ptr<graphAlgo::BasicSearchObj<int>> basicSearchObj(new graphAlgo::BasicSearchObj<int>());
     int start = 0;
     basicSearch->BFS(adjList, start);
 
     // do BFS object
     cout << "BFS Object: " << endl;
-    basicSearch->BFS_obj(adjListObj, start);
+    basicSearchObj->BFS(adjListObj, start);
 
     // do queue based BFS
     cout << "BFS Queue: " << endl;
-    basicSearch->BFS_queue(adjListObj, start);
+    basicSearchObj->BFS_queue(adjListObj, start);
 
     // do DFS
     cout << "DFS: " << endl;
     basicSearch->DFS(vertices, adjList);
+
+
 
     return 0;
 }
