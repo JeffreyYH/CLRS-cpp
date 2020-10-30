@@ -50,16 +50,21 @@ int main()
         cout << endl;
     }
 
-    // // do BFS
-    // cout << "BFS: " << endl;
-    // // graphAlgo::BasicSearch<int> basicSearch;
-    // std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
-    // int start = 0;
-    // basicSearch->BFS(adjList, start);
+    // do BFS
+    cout << "BFS: " << endl;
+    // graphAlgo::BasicSearch<int> basicSearch;
+    std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
+    int start = 0;
+    basicSearch->BFS(adjList, start);
 
-    // // do DFS
-    // cout << "DFS: " << endl;
-    // basicSearch->DFS(vertices, adjList);
+    // do BFS object
+    cout << "BFS Object: " << endl;
+    graphAlgo::nodePtr<int> start_node (new graphAlgo::GraphNode<int>(start));
+    basicSearch->BFS_obj(adjListObj, start_node);
+
+    // do DFS
+    cout << "DFS: " << endl;
+    basicSearch->DFS(vertices, adjList);
 
     return 0;
 }

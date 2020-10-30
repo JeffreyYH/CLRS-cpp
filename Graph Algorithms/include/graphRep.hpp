@@ -10,7 +10,7 @@ namespace graphAlgo
     {
         public:
         std::string color; // WHITE: not expanded, BLACK: , GRAY:
-        GraphNode * pred;
+        std::shared_ptr<graphAlgo::GraphNode<T>> pred;
         T nodeIdx;
         
         GraphNode(T idx) {nodeIdx = idx; pred = nullptr;};

@@ -12,7 +12,8 @@ namespace graphAlgo
     public:
         // input graph represented as adjacency lists
         void BFS(std::vector<std::list<T>> adjList, T s);
-        void BFS_nodeObject(std::vector<std::list<T>> adjList, T s);
+        void BFS_obj(std::vector<std::list<graphAlgo::nodePtr<T>>> adjListObj, graphAlgo::nodePtr<T> s_node);
+        void BFS_queue(std::vector<std::list<graphAlgo::nodePtr<T>>> adjListObj, graphAlgo::nodePtr<T> s_node);
 
         // DFS constists of DFS_visit and DFS
         void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, 
@@ -53,32 +54,65 @@ namespace graphAlgo
         }
     }
 
-    // // implement CLRS pg.595, BFS
-    // template <class T>
-    // void BasicSearch<T>::BFS_nodeObject(std::vector<std::list<T>> adjList, T s)
-    // {
-    //     for (auto u:adjList[s])
-    //     {
-    //         std::shared_ptr<graphAlgo::GraphNode<T>> u_node (new graphAlgo::GraphNode<T>(u));
-    //         u_node -> color = "WHITE";
-    //         u_node -> pred = nullptr;       
-    //     }
-    //     std::shared_ptr<graphAlgo::GraphNode<T>> s_node (new graphAlgo::GraphNode<T>(s)); 
-    //     s_node->color = "GRAY";
-    //     s_node->pred = nullptr;
-    //     s_node->pred = nullptr;
+    template <class T>
+    void BasicSearch<T>::BFS_obj(std::vector<std::list<graphAlgo::nodePtr<T>>> adjListObj, 
+                                graphAlgo::nodePtr<T> s_node)
+    {
+        std::unordered_map<T, int> level;
+        level[s_node->nodeIdx] = 0;
+        int i = 1;
+        std::vector<graphAlgo::nodePtr<T>> frontier;
+        frontier.push_back(s_node);
+        std::vector<graphAlgo::nodePtr<T>> next;
+        while (!frontier.empty())
+        {
+            next.clear();
+            for (auto u:frontier)
+            {
+                std:: cout << "Expanding vertex " << u->nodeIdx << std::endl;
+                for (auto v:adjListObj[u->nodeIdx])
+                {
+                    // only update unvisited vertices
+                    if (level.find(v->nodeIdx) == level.end())
+                    {
+                        level[v->nodeIdx] = i;
+                        v->pred = u;
+                        next.push_back(v);
+                    }
+                }
+            }
+            frontier = next;
+            i++;
+        }
+    }
 
-    //     std::queue<T> Q;
-    //     Q.push(s);
-    //     while(!Q.empty())
-    //     {
-    //         T u = Q.pop();
-    //         for (auto v:adjList[u])
-    //         {
-    //         }
+    // implement CLRS pg.595, BF, which based on queue
+    template <class T>
+    void BasicSearch<T>::BFS_queue(std::vector<std::list<graphAlgo::nodePtr<T>>> adjListObj, 
+                                graphAlgo::nodePtr<T> s_node)
+    {
+        for (auto u:adjList[s])
+        {
+            std::shared_ptr<graphAlgo::GraphNode<T>> u_node (new graphAlgo::GraphNode<T>(u));
+            u_node -> color = "WHITE";
+            u_node -> pred = nullptr;       
+        }
+        std::shared_ptr<graphAlgo::GraphNode<T>> s_node (new graphAlgo::GraphNode<T>(s)); 
+        s_node->color = "GRAY";
+        s_node->pred = nullptr;
+        s_node->pred = nullptr;
 
-    //     }
-    // }
+        std::queue<T> Q;
+        Q.push(s);
+        while(!Q.empty())
+        {
+            T u = Q.pop();
+            for (auto v:adjList[u])
+            {
+            }
+
+        }
+    }
 
     // DFS-visit
     template <class T>
