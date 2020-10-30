@@ -1,5 +1,3 @@
-#include <iostream>
-#include <memory>
 #include "basicSearch.hpp"
 
 using std::cout;
