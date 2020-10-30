@@ -92,7 +92,7 @@ namespace graphAlgo
         }
     }
 
-    // implement CLRS pg.595, BF, which based on queue
+    // implement CLRS pg.595, BFS, based on queue
     template <class T>
     void BasicSearch<T>::BFS_queue
     (std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, T s)
