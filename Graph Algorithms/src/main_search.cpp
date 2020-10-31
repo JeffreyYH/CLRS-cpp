@@ -58,15 +58,22 @@ int main()
     std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
     std::shared_ptr<graphAlgo::BasicSearchObj<int>> basicSearchObj(new graphAlgo::BasicSearchObj<int>());
     int start = 0;
+    // first find the object with index s
+    graphAlgo::nodePtr<int> s_node;
+    for (auto al:adjListObj)
+    {
+        if (start == al.first->nodeIdx)
+            s_node = al.first;
+    }
     basicSearch->BFS(adjList, start);
 
     // do BFS object
     cout << "BFS Object: " << endl;
-    basicSearchObj->BFS(adjListObj, start);
+    basicSearchObj->BFS(adjListObj, s_node);
 
     // do queue based BFS
     cout << "BFS Queue: " << endl;
-    basicSearchObj->BFS_queue(adjListObj, start);
+    basicSearchObj->BFS_queue(adjListObj, s_node);
 
     // do DFS
     cout << "DFS: " << endl;

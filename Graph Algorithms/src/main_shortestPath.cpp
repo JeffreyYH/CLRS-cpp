@@ -33,5 +33,12 @@ int main()
     // search shorted path with Bellman Ford
     std::shared_ptr<graphAlgo::ShortestPath<int>> shortestPath (new graphAlgo::ShortestPath<int>());
     int start_idx = 0;
-    shortestPath->Bellman_Ford(adjListObj, weightedEdges, start_idx);
+    // first find the object with index s
+    graphAlgo::nodePtr<int> s_node;
+    for (auto al:adjListObj)
+    {
+        if (start_idx == al.first->nodeIdx)
+            s_node = al.first;
+    }
+    shortestPath->Bellman_Ford(adjListObj, weightedEdges, s_node);
 }   

@@ -10,28 +10,18 @@ namespace graphAlgo
     {
     public:
         // input graph represented as adjacency lists
-        void BFS(std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj, T s);
-        void BFS_queue(std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj, T s);
+        void BFS(std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj, graphAlgo::nodePtr<T> s_node);
+        void BFS_queue(std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj, graphAlgo::nodePtr<T> s_node);
 
         // DFS constists of DFS_visit and DFS
-        void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, 
-                    T s, std::unordered_map<T, T> &parent);
-        void DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList);
     };
 
     template <class T>
-    void BasicSearchObj<T>::BFS(std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, T s)
+    void BasicSearchObj<T>::BFS(std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj,
+                                graphAlgo::nodePtr<T> s_node)
     {
-        // first find the object with index s
-        graphAlgo::nodePtr<T> s_node;
-        for (auto al:adjListObj)
-        {
-            if (s == al.first->nodeIdx)
-                s_node = al.first;
-        }
-
         std::unordered_map<T, int> level;
-        level[s] = 0;
+        level[s_node->nodeIdx] = 0;
         int i = 1;
         std::vector<graphAlgo::nodePtr<T>> frontier;
         frontier.push_back(s_node);
@@ -61,16 +51,8 @@ namespace graphAlgo
     // implement CLRS pg.595, BFS, based on queue
     template <class T>
     void BasicSearchObj<T>::BFS_queue
-    (std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, T s)
+    (std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, graphAlgo::nodePtr<T> s_node)
     {
-        // first find the object with index s
-        graphAlgo::nodePtr<T> s_node;
-        for (auto al:adjListObj)
-        {
-            if (s == al.first->nodeIdx)
-                s_node = al.first;
-        }
-
         s_node->color = "GRAY";
         s_node->level = 0;
         s_node->pred = nullptr;

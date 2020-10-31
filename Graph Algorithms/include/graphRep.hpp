@@ -67,7 +67,7 @@ namespace graphAlgo
             T e1 = edges[i][1];
 
             // e1 not in adjList[e0]
-            std::cout << "processing edge (" << e0 << ", " << e1 << ")" << std::endl;
+            // std::cout << "processing edge (" << e0 << ", " << e1 << ")" << std::endl;
             if (std::find(adjList[e0].begin(), adjList[e0].end(), e1) == adjList[e0].end())
                 adjList[e0].push_back(e1);
             
