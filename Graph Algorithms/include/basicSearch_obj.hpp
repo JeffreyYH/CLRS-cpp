@@ -64,7 +64,7 @@ namespace ga // graph algorithms
         Q.push(s_node);
         while(!Q.empty())
         {
-            // notice Q.front() means elment at the end of queue
+            // notice that Q.front() means element at the end of queue
             auto u_node = Q.front();
             std::cout << "visiting vertex " << u_node->nodeIdx << std::endl;
             Q.pop();
