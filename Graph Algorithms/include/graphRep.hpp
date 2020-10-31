@@ -30,7 +30,8 @@ namespace graphAlgo
         std::vector<std::vector<T>> 
         construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected);
 
-        std::vector<std::list<T>> 
+        // implement adjList as hashtable
+        std::unordered_map<T, std::list<T>> 
         construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected);
 
         std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> 
@@ -55,25 +56,25 @@ namespace graphAlgo
     }
 
     template <class T>
-    std::vector<std::list<T>> 
+    std::unordered_map<T, std::list<T>> 
     GraphRep<T>::construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
     {
-        size_t size = vertices.size();
-        std::vector<std::list<T>> adjList(size);
+        std::unordered_map<T, std::list<T>> adjList;
         for (size_t i=0; i<edges.size(); i++)
         {
-            T v0 = edges[i][0];
-            T v1 = edges[i][1];
+            T e0 = edges[i][0];
+            T e1 = edges[i][1];
 
-            // v1 not in adjList[v0]
-            if (std::find(adjList[v0].begin(), adjList[v0].end(), v1) == adjList[v0].end())
-                adjList[v0].push_back(v1);
+            // e1 not in adjList[e0]
+            std::cout << "processing edge (" << e0 << ", " << e0 << ")" << std::endl;
+            if (std::find(adjList[e0].begin(), adjList[e0].end(), e1) == adjList[e0].end())
+                adjList[e0].push_back(e1);
             
             if (isUndirected)
             { 
-                // v0 not in adjList[v1]
-                if (std::find(adjList[v1].begin(), adjList[v1].end(), v0) == adjList[v1].end())
-                    adjList[v1].push_back(v0);
+                // e0 not in adjList[e1]
+                if (std::find(adjList[e1].begin(), adjList[e1].end(), e0) == adjList[e1].end())
+                    adjList[e1].push_back(e0);
             }   
         }
 
@@ -95,12 +96,12 @@ namespace graphAlgo
         }
 
         std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>>  adjListObj;
-        std::vector<std::list<T>> adjList = construct_adjList(vertices, edges, isUndirected);
-        for (size_t i=0; i<adjList.size(); i++)
+        std::unordered_map<T, std::list<T>> adjList = construct_adjList(vertices, edges, isUndirected);
+        for (auto al: adjList)
         {
-            for (auto it=adjList[i].begin(); it!=adjList[i].end(); ++it)
+            for (auto it=al.begin(); it!=al.end(); ++it)
             {
-                adjListObj[idxToNode[i]].push_back(idxToNode[*it]);
+                adjListObj[idxToNode[al.first]].push_back(idxToNode[*it]);
             }
         }
 

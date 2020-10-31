@@ -17,7 +17,7 @@ namespace graphAlgo
                                     std::vector<std::vector<T>> weightedEdges,
                                     T s)
     {
-        
+        std::cout << "hello" << std::endl;
     }
 
 } // namespace graphAlgo
