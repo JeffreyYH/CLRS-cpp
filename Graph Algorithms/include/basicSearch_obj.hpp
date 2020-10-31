@@ -10,14 +10,14 @@ namespace graphAlgo
     {
     public:
         // input graph represented as adjacency lists
-        void BFS(std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx);
-        void BFS_queue(std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx);
+        void BFS(graphAlgo::graphPtr<T> graph, T s_idx);
+        void BFS_queue(graphAlgo::graphPtr<T> graph, T s_idx);
 
         // DFS constists of DFS_visit and DFS
     };
 
     template <class T>
-    void BasicSearchObj<T>::BFS(std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx)
+    void BasicSearchObj<T>::BFS(graphAlgo::graphPtr<T> graph, T s_idx)
     {
         std::unordered_map<T, int> level;
         graphAlgo::nodePtr<T> s_node = graph->idxToNode[s_idx];
@@ -52,7 +52,7 @@ namespace graphAlgo
     // implement CLRS pg.595, BFS, based on queue
     template <class T>
     void BasicSearchObj<T>::BFS_queue
-    (std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx)
+    (graphAlgo::graphPtr<T> graph, T s_idx)
     {
         graphAlgo::nodePtr<T> s_node = graph->idxToNode[s_idx];
 

@@ -8,10 +8,7 @@ namespace graphAlgo
         public:
         float get_weight(graphAlgo::nodePtr<T> u, graphAlgo::nodePtr<T> v, 
                 std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges);
-        void Bellman_Ford(
-                        std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, 
-                        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges,
-                        graphAlgo::nodePtr<T> s_node);
+        void Bellman_Ford(graphAlgo::graphPtr<T> graph, T s_idx);
 
     };
 
@@ -29,11 +26,9 @@ namespace graphAlgo
     }
 
     template <class T>
-    void ShortestPath<T>::Bellman_Ford(
-                                std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, 
-                                std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges,
-                                graphAlgo::nodePtr<T> s_node)
+    void ShortestPath<T>::Bellman_Ford(graphAlgo::graphPtr<T> graph, T s_idx)
     {
+        graphAlgo::nodePtr<T> s_node = graph->idxToNode(s_idx);
         s_node->distance = 0;
         for (auto al:adjListObj)
         {

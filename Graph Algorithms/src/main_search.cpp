@@ -37,7 +37,7 @@ int main()
         cout << endl;
     }
     // construct graph object
-    std::shared_ptr<graphAlgo::Graph<int>> graph (new graphAlgo::Graph<int>(vertices, edges, adjList));
+    graphAlgo::graphPtr<int> graph (new graphAlgo::Graph<int>(vertices, edges, adjList));
 
 
     // graphAlgo::BasicSearch<int> basicSearch;
