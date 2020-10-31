@@ -28,20 +28,22 @@ int main()
         weightedEdges[edges[i]] = weights[i];
     }
 
-    // get adj list of the graph
-    std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
-    std::unordered_map<graphAlgo::nodePtr<int>, std::list<graphAlgo::nodePtr<int>>> 
-                adjListObj = graphRep->construct_adjList_obj(vertices, edges, isUndirected);
+    std::shared_ptr<graphAlgo::GraphRep<char>> graphRep(new graphAlgo::GraphRep<char>());
+    cout << "Adjacency list:" << endl;
+    std::unordered_map<char, std::list<char>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
+    for (auto l:adjList)
+    {
+        cout << l.first << "->";
+        for (auto it = l.second.begin(); it!=l.second.end(); it++)
+            cout << *it << ' ';
+        cout << endl;
+    }
+    // construct graph object
+    graphAlgo::graphPtr<char> graph (new graphAlgo::Graph<char>(vertices, edges, adjList));
+    graph->E_w = weightedEdges;
 
     // search shorted path with Bellman Ford
-    std::shared_ptr<graphAlgo::ShortestPath<int>> shortestPath (new graphAlgo::ShortestPath<int>());
-    int start_idx = 's';
-    // first find the object with index s
-    graphAlgo::nodePtr<int> s_node;
-    for (auto al:adjListObj)
-    {
-        if (start_idx == al.first->nodeIdx)
-            s_node = al.first;
-    }
-    shortestPath->Bellman_Ford(adjListObj, weightedEdges, s_node);
+    std::shared_ptr<graphAlgo::ShortestPath<char>> shortestPath (new graphAlgo::ShortestPath<char>());
+    char start_idx = 's';
+    shortestPath->Bellman_Ford(graph, start_idx);
 }   
