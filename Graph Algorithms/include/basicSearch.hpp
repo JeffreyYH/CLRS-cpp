@@ -9,16 +9,16 @@ namespace graphAlgo
     {
     public:
         // input graph represented as adjacency lists
-        void BFS(std::vector<std::list<T>> adjList, T s);
+        void BFS(std::unordered_map<T, std::list<T>> adjList, T s);
 
         // DFS constists of DFS_visit and DFS
-        void DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, 
+        void DFS_visit(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList, 
                     T s, std::unordered_map<T, T> &parent);
-        void DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList);
+        void DFS(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList);
     };
 
     template <class T>
-    void BasicSearch<T>::BFS(std::vector<std::list<T>> adjList, T s)
+    void BasicSearch<T>::BFS(std::unordered_map<T, std::list<T>> adjList, T s)
     {
         std::unordered_map<T, int> level;
         std::unordered_map<T, T> parent;
@@ -52,7 +52,7 @@ namespace graphAlgo
 
     // DFS-visit
     template <class T>
-    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::vector<std::list<T>> adjList, 
+    void BasicSearch<T>::DFS_visit(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList, 
                                     T s, std::unordered_map<T, T> &parent)
     {
         for (auto v: adjList[s])
@@ -69,7 +69,7 @@ namespace graphAlgo
 
     // DFS
     template <class T>
-    void BasicSearch<T>::DFS(std::vector<T> vertices, std::vector<std::list<T>> adjList)
+    void BasicSearch<T>::DFS(std::vector<T> vertices, std::unordered_map<T, std::list<T>>  adjList)
     {
         std::unordered_map<T, T> parent;
         for (auto s:vertices)

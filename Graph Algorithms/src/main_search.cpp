@@ -29,11 +29,11 @@ int main()
 
     // construct adj list
     cout << "Adjacency list:" << endl;
-    std::vector<std::list<int>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
-    for (size_t i=0; i<adjList.size(); ++i)
+    std::unordered_map<int, std::list<int>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
+    for (auto l:adjList)
     {
-        cout << i << "->";
-        for (auto it = adjList[i].begin(); it!=adjList[i].end(); it++)
+        cout << l.first << "->";
+        for (auto it = l.second.begin(); it!=l.second.end(); it++)
             cout << *it << ' ';
         cout << endl;
     }

@@ -43,7 +43,8 @@ namespace graphAlgo
     std::vector<std::vector<T>> 
     GraphRep<T>::construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
     {   
-        size_t size = vertices.size();
+        // sometimes vertices are not named in a sqeuential order
+        int size = int(*std::max_element(vertices.begin(), vertices.end())) + 1;
         std::vector<std::vector<T>> adjMat (size, std::vector<T>(size, 0));
         for(size_t i=0; i<edges.size(); ++i)
         {   
@@ -66,7 +67,7 @@ namespace graphAlgo
             T e1 = edges[i][1];
 
             // e1 not in adjList[e0]
-            std::cout << "processing edge (" << e0 << ", " << e0 << ")" << std::endl;
+            std::cout << "processing edge (" << e0 << ", " << e1 << ")" << std::endl;
             if (std::find(adjList[e0].begin(), adjList[e0].end(), e1) == adjList[e0].end())
                 adjList[e0].push_back(e1);
             
@@ -95,11 +96,11 @@ namespace graphAlgo
             idxToNode[v] = node;
         }
 
-        std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>>  adjListObj;
+        std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj;
         std::unordered_map<T, std::list<T>> adjList = construct_adjList(vertices, edges, isUndirected);
         for (auto al: adjList)
         {
-            for (auto it=al.begin(); it!=al.end(); ++it)
+            for (auto it=al.second.begin(); it!=al.second.end(); ++it)
             {
                 adjListObj[idxToNode[al.first]].push_back(idxToNode[*it]);
             }
