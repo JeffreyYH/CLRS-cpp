@@ -38,20 +38,28 @@ namespace graphAlgo
     class Graph
     {
     public:
-        std::vector<graphAlgo::nodePtr<T>> vertices;
-        std::vector<T> vertices_idx;
-        std::vector<std::vector<T>> edges;
+        std::vector<graphAlgo::nodePtr<T>> V_obj;
+        std::vector<T> V;
+        std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
-        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges;
+        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> E_w;
         // use hashtable to map idx to object
         std::unordered_map<T, graphAlgo::nodePtr<T>> idxToNode; 
 
-        Graph(std::vector<T> v_idx) 
+        Graph(std::vector<T> _V_, 
+            std::vector<std::vector<T>> _E_,
+            std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> _E_w_,
+            std::unordered_map<T, std::list<T>> _adjList_) 
         {
-            vertices_idx = v_idx;
-            for (auto v_i:vertices_idx)
+            V = _V_;
+            E = _E_;
+            E_w = _E_w_;
+            adjList = _adjList_;
+            for (auto v_i:V)
             {
-
+                graphAlgo::nodePtr<T> node (new (graphAlgo::GraphNode<T> (v_i)));
+                V.push_back(node);
+                idxToNode[v_i] = node;
             }
         };
     };
