@@ -10,19 +10,6 @@ namespace ga // graph algorithms
 
     };
 
-    // template <class T>
-    // float ShortestPath<T>::get_weight(ga::nodePtr<T> u, ga::nodePtr<T> v, 
-    //             std::vector<std::shared_ptr<ga::WeightedEdge>> weightedEdges)
-    // {
-    //     // search for the cost from u to v
-    //     std::vector<T> cur_edge {u->nodeIdx, v->nodeIdx};
-    //     for (auto e:weightedEdges)
-    //     {
-    //         if (cur_edge == e->edge)
-    //             return e->weight;
-    //     }    
-    // }
-
     template <class T>
     void ShortestPath<T>::Bellman_Ford(ga::graphPtr<T> G, T s_idx)
     {

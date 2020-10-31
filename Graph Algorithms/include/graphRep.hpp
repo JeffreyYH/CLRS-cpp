@@ -25,15 +25,6 @@ namespace ga // graph algorithms
     using nodePtr = std::shared_ptr<ga::GraphNode<T>>;
 
 
-    // // define weighted edge
-    // class WeightedEdge
-    // {
-    // public:
-    //     std::vector<int> edge;
-    //     float weight;
-    //     WeightedEdge() {edge = {0,0};};
-    // };
-
     // graph
     template <class T>
     class Graph
@@ -44,7 +35,6 @@ namespace ga // graph algorithms
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
         // weighted edge, optional
-        // std::vector<std::shared_ptr<ga::WeightedEdge>> E_w;
         std::map<std::vector<T>, float> E_w;  //std::map can map vector to float/int/etc.
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
