@@ -38,12 +38,22 @@ namespace graphAlgo
     class Graph
     {
     public:
-        std::vector<T> vertices;
+        std::vector<graphAlgo::nodePtr<T>> vertices;
+        std::vector<T> vertices_idx;
         std::vector<std::vector<T>> edges;
         std::unordered_map<T, std::list<T>> adjList;
         std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges;
         // use hashtable to map idx to object
         std::unordered_map<T, graphAlgo::nodePtr<T>> idxToNode; 
+
+        Graph(std::vector<T> v_idx) 
+        {
+            vertices_idx = v_idx;
+            for (auto v_i:vertices_idx)
+            {
+
+            }
+        };
     };
 } // namespace graphAlgo
 
@@ -72,7 +82,7 @@ namespace graphAlgo
     GraphRep<T>::construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
     {   
         // sometimes vertices are not named in a sqeuential order
-        int size = int(*std::max_element(vertices.begin(), vertices.end())) + 1;
+        int size = vertices.size();
         std::vector<std::vector<T>> adjMat (size, std::vector<T>(size, 0));
         for(size_t i=0; i<edges.size(); ++i)
         {   
