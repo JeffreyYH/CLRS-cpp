@@ -16,7 +16,7 @@ int main()
     
 
     // use smart pointer
-    std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
+    std::shared_ptr<ga::GraphRep<int>> graphRep(new ga::GraphRep<int>());
     // construct adj matrix
     cout << "Adjacency matrix:" << endl;
     std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges, isUndirected);
@@ -37,11 +37,11 @@ int main()
         cout << endl;
     }
     // construct graph object
-    graphAlgo::graphPtr<int> graph (new graphAlgo::Graph<int>(vertices, edges, adjList));
+    ga::graphPtr<int> graph (new ga::Graph<int>(vertices, edges, adjList));
 
 
-    // graphAlgo::BasicSearch<int> basicSearch;
-    std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
+    // ga::BasicSearch<int> basicSearch;
+    std::shared_ptr<ga::BasicSearch<int>> basicSearch(new ga::BasicSearch<int>());
     // do BFS
     cout << "BFS: " << endl;
     int start = 0;
@@ -52,7 +52,7 @@ int main()
 
 
     // do BFS obj and queue based BFS
-    std::shared_ptr<graphAlgo::BasicSearchObj<int>> basicSearchObj(new graphAlgo::BasicSearchObj<int>());
+    std::shared_ptr<ga::BasicSearchObj<int>> basicSearchObj(new ga::BasicSearchObj<int>());
     // do BFS object
     cout << "BFS Object: " << endl;
     basicSearchObj->BFS(graph, start);

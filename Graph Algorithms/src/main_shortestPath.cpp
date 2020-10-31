@@ -28,7 +28,7 @@ int main()
         weightedEdges[edges[i]] = weights[i];
     }
 
-    std::shared_ptr<graphAlgo::GraphRep<char>> graphRep(new graphAlgo::GraphRep<char>());
+    std::shared_ptr<ga::GraphRep<char>> graphRep(new ga::GraphRep<char>());
     cout << "Adjacency list:" << endl;
     std::unordered_map<char, std::list<char>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
     for (auto l:adjList)
@@ -39,11 +39,11 @@ int main()
         cout << endl;
     }
     // construct graph object
-    graphAlgo::graphPtr<char> graph (new graphAlgo::Graph<char>(vertices, edges, adjList));
+    ga::graphPtr<char> graph (new ga::Graph<char>(vertices, edges, adjList));
     graph->E_w = weightedEdges;
 
     // search shorted path with Bellman Ford
-    std::shared_ptr<graphAlgo::ShortestPath<char>> shortestPath (new graphAlgo::ShortestPath<char>());
+    std::shared_ptr<ga::ShortestPath<char>> shortestPath (new ga::ShortestPath<char>());
     char start_idx = 's';
     shortestPath->Bellman_Ford(graph, start_idx);
 }   

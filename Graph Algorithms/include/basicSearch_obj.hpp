@@ -1,7 +1,7 @@
 #include "graphRep.hpp"
 #include <queue>
 
-namespace graphAlgo
+namespace ga
 {
     // twin class of BasicSearch
     // in this class we use object instead of idx to do searching
@@ -10,22 +10,22 @@ namespace graphAlgo
     {
     public:
         // input graph represented as adjacency lists
-        void BFS(graphAlgo::graphPtr<T> graph, T s_idx);
-        void BFS_queue(graphAlgo::graphPtr<T> graph, T s_idx);
+        void BFS(ga::graphPtr<T> graph, T s_idx);
+        void BFS_queue(ga::graphPtr<T> graph, T s_idx);
 
         // DFS constists of DFS_visit and DFS
     };
 
     template <class T>
-    void BasicSearchObj<T>::BFS(graphAlgo::graphPtr<T> graph, T s_idx)
+    void BasicSearchObj<T>::BFS(ga::graphPtr<T> graph, T s_idx)
     {
         std::unordered_map<T, int> level;
-        graphAlgo::nodePtr<T> s_node = graph->idxToNode[s_idx];
+        ga::nodePtr<T> s_node = graph->idxToNode[s_idx];
         level[s_node->nodeIdx] = 0;
         int i = 1;
-        std::vector<graphAlgo::nodePtr<T>> frontier;
+        std::vector<ga::nodePtr<T>> frontier;
         frontier.push_back(s_node);
-        std::vector<graphAlgo::nodePtr<T>> next;
+        std::vector<ga::nodePtr<T>> next;
         while (!frontier.empty())
         {
             next.clear();
@@ -34,7 +34,7 @@ namespace graphAlgo
                 std:: cout << "Expanding vertex " << u->nodeIdx << std::endl;
                 for (auto v_idx:graph->adjList[u->nodeIdx])
                 {
-                    graphAlgo::nodePtr<T> v = graph->idxToNode[v_idx];
+                    ga::nodePtr<T> v = graph->idxToNode[v_idx];
                     // only update unvisited vertices
                     if (level.find(v->nodeIdx) == level.end())
                     {
@@ -52,15 +52,15 @@ namespace graphAlgo
     // implement CLRS pg.595, BFS, based on queue
     template <class T>
     void BasicSearchObj<T>::BFS_queue
-    (graphAlgo::graphPtr<T> graph, T s_idx)
+    (ga::graphPtr<T> graph, T s_idx)
     {
-        graphAlgo::nodePtr<T> s_node = graph->idxToNode[s_idx];
+        ga::nodePtr<T> s_node = graph->idxToNode[s_idx];
 
         s_node->color = "GRAY";
         s_node->distance = 0;
         s_node->pred = nullptr;
 
-        std::queue<graphAlgo::nodePtr<T>> Q;
+        std::queue<ga::nodePtr<T>> Q;
         Q.push(s_node);
         while(!Q.empty())
         {
@@ -70,7 +70,7 @@ namespace graphAlgo
             Q.pop();
             for (auto v_idx:graph->adjList[u_node->nodeIdx])
             {   
-                graphAlgo::nodePtr<T> v_node = graph->idxToNode[v_idx];
+                ga::nodePtr<T> v_node = graph->idxToNode[v_idx];
                 // white means unvisited
                 if (v_node->color == "WHITE")
                 {
@@ -86,4 +86,4 @@ namespace graphAlgo
     }
 
 
-} // namespace graphAlgo
+} // namespace ga

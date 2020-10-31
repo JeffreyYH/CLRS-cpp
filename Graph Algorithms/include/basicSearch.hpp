@@ -2,7 +2,7 @@
 
 #define None -100000
 
-namespace graphAlgo
+namespace ga
 {
     template <class T>
     class BasicSearch
@@ -83,4 +83,4 @@ namespace graphAlgo
         }
     }
 
-} // namespace graphAlgo
+} // namespace ga

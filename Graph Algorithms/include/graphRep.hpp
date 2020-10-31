@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <bits/stdc++.h>
 
-namespace graphAlgo
+namespace ga
 {   
     template <class T>
     class GraphNode
@@ -22,7 +22,7 @@ namespace graphAlgo
     
     // define a smart pointer for GraphNode object
     template <class T>
-    using nodePtr = std::shared_ptr<graphAlgo::GraphNode<T>>;
+    using nodePtr = std::shared_ptr<ga::GraphNode<T>>;
 
 
     // // define weighted edge
@@ -44,7 +44,7 @@ namespace graphAlgo
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
         // weighted edge, optional
-        // std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> E_w;
+        // std::vector<std::shared_ptr<ga::WeightedEdge>> E_w;
         std::map<std::vector<T>, float> E_w;  //std::map can map vector to float/int/etc.
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
@@ -67,12 +67,12 @@ namespace graphAlgo
 
     // define a smart pointer for Graph object
     template <class T>
-    using graphPtr = std::shared_ptr<graphAlgo::Graph<T>>;
+    using graphPtr = std::shared_ptr<ga::Graph<T>>;
 
-} // namespace graphAlgo
+} // namespace ga
 
 
-namespace graphAlgo
+namespace ga
 {
     // graph representations
     template <class T>
@@ -129,4 +129,4 @@ namespace graphAlgo
         return adjList;
     }
 
-} // namespace graphAlgo
+} // namespace ga
