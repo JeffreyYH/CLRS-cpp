@@ -10,7 +10,7 @@ namespace graphAlgo
     template <class T>
     class GraphNode
     {
-        public:
+    public:
         T nodeIdx;
         std::string color; // WHITE: not visted, BLACK: visited, GRAY: prepare to visit
         std::shared_ptr<graphAlgo::GraphNode<T>> pred;  // predecessor
@@ -27,11 +27,23 @@ namespace graphAlgo
     // define weighted edge
     class WeightedEdge
     {
-        public:
+    public:
         std::vector<int> edge;
         float weight;
-
         WeightedEdge() {edge = {0,0};};
+    };
+
+    // TODO:
+    template <class T>
+    class Graph
+    {
+    public:
+        std::vector<T> vertices;
+        std::vector<std::vector<T>> edges;
+        std::unordered_map<T, std::list<T>> adjList;
+        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges;
+        // use hashtable to map idx to object
+        std::unordered_map<T, graphAlgo::nodePtr<T>> idxToNode; 
     };
 } // namespace graphAlgo
 
