@@ -13,7 +13,7 @@ namespace graphAlgo
     public:
         T nodeIdx;
         std::string color; // WHITE: not visted, BLACK: visited, GRAY: prepare to visit
-        std::shared_ptr<graphAlgo::GraphNode<T>> pred;  // predecessor
+        std::shared_ptr<GraphNode<T>> pred;  // predecessor
         int distance;
         
         GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; distance = INT_MAX;};
@@ -42,7 +42,7 @@ namespace graphAlgo
         std::vector<T> V;
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
-        std::vector<std::shared_ptr<WeightedEdge>> E_w; // optional
+        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> E_w; // optional
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
 

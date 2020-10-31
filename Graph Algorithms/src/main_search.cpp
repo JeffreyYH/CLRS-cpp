@@ -80,9 +80,9 @@ int main()
     cout << "BFS Object: " << endl;
     basicSearchObj->BFS(graph, start);
 
-    // // do queue based BFS
-    // cout << "BFS Queue: " << endl;
-    // basicSearchObj->BFS_queue(adjListObj, s_node);
+    // do queue based BFS
+    cout << "BFS Queue: " << endl;
+    basicSearchObj->BFS_queue(graph, start);
 
     return 0;
 }

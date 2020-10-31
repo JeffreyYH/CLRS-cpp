@@ -20,7 +20,7 @@ namespace graphAlgo
     void BasicSearchObj<T>::BFS(std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx)
     {
         std::unordered_map<T, int> level;
-        graphAlgo::nodePtr<T> s_node = graph->idxToNode(s_idx);
+        graphAlgo::nodePtr<T> s_node = graph->idxToNode[s_idx];
         level[s_node->nodeIdx] = 0;
         int i = 1;
         std::vector<graphAlgo::nodePtr<T>> frontier;
@@ -34,7 +34,7 @@ namespace graphAlgo
                 std:: cout << "Expanding vertex " << u->nodeIdx << std::endl;
                 for (auto v_idx:graph->adjList[u->nodeIdx])
                 {
-                     graphAlgo::nodePtr<T> v = graph->idxToNode(v_idx);
+                    graphAlgo::nodePtr<T> v = graph->idxToNode[v_idx];
                     // only update unvisited vertices
                     if (level.find(v->nodeIdx) == level.end())
                     {
@@ -49,38 +49,41 @@ namespace graphAlgo
         }
     }
 
-    // // implement CLRS pg.595, BFS, based on queue
-    // template <class T>
-    // void BasicSearchObj<T>::BFS_queue
-    // (std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx)
-    // {
-    //     s_node->color = "GRAY";
-    //     s_node->distance = 0;
-    //     s_node->pred = nullptr;
+    // implement CLRS pg.595, BFS, based on queue
+    template <class T>
+    void BasicSearchObj<T>::BFS_queue
+    (std::shared_ptr<graphAlgo::Graph<T>> graph, T s_idx)
+    {
+        graphAlgo::nodePtr<T> s_node = graph->idxToNode[s_idx];
 
-    //     std::queue<graphAlgo::nodePtr<T>> Q;
-    //     Q.push(s_node);
-    //     while(!Q.empty())
-    //     {
-    //         // notice Q.front() means elment at the end of queue
-    //         auto u_node = Q.front();
-    //         std::cout << "visiting vertex " << u_node->nodeIdx << std::endl;
-    //         Q.pop();
-    //         for (auto v_node:adjListObj[u_node])
-    //         {   
-    //             // white means unvisited
-    //             if (v_node->color == "WHITE")
-    //             {
-    //                 v_node->color = "GRAY";
-    //                 v_node->distance = u_node->distance + 1;
-    //                 v_node->pred = u_node;
-    //                 Q.push(v_node);
-    //             }
-    //         }
-    //         // black means visited
-    //         u_node->color = "BLACK";
-    //     }
-    // }
+        s_node->color = "GRAY";
+        s_node->distance = 0;
+        s_node->pred = nullptr;
+
+        std::queue<graphAlgo::nodePtr<T>> Q;
+        Q.push(s_node);
+        while(!Q.empty())
+        {
+            // notice Q.front() means elment at the end of queue
+            auto u_node = Q.front();
+            std::cout << "visiting vertex " << u_node->nodeIdx << std::endl;
+            Q.pop();
+            for (auto v_idx:graph->adjList[u_node->nodeIdx])
+            {   
+                graphAlgo::nodePtr<T> v_node = graph->idxToNode[v_idx];
+                // white means unvisited
+                if (v_node->color == "WHITE")
+                {
+                    v_node->color = "GRAY";
+                    v_node->distance = u_node->distance + 1;
+                    v_node->pred = u_node;
+                    Q.push(v_node);
+                }
+            }
+            // black means visited
+            u_node->color = "BLACK";
+        }
+    }
 
 
 } // namespace graphAlgo
