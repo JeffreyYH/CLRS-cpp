@@ -38,6 +38,20 @@ int main()
         cout << endl;
     }
 
+    // graphAlgo::BasicSearch<int> basicSearch;
+    std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
+    // do BFS
+    cout << "BFS: " << endl;
+    int start = 0;
+    basicSearch->BFS(adjList, start);
+    // do DFS
+    cout << "DFS: " << endl;
+    basicSearch->DFS(vertices, adjList);
+
+
+    // do BFS obj and queue based BFS
+    std::shared_ptr<graphAlgo::BasicSearchObj<int>> basicSearchObj(new graphAlgo::BasicSearchObj<int>());
+
     // // construct adj list object, represented as a hashtable fron object to list of object
     // cout << "Adjacency list object:" << endl;
     // std::unordered_map<graphAlgo::nodePtr<int>, std::list<graphAlgo::nodePtr<int>>> 
@@ -52,13 +66,6 @@ int main()
     //     cout << endl;
     // }
 
-    // do BFS
-    cout << "BFS: " << endl;
-    // graphAlgo::BasicSearch<int> basicSearch;
-    std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
-    // std::shared_ptr<graphAlgo::BasicSearchObj<int>> basicSearchObj(new graphAlgo::BasicSearchObj<int>());
-    int start = 0;
-
     // // first find the object with index s
     // graphAlgo::nodePtr<int> s_node;
     // for (auto al:adjListObj)
@@ -67,8 +74,6 @@ int main()
     //         s_node = al.first;
     // }
 
-    basicSearch->BFS(adjList, start);
-
     // // do BFS object
     // cout << "BFS Object: " << endl;
     // basicSearchObj->BFS(adjListObj, s_node);
@@ -76,12 +81,6 @@ int main()
     // // do queue based BFS
     // cout << "BFS Queue: " << endl;
     // basicSearchObj->BFS_queue(adjListObj, s_node);
-
-    // do DFS
-    cout << "DFS: " << endl;
-    basicSearch->DFS(vertices, adjList);
-
-
 
     return 0;
 }
