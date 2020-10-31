@@ -23,6 +23,22 @@ namespace graphAlgo
     template <class T>
     using nodePtr = std::shared_ptr<graphAlgo::GraphNode<T>>;
 
+
+    // define weighted edge
+    class WeightedEdge
+    {
+        public:
+        std::vector<int> edge;
+        float weight;
+
+        WeightedEdge() {edge = {0,0};};
+    };
+} // namespace graphAlgo
+
+
+namespace graphAlgo
+{
+    // graph representations
     template <class T>
     class GraphRep
     {

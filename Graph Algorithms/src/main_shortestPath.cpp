@@ -3,6 +3,8 @@
 using std::cout;
 using std::endl;
 
+
+
 int main()
 {
     std::vector<int> vertices {0,3,5,9,11};
@@ -13,17 +15,22 @@ int main()
                                 {9,11},
                                 {11,9}, {11,0}
                             };
-    std::vector<int> weights {3, 5, 
+    std::vector<float> weights {3, 5, 
                             2, 6, 
                             1, 4, 6,
                             2,
                             7, 3};
-    std::vector<std::vector<int>> weightedEdges = edges;
+    bool isUndirected = false;
+
+    // construct weighted edges
+    std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges(edges.size());
     for (size_t i=0;i<edges.size(); ++i)
     {
-        weightedEdges[i].push_back(weights[i]);
+        std::shared_ptr<graphAlgo::WeightedEdge> wEdge (new graphAlgo::WeightedEdge());
+        wEdge->edge = edges[i];
+        wEdge->weight = weights[i];
+        weightedEdges[i] = wEdge;
     }
-    bool isUndirected = false;
 
     // get adj list of the graph
     std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
