@@ -13,11 +13,11 @@ int main()
                                 {3,4}
                             };
     bool isUndirected = true;
+    
 
-    // construct adj matrix
     // use smart pointer
     std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
-
+    // construct adj matrix
     cout << "Adjacency matrix:" << endl;
     std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges, isUndirected);
     for(size_t i=0; i<adjMat.size(); ++i)
@@ -26,7 +26,6 @@ int main()
             cout << adjMat[i][j] << ' ';
         cout << endl;
     }
-
     // construct adj list
     cout << "Adjacency list:" << endl;
     std::unordered_map<int, std::list<int>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
@@ -37,6 +36,9 @@ int main()
             cout << *it << ' ';
         cout << endl;
     }
+    // construct graph object
+    std::shared_ptr<graphAlgo::Graph<int>> graph (new graphAlgo::Graph<int>(vertices, edges, adjList));
+
 
     // graphAlgo::BasicSearch<int> basicSearch;
     std::shared_ptr<graphAlgo::BasicSearch<int>> basicSearch(new graphAlgo::BasicSearch<int>());
@@ -74,9 +76,9 @@ int main()
     //         s_node = al.first;
     // }
 
-    // // do BFS object
-    // cout << "BFS Object: " << endl;
-    // basicSearchObj->BFS(adjListObj, s_node);
+    // do BFS object
+    cout << "BFS Object: " << endl;
+    basicSearchObj->BFS(graph, start);
 
     // // do queue based BFS
     // cout << "BFS Queue: " << endl;

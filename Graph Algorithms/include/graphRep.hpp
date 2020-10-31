@@ -33,7 +33,7 @@ namespace graphAlgo
         WeightedEdge() {edge = {0,0};};
     };
 
-    // TODO:
+    // graph
     template <class T>
     class Graph
     {
@@ -42,23 +42,21 @@ namespace graphAlgo
         std::vector<T> V;
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
-        std::vector<std::shared_ptr<WeightedEdge>> E_w;
+        std::vector<std::shared_ptr<WeightedEdge>> E_w; // optional
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
 
         Graph(std::vector<T> _V_, 
             std::vector<std::vector<T>> _E_,
-            std::vector<std::shared_ptr<WeightedEdge>> _E_w_,
             std::unordered_map<T, std::list<T>> _adjList_) 
         {
             V = _V_;
             E = _E_;
-            E_w = _E_w_;
             adjList = _adjList_;
             for (auto v_i:V)
             {
                 nodePtr<T> node (new GraphNode<T>(v_i));
-                V.push_back(node);
+                V_obj.push_back(node);
                 idxToNode[v_i] = node;
             }
         };
