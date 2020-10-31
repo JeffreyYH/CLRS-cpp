@@ -77,10 +77,6 @@ namespace graphAlgo
         // implement adjList as hashtable
         std::unordered_map<T, std::list<T>> 
         construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected);
-
-        std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> 
-        construct_adjList_obj(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected);
-
     };
 
     template <class T>
