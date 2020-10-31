@@ -4,14 +4,13 @@ using std::cout;
 using std::endl;
 
 
-
 int main()
 {
-    std::vector<int> vertices {'s', 't', 'x', 'y', 'z'};
-    std::vector<std::vector<int>> edges {
+    std::vector<char> vertices {'s', 't', 'x', 'y', 'z'};
+    std::vector<std::vector<char>> edges {
                                 {'s','t'}, {'s','y'}, 
                                 {'t','y'}, {'t','x'},
-                                {'y','t'}, {'y', 'x'}, {'y','z'},
+                                {'y','t'}, {'y','x'}, {'y','z'},
                                 {'x','z'},
                                 {'z','x'}, {'z','s'}
                             };
@@ -23,13 +22,10 @@ int main()
     bool isUndirected = false;
 
     // construct weighted edges
-    std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> weightedEdges(edges.size());
+    std::map<std::vector<char>, float> weightedEdges;
     for (size_t i=0;i<edges.size(); ++i)
     {
-        std::shared_ptr<graphAlgo::WeightedEdge> wEdge (new graphAlgo::WeightedEdge());
-        wEdge->edge = edges[i];
-        wEdge->weight = weights[i];
-        weightedEdges[i] = wEdge;
+        weightedEdges[edges[i]] = weights[i];
     }
 
     // get adj list of the graph

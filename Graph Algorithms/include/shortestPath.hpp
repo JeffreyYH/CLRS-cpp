@@ -26,23 +26,21 @@ namespace graphAlgo
     }
 
     template <class T>
-    void ShortestPath<T>::Bellman_Ford(graphAlgo::graphPtr<T> graph, T s_idx)
+    void ShortestPath<T>::Bellman_Ford(graphAlgo::graphPtr<T> G, T s_idx)
     {
-        graphAlgo::nodePtr<T> s_node = graph->idxToNode(s_idx);
+        graphAlgo::nodePtr<T> s_node = G->idxToNode(s_idx);
         s_node->distance = 0;
-        for (auto al:adjListObj)
+        
+        for (auto e:G->edges) 
         {
-            auto u = al.first;
-            for (auto it = al.second.begin(); it!=al.second.end(); it++)
+            graphAlgo::nodePtr<T> u = G->idxTonode(e[0]);
+            graphAlgo::nodePtr<T> v = G->idxTonode(e[1]);
+            float weight_uv = get_weight(u,v,weightedEdges);
+            // relax (u, v, weight_uv)
+            if (v->distance > u->distance + weight_uv)
             {
-                auto v = *it;
-                float weight_uv = get_weight(u,v,weightedEdges);
-                // relax (u, v, weight_uv)
-                if (v->distance > u->distance + weight_uv)
-                {
-                    v->distance = u->distance + weight_uv;
-                    v->pred = u;
-                }
+                v->distance = u->distance + weight_uv;
+                v->pred = u;
             }
         }
         // get optimal path by backtracking

@@ -2,6 +2,7 @@
 #include <list>
 #include <vector>
 #include <algorithm>
+#include <map>
 #include <unordered_map>
 #include <bits/stdc++.h>
 
@@ -42,7 +43,9 @@ namespace graphAlgo
         std::vector<T> V;
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
-        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> E_w; // optional
+        // weighted edge, optional
+        // std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> E_w;
+        std::map<std::vector<T>, float> E_w;  //std::map can map vector to float/int/etc.
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
 
