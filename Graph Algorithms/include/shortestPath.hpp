@@ -17,7 +17,8 @@ namespace graphAlgo
                                     std::vector<std::vector<T>> weightedEdges,
                                     graphAlgo::nodePtr<T> s_node)
     {
-        std::cout << "hello" << std::endl;
+        s_node->level = 0;
+        for (size_t i=0; i<)
     }
 
 } // namespace graphAlgo
