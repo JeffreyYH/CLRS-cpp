@@ -7,13 +7,13 @@ using std::endl;
 
 int main()
 {
-    std::vector<int> vertices {0,3,5,9,11};
+    std::vector<int> vertices {'s', 't', 'x', 'y', 'z'};
     std::vector<std::vector<int>> edges {
-                                {0,3}, {0,5}, 
-                                {3,5}, {3,9},
-                                {5,3}, {5,9}, {5,11},
-                                {9,11},
-                                {11,9}, {11,0}
+                                {'s','t'}, {'s','y'}, 
+                                {'t','y'}, {'t','x'},
+                                {'y','t'}, {'y', 'x'}, {'y','z'},
+                                {'x','z'},
+                                {'z','x'}, {'z','s'}
                             };
     std::vector<float> weights {3, 5, 
                             2, 6, 
@@ -39,7 +39,7 @@ int main()
 
     // search shorted path with Bellman Ford
     std::shared_ptr<graphAlgo::ShortestPath<int>> shortestPath (new graphAlgo::ShortestPath<int>());
-    int start_idx = 0;
+    int start_idx = 's';
     // first find the object with index s
     graphAlgo::nodePtr<int> s_node;
     for (auto al:adjListObj)

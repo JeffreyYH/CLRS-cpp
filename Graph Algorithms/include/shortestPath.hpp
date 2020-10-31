@@ -50,13 +50,14 @@ namespace graphAlgo
                 }
             }
         }
-
+        // get optimal path by backtracking
         for (auto al:adjListObj)
         {
             auto u = al.first;
             for (auto it = al.second.begin(); it!=al.second.end(); it++)
             {
                 auto v = *it;
+                std::cout << char(v->nodeIdx) << " " << v->distance << std::endl;
                 if (v->distance > u->distance + get_weight(u,v,weightedEdges))
                     return;
             }
