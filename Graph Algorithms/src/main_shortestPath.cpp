@@ -24,4 +24,14 @@ int main()
         weightedEdges[i].push_back(weights[i]);
     }
     bool isUndirected = false;
-}
+
+    // get adj list of the graph
+    std::shared_ptr<graphAlgo::GraphRep<int>> graphRep(new graphAlgo::GraphRep<int>());
+    std::unordered_map<graphAlgo::nodePtr<int>, std::list<graphAlgo::nodePtr<int>>> 
+                adjListObj = graphRep->construct_adjList_obj(vertices, edges, isUndirected);
+
+    // search shorted path with Bellman Ford
+    std::shared_ptr<graphAlgo::ShortestPath<int>> shortestPath (new graphAlgo::ShortestPath<int>());
+    int start_idx = 0;
+    shortestPath->Bellman_Ford(adjListObj, weightedEdges, start_idx);
+}   

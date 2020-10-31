@@ -41,7 +41,7 @@ int main()
     // construct adj list object, represented as a hashtable fron object to list of object
     cout << "Adjacency list object:" << endl;
     std::unordered_map<graphAlgo::nodePtr<int>, std::list<graphAlgo::nodePtr<int>>> 
-    adjListObj = graphRep->construct_adjList_obj(vertices, edges, isUndirected);
+            adjListObj = graphRep->construct_adjList_obj(vertices, edges, isUndirected);
     for (auto l:adjListObj)
     {
         // print key
