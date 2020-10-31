@@ -38,17 +38,17 @@ namespace graphAlgo
     class Graph
     {
     public:
-        std::vector<graphAlgo::nodePtr<T>> V_obj;
+        std::vector<nodePtr<T>> V_obj;
         std::vector<T> V;
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
-        std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> E_w;
+        std::vector<std::shared_ptr<WeightedEdge>> E_w;
         // use hashtable to map idx to object
-        std::unordered_map<T, graphAlgo::nodePtr<T>> idxToNode; 
+        std::unordered_map<T, nodePtr<T>> idxToNode; 
 
         Graph(std::vector<T> _V_, 
             std::vector<std::vector<T>> _E_,
-            std::vector<std::shared_ptr<graphAlgo::WeightedEdge>> _E_w_,
+            std::vector<std::shared_ptr<WeightedEdge>> _E_w_,
             std::unordered_map<T, std::list<T>> _adjList_) 
         {
             V = _V_;
@@ -57,7 +57,7 @@ namespace graphAlgo
             adjList = _adjList_;
             for (auto v_i:V)
             {
-                graphAlgo::nodePtr<T> node (new (graphAlgo::GraphNode<T> (v_i)));
+                nodePtr<T> node (new GraphNode<T>(v_i));
                 V.push_back(node);
                 idxToNode[v_i] = node;
             }
@@ -127,31 +127,31 @@ namespace graphAlgo
         return adjList;
     }
 
-     // adj list of graph node object
-    template <class T>
-    std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> 
-    GraphRep<T>::construct_adjList_obj(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
-    {
-        size_t size = vertices.size();
-        // use hashtable to map idx to object
-        std::unordered_map<T,graphAlgo::nodePtr<T>> idxToNode; 
-        for (auto v:vertices)
-        {
-            graphAlgo::nodePtr<T> node (new graphAlgo::GraphNode<T>(v));
-            idxToNode[v] = node;
-        }
+    //  // adj list of graph node object
+    // template <class T>
+    // std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> 
+    // GraphRep<T>::construct_adjList_obj(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
+    // {
+    //     size_t size = vertices.size();
+    //     // use hashtable to map idx to object
+    //     std::unordered_map<T,graphAlgo::nodePtr<T>> idxToNode; 
+    //     for (auto v:vertices)
+    //     {
+    //         graphAlgo::nodePtr<T> node (new graphAlgo::GraphNode<T>(v));
+    //         idxToNode[v] = node;
+    //     }
 
-        std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj;
-        std::unordered_map<T, std::list<T>> adjList = construct_adjList(vertices, edges, isUndirected);
-        for (auto al: adjList)
-        {
-            for (auto it=al.second.begin(); it!=al.second.end(); ++it)
-            {
-                adjListObj[idxToNode[al.first]].push_back(idxToNode[*it]);
-            }
-        }
+    //     std::unordered_map<nodePtr<T>, std::list<nodePtr<T>>> adjListObj;
+    //     std::unordered_map<T, std::list<T>> adjList = construct_adjList(vertices, edges, isUndirected);
+    //     for (auto al: adjList)
+    //     {
+    //         for (auto it=al.second.begin(); it!=al.second.end(); ++it)
+    //         {
+    //             adjListObj[idxToNode[al.first]].push_back(idxToNode[*it]);
+    //         }
+    //     }
 
-        return adjListObj;
-    }
+    //     return adjListObj;
+    // }
 
 } // namespace graphAlgo
