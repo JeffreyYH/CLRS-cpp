@@ -54,7 +54,7 @@ namespace graphAlgo
     (std::unordered_map<graphAlgo::nodePtr<T>, std::list<graphAlgo::nodePtr<T>>> adjListObj, graphAlgo::nodePtr<T> s_node)
     {
         s_node->color = "GRAY";
-        s_node->level = 0;
+        s_node->distance = 0;
         s_node->pred = nullptr;
 
         std::queue<graphAlgo::nodePtr<T>> Q;
@@ -71,7 +71,7 @@ namespace graphAlgo
                 if (v_node->color == "WHITE")
                 {
                     v_node->color = "GRAY";
-                    v_node->level = u_node->level + 1;
+                    v_node->distance = u_node->distance + 1;
                     v_node->pred = u_node;
                     Q.push(v_node);
                 }

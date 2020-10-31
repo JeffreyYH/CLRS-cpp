@@ -14,9 +14,9 @@ namespace graphAlgo
         T nodeIdx;
         std::string color; // WHITE: not visted, BLACK: visited, GRAY: prepare to visit
         std::shared_ptr<graphAlgo::GraphNode<T>> pred;  // predecessor
-        int level;
+        int distance;
         
-        GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; level = INT_MAX;};
+        GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; distance = INT_MAX;};
     };
     
     // define a smart pointer for GraphNode object
