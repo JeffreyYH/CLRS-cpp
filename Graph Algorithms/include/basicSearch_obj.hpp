@@ -1,7 +1,7 @@
 #include "graphRep.hpp"
 #include <queue>
 
-namespace ga
+namespace ga // graph algorithms
 {
     // twin class of BasicSearch
     // in this class we use object instead of idx to do searching

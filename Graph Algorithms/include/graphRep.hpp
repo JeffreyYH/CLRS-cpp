@@ -6,7 +6,7 @@
 #include <unordered_map>
 #include <bits/stdc++.h>
 
-namespace ga
+namespace ga // graph algorithms
 {   
     template <class T>
     class GraphNode

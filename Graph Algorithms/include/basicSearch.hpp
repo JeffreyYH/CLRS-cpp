@@ -2,7 +2,7 @@
 
 #define None -100000
 
-namespace ga
+namespace ga // graph algorithms
 {
     template <class T>
     class BasicSearch
