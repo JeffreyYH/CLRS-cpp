@@ -81,7 +81,6 @@ namespace graphAlgo
     std::vector<std::vector<T>> 
     GraphRep<T>::construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
     {   
-        // sometimes vertices are not named in a sqeuential order
         int size = vertices.size();
         std::vector<std::vector<T>> adjMat (size, std::vector<T>(size, 0));
         for(size_t i=0; i<edges.size(); ++i)
