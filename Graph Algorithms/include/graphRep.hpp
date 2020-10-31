@@ -61,6 +61,11 @@ namespace graphAlgo
             }
         };
     };
+
+    // define a smart pointer for Graph object
+    template <class T>
+    using graphPtr = std::shared_ptr<graphAlgo::Graph<T>>;
+
 } // namespace graphAlgo
 
 
