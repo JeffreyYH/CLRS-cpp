@@ -7,7 +7,7 @@ namespace ga // graph algorithms
     {
         public:
         void Bellman_Ford(ga::graphPtr<T> graph, T s_idx);
-
+        void Dijkstra(ga::graphPtr<T> graph, T s_idx);
     };
 
     template <class T>
@@ -15,31 +15,37 @@ namespace ga // graph algorithms
     {
         ga::nodePtr<T> s_node = G->idxToNode[s_idx];
         s_node->distance = 0;
-        
-        for (auto e:G->E) 
-        {
-            ga::nodePtr<T> u = G->idxToNode[e[0]];
-            ga::nodePtr<T> v = G->idxToNode[e[1]];
-            float weight_uv = G->E_w[e];
-            // relax (u, v, weight_uv)
-            if (v->distance > u->distance + weight_uv)
+        // from start to each of these vertices:
+        for (auto vertex:G->V)
+        {   
+            // process all vertices except start
+            if (vertex == s_idx)
+                continue;
+
+            for (auto edge:G->E) 
             {
-                v->distance = u->distance + weight_uv;
-                v->pred = u;
+                ga::nodePtr<T> u_node = G->idxToNode[edge[0]];
+                ga::nodePtr<T> v_node = G->idxToNode[edge[1]];
+                float weight_uv = G->E_w[edge];
+                // relax (u, v, weight_uv)
+                if (v_node->distance > u_node->distance + weight_uv)
+                {
+                    v_node->distance = u_node->distance + weight_uv;
+                    v_node->pred = u_node;
+                }
             }
         }
-        // // get optimal path by backtracking
-        // for (auto al:adjListObj)
-        // {
-        //     auto u = al.first;
-        //     for (auto it = al.second.begin(); it!=al.second.end(); it++)
-        //     {
-        //         auto v = *it;
-        //         std::cout << char(v->nodeIdx) << " " << v->distance << std::endl;
-        //         if (v->distance > u->distance + get_weight(u,v,weightedEdges))
-        //             return;
-        //     }
-        // }
+        // check negative-weight cycle
+        for (auto edge:G->E) 
+        {
+            ga::nodePtr<T> u_node = G->idxToNode[edge[0]];
+            ga::nodePtr<T> v_node = G->idxToNode[edge[1]];
+            if (v_node->distance > u_node->distance + G->E_w[edge])
+            {
+                std::cout << "Megative-weight cycle exists" << std::endl;
+                return;
+            }
+        }
     }
 
 } // namespace ga
