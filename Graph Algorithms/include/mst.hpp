@@ -1,6 +1,7 @@
 /* implementation of minimum spanning tree */
 #include "graphRep.hpp"
 
+
 namespace ga
 {
     template <class T>
@@ -15,6 +16,7 @@ namespace ga
     void MST<T>::Kruskal(ga::graphPtr<T> G)
     {
         std::list<std::vector<T>> A;
+        
 
     }
 
