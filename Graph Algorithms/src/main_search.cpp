@@ -16,28 +16,27 @@ int main()
     
 
     // use smart pointer
-    std::shared_ptr<ga::GraphRep<int>> graphRep(new ga::GraphRep<int>());
-    // construct adj matrix
-    cout << "Adjacency matrix:" << endl;
-    std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges, isUndirected);
-    for(size_t i=0; i<adjMat.size(); ++i)
-    {
-        for (size_t j=0; j<adjMat[0].size(); ++j)
-            cout << adjMat[i][j] << ' ';
-        cout << endl;
-    }
-    // construct adj list
+    ga::graphPtr<int> graph (new ga::Graph<int>(isUndirected, vertices, edges));
+
+    // // print adj matrix
+    // cout << "Adjacency matrix:" << endl;
+    // std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges, isUndirected);
+    // for(size_t i=0; i<adjMat.size(); ++i)
+    // {
+    //     for (size_t j=0; j<adjMat[0].size(); ++j)
+    //         cout << adjMat[i][j] << ' ';
+    //     cout << endl;
+    // }
+
+    // print adj list
     cout << "Adjacency list:" << endl;
-    std::unordered_map<int, std::list<int>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
-    for (auto l:adjList)
+    for (auto l:graph->adjList)
     {
         cout << l.first << "->";
         for (auto it = l.second.begin(); it!=l.second.end(); it++)
             cout << *it << ' ';
         cout << endl;
     }
-    // construct graph object
-    ga::graphPtr<int> graph (new ga::Graph<int>(vertices, edges, adjList));
 
 
     // ga::BasicSearch<int> basicSearch;
@@ -45,10 +44,10 @@ int main()
     // do BFS
     cout << "BFS: " << endl;
     int start = 0;
-    basicSearch->BFS(adjList, start);
+    basicSearch->BFS(graph->adjList, start);
     // do DFS
     cout << "DFS: " << endl;
-    basicSearch->DFS(vertices, adjList);
+    basicSearch->DFS(vertices, graph->adjList);
 
 
     // do BFS obj and queue based BFS

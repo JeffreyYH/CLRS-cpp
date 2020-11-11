@@ -24,22 +24,10 @@ int main()
     // construct weighted edges
     std::map<std::vector<char>, float> weightedEdges;
     for (size_t i=0;i<edges.size(); ++i)
-    {
         weightedEdges[edges[i]] = weights[i];
-    }
 
-    std::shared_ptr<ga::GraphRep<char>> graphRep(new ga::GraphRep<char>());
-    cout << "Adjacency list:" << endl;
-    std::unordered_map<char, std::list<char>> adjList = graphRep->construct_adjList(vertices, edges, isUndirected);
-    for (auto l:adjList)
-    {
-        cout << l.first << "->";
-        for (auto it = l.second.begin(); it!=l.second.end(); it++)
-            cout << *it << ' ';
-        cout << endl;
-    }
     // construct graph object
-    ga::graphPtr<char> graph (new ga::Graph<char>(vertices, edges, adjList));
+    ga::graphPtr<char> graph (new ga::Graph<char>(isUndirected, vertices, edges));
     graph->E_w = weightedEdges;
 
     // search shorted path with Bellman Ford

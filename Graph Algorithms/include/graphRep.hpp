@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include <list>
 #include <vector>
 #include <algorithm>
@@ -30,6 +31,7 @@ namespace ga // graph algorithms
     class Graph
     {
     public:
+        bool isUndirected;
         std::vector<nodePtr<T>> V_obj;
         std::vector<T> V;
         std::vector<std::vector<T>> E;
@@ -38,14 +40,57 @@ namespace ga // graph algorithms
         std::map<std::vector<T>, float> E_w;  //std::map can map vector to float/int/etc.
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
+    
+    public:
+        std::vector<std::vector<T>> 
+        construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
+        {   
+            int size = vertices.size();
+            std::vector<std::vector<T>> adjMat (size, std::vector<T>(size, 0));
+            for(size_t i=0; i<edges.size(); ++i)
+            {   
+                adjMat[edges[i][0]][edges[i][1]] = 1; 
+                if (isUndirected)     
+                    adjMat[edges[i][1]][edges[i][0]] = 1;  
+            }
 
-        Graph(std::vector<T> _V_, 
-            std::vector<std::vector<T>> _E_,
-            std::unordered_map<T, std::list<T>> _adjList_) 
+            return adjMat;
+        }
+
+        std::unordered_map<T, std::list<T>> 
+        construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
         {
+            std::unordered_map<T, std::list<T>> adjList;
+            for (size_t i=0; i<edges.size(); i++)
+            {
+                T e0 = edges[i][0];
+                T e1 = edges[i][1];
+
+                // e1 not in adjList[e0]
+                // std::cout << "processing edge (" << e0 << ", " << e1 << ")" << std::endl;
+                if (std::find(adjList[e0].begin(), adjList[e0].end(), e1) == adjList[e0].end())
+                    adjList[e0].push_back(e1);
+                
+                if (isUndirected)
+                { 
+                    // e0 not in adjList[e1]
+                    if (std::find(adjList[e1].begin(), adjList[e1].end(), e0) == adjList[e1].end())
+                        adjList[e1].push_back(e0);
+                }   
+            }
+
+            return adjList;
+        }
+
+        // constructor
+        Graph(bool _isUndirected_, 
+            std::vector<T> _V_, 
+            std::vector<std::vector<T>> _E_) 
+        {
+            isUndirected = _isUndirected_;
             V = _V_;
             E = _E_;
-            adjList = _adjList_;
+            adjList = this->construct_adjList(V, E, isUndirected);
             for (auto v_i:V)
             {
                 nodePtr<T> node (new GraphNode<T>(v_i));
@@ -58,65 +103,5 @@ namespace ga // graph algorithms
     // define a smart pointer for Graph object
     template <class T>
     using graphPtr = std::shared_ptr<ga::Graph<T>>;
-
-} // namespace ga
-
-
-namespace ga
-{
-    // graph representations
-    template <class T>
-    class GraphRep
-    {
-        public:
-        std::vector<std::vector<T>> 
-        construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected);
-
-        // implement adjList as hashtable
-        std::unordered_map<T, std::list<T>> 
-        construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected);
-    };
-
-    template <class T>
-    std::vector<std::vector<T>> 
-    GraphRep<T>::construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
-    {   
-        int size = vertices.size();
-        std::vector<std::vector<T>> adjMat (size, std::vector<T>(size, 0));
-        for(size_t i=0; i<edges.size(); ++i)
-        {   
-            adjMat[edges[i][0]][edges[i][1]] = 1; 
-            if (isUndirected)     
-                adjMat[edges[i][1]][edges[i][0]] = 1;  
-        }
-
-        return adjMat;
-    }
-
-    template <class T>
-    std::unordered_map<T, std::list<T>> 
-    GraphRep<T>::construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
-    {
-        std::unordered_map<T, std::list<T>> adjList;
-        for (size_t i=0; i<edges.size(); i++)
-        {
-            T e0 = edges[i][0];
-            T e1 = edges[i][1];
-
-            // e1 not in adjList[e0]
-            // std::cout << "processing edge (" << e0 << ", " << e1 << ")" << std::endl;
-            if (std::find(adjList[e0].begin(), adjList[e0].end(), e1) == adjList[e0].end())
-                adjList[e0].push_back(e1);
-            
-            if (isUndirected)
-            { 
-                // e0 not in adjList[e1]
-                if (std::find(adjList[e1].begin(), adjList[e1].end(), e0) == adjList[e1].end())
-                    adjList[e1].push_back(e0);
-            }   
-        }
-
-        return adjList;
-    }
 
 } // namespace ga
