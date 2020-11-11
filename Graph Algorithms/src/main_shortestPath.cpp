@@ -19,7 +19,7 @@ int main()
                             1, 4, 6,
                             2,
                             7, 3};
-    bool isUndirected = false;
+    bool isUndirected = false;  // if directed graph, edge represent e[0] -> e[1]
 
     // construct weighted edges
     std::map<std::vector<char>, float> weightedEdges;

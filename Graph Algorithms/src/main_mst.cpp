@@ -2,9 +2,9 @@
 
 int main()
 {
-    std::vector<char> vertices {'s', 't', 'x', 'y', 'z'};
+    std::vector<char> vertices {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
     std::vector<std::vector<char>> edges {
-                                {'s','t'}, {'s','y'}, 
+                                {'a','b'}, {'a','h'}, 
                                 {'t','y'}, {'t','x'},
                                 {'y','t'}, {'y','x'}, {'y','z'},
                                 {'x','z'},
@@ -15,5 +15,6 @@ int main()
                             1, 4, 6,
                             2,
                             7, 3};
+    bool isUDG = true; 
 
 }
