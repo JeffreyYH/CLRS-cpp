@@ -6,12 +6,16 @@ int main()
     std::vector<std::vector<char>> edges {
                                 {'a','b'}, {'a','h'}, 
                                 {'b','h'}, {'b','c'},
+                                {'c','i'}, {'c','f'}, {'c','d'},
+                                {'d','f'}, {'d','e'},
+                                {'e','f'}, 
+                                {'f','g'}, 
+                                {'g','i'}, {'g','h'},
+                                {'h','i'},
                             };
-    std::vector<float> weights {3, 5, 
-                            2, 6, 
-                            1, 4, 6,
-                            2,
-                            7, 3};
+    std::vector<float> weights {
+
+                            };
     bool isUDG = true; 
 
 }
