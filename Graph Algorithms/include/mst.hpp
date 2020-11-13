@@ -3,7 +3,8 @@
 
 
 namespace ga
-{
+{   
+    // template of this class used for graph node index representation
     template <class T>
     class MST  
     {
