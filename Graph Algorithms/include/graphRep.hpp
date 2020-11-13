@@ -37,7 +37,8 @@ namespace ga // graph algorithms
         std::vector<std::vector<T>> E;
         std::unordered_map<T, std::list<T>> adjList;
         // weighted edge, optional
-        std::map<std::vector<T>, float> E_w;  //std::map can map vector to float/int/etc.
+        std::vector<std::pair<std::vector<T>, float>> E_w;
+        std::map<std::vector<T>, float> E_w_map;  //std::map can map vector to float/int/etc.
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
     

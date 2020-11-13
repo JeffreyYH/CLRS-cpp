@@ -4,7 +4,9 @@
 // thus we choose to use hpp file here
 
 #include <iostream>
-
+#include <algorithm>
+#include <vector>
+  
 class MyUtils
 {
 public:
@@ -12,7 +14,6 @@ public:
     void swap(T &x, T &y);
 };
 
-// ============ member function implementation ===========//
 template<typename T>
 void MyUtils::swap(T &x, T &y)
 {
