@@ -15,16 +15,6 @@ int main()
             {'g','i'}, {'g','h'},
             {'h','i'}
         };
-    std::vector<float>
-    weights {4, 8,
-            11, 8,
-            2, 4, 7,
-            14, 9,
-            10,
-            2,
-            6, 1,
-            7
-        };
     std::vector<std::pair<std::vector<char>, float>>
     weightedEdges {
             {{'a','b'},4}, {{'a','h'},8}, 

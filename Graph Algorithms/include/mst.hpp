@@ -21,12 +21,14 @@ namespace ga
             S.insert(v);
         
         // sort the edges of G:E into nondecreasing order by weight
-        std::shared_ptr<MyUtils> myUtils (new MyUtils());
-        std::sort(G->E_w.begin(), G->E_w.end(), [](auto &left, auto &right) 
+        std::sort(G->E_w.begin(), G->E_w.end(), 
+                [](auto &x, auto &y) {
+                    return x.second < y.second;
+                });
+        for (auto e: G->E_w)
         {
-            return left.second < right.second;
-        });
-
+            
+        }
 
     }
 
