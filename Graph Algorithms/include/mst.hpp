@@ -1,6 +1,5 @@
 /* implementation of minimum spanning tree */
 #include "graphRep.hpp"
-#include "myUtils.hpp"
 
 namespace ga
 {   
