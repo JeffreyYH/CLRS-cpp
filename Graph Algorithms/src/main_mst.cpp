@@ -41,7 +41,7 @@ int main()
     // MST
     std::shared_ptr<ga::MST<char>> mst;
     mst->Kruskal(graph);
-    mst->Prim(graph);
+    mst->Prim(graph, 'a');
 
 }
 

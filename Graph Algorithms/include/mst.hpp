@@ -9,7 +9,7 @@ namespace ga
     {
     public:
         void Kruskal (ga::graphPtr<T> G);
-        void Prim(ga::graphPtr<T> G);        
+        void Prim(ga::graphPtr<T> G, T r);     
     };
 
     template <class T>
@@ -38,7 +38,7 @@ namespace ga
             T v = e.first[1];
             // is u and v in the same set, we will not use edge (u,v)
             // otherwise there will be a circle
-            if (Sets[u]!=Sets[v])
+            if (Sets[u] != Sets[v])
             {
                 A.push_back(e.first);
                 // merge the sets which have u and v
@@ -57,7 +57,7 @@ namespace ga
         const bool PRINT = 1;
         if (PRINT)
         {
-            std::cout << "Edges of MST In processing order, aka increasing order by weights:" << std::endl;
+            std::cout << "Edges of MST by Kruskal (In processing order, aka increasing order by weights):" << std::endl;
             for (auto e:A)
             {
                 for (auto x:e)
@@ -69,8 +69,16 @@ namespace ga
     }
 
     template <class T>
-    void MST<T>::Prim(ga::graphPtr<T> G)
+    void MST<T>::Prim(ga::graphPtr<T> G, T r)
     {
+        // the root of MST
+        ga::nodePtr<T> r_node = G->idxToNode[r];
+        r_node->distance = 0;
+        std::queue<T> Q;
+        while (!Q.empty())
+        {
+            
+        }
 
     }
 
