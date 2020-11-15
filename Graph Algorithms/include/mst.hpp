@@ -9,7 +9,8 @@ namespace ga
     {
     public:
         void Kruskal (ga::graphPtr<T> G);
-        void Prim(ga::graphPtr<T> G, T r);     
+        void Prim (ga::graphPtr<T> G, T r); 
+        void printMST(std::string method, std::vector<std::vector<T>> MST_edges);    
     };
 
     template <class T>
@@ -18,7 +19,7 @@ namespace ga
         float total_cost = 0;
         // A is used to represent MST,
         // which is a set contains all the edges of MST
-        std::vector<std::vector<T>> A;
+        std::vector<std::vector<T>> MST_edges;
         std::unordered_map<T, std::shared_ptr<std::set<T>>> Sets;
         for (auto v:G->V)
         {
@@ -41,7 +42,7 @@ namespace ga
             // otherwise there will be a circle
             if (Sets[u] != Sets[v])
             {
-                A.push_back(e.first);
+                MST_edges.push_back(e.first);
                 // merge the sets which have u and v
                 std::shared_ptr<std::set<T>> S_union (new std::set<T>);
                 
@@ -60,13 +61,8 @@ namespace ga
         const bool PRINT = 1;
         if (PRINT)
         {
-            std::cout << "Edges of MST by Kruskal (In processing order, aka increasing order by weights):" << std::endl;
-            for (auto e:A)
-            {
-                for (auto x:e)
-                    std::cout << x << " ";
-                std::cout << std::endl;
-            }
+            // In processing order, aka increasing order by weights
+            this->printMST("Kruskal", MST_edges);
             std::cout << "Total cost :" << total_cost << std::endl;
         }
 
@@ -74,42 +70,64 @@ namespace ga
 
     template <class T>
     void MST<T>::Prim(ga::graphPtr<T> G, T r)
-    {   
+    {       
+        std::vector<std::vector<T>> MST_edges;
+        std::set<T> MST_vertices;
         float total_cost = 0;
         // set the distance of r node as 0
         (G->idxToNode[r])->distance = 0;
-        // use min heap
+        // Q stores all the vertices which is not in MST 
         auto comp = [](ga::nodePtr<T> a, ga::nodePtr<T> b) { return a->distance > b->distance; };
 	    std::priority_queue <ga::nodePtr<T>, std::vector<ga::nodePtr<T>>, decltype(comp)> Q(comp);
         for (auto v_obj:G->V_obj)
             Q.push(v_obj);
-        // make a copy of vector which contains all elements of Q
-        std::vector<T> Q_idx = G->V;
         
         while (!Q.empty())
         {
             ga::nodePtr<T> u_node = Q.top();
+            
             for (auto v : G->adjList[u_node->nodeIdx])
             {   
                 // edge (u,v)
                 std::vector<T> e_uv {u_node->nodeIdx, v};
                 // weight of edge (u,v)
                 float w_uv = G->E_w_map[e_uv];
-                // if v in Q_idx
-                if (std::find(Q_idx.begin(), Q_idx.end(), v) != Q_idx.end()
+                // if v not in MST
+                if (!MST_vertices.count(v)
                     && w_uv < (G->idxToNode[v])->distance )
-                {
+                {   
+                    MST_edges.push_back(e_uv);
+                    MST_vertices.insert(u_node->nodeIdx);
+                    MST_vertices.insert(v);
+                    total_cost += w_uv;
                     (G->idxToNode[v])->pred = u_node;
                     (G->idxToNode[v])->distance = w_uv;
-                    std::cout << u_node->nodeIdx << ' ' << v << std::endl;
-                    total_cost += w_uv;
                 }
-            }
-            Q.pop();
-            Q_idx.erase(std::remove(Q_idx.begin(), Q_idx.end(), u_node->nodeIdx), Q_idx.end());     
-        }
-        std::cout << "Total cost :" << total_cost << std::endl;
+            }  
 
+            Q.pop();     
+            
+        }
+
+        // print MST
+        const bool PRINT = 1;
+        if (PRINT)
+        {
+            this->printMST("Prim", MST_edges);
+            std::cout << "Total cost :" << total_cost << std::endl;
+        }
+    }
+
+    template <class T>
+    void MST<T>::printMST(std::string method, std::vector<std::vector<T>> MST_edges)
+    {
+        std::cout << "Edges of MST by " << method << std::endl;
+            for (auto e:MST_edges)
+            {
+                for (auto x:e)
+                    std::cout << x << " ";
+                std::cout << std::endl;
+            }
     }
 
 } // namespace ga
