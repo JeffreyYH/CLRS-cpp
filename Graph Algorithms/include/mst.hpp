@@ -127,6 +127,13 @@ namespace ga
     }
 
     template <class T>
+    void MST<T>::Prim (ga::graphPtr<T> G, T r)
+    {
+
+    }
+
+
+    template <class T>
     void MST<T>::printMST(std::string method, std::vector<std::vector<T>> MST_edges)
     {
         std::cout << "Edges of MST by " << method << std::endl;
