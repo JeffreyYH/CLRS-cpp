@@ -104,7 +104,9 @@ namespace ga
                     {
                         std::vector<T> e_uv {u, v};
                         float w_uv = G->E_w_map[e_uv];
-                        if (w_uv <= w_min)
+                        // in the example graph of Fig.23.5, if we set w_uv <= w_min, in the second iteration,
+                        // Prim algorithm will choose edge (b,c)
+                        if (w_uv < w_min)
                         {
                             w_min = w_uv;
                             e_ltst = e_uv;

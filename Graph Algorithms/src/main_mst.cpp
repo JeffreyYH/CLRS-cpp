@@ -35,8 +35,15 @@ int main()
     // construct weighted edges map
     std::map<std::vector<char>, float> weightedEdge_map;
     for (size_t i=0; i<weightedEdges.size(); ++i)
+    {
         weightedEdge_map[weightedEdges[i].first] = weightedEdges[i].second;
-     graph->E_w_map = weightedEdge_map;
+        if (isUDG)
+        {
+            std::vector<char> reveredEdge {weightedEdges[i].first[1], weightedEdges[i].first[0]};
+            weightedEdge_map[reveredEdge] = weightedEdges[i].second;
+        }
+    }
+    graph->E_w_map = weightedEdge_map;
 
     // MST
     std::shared_ptr<ga::MST<char>> mst;
