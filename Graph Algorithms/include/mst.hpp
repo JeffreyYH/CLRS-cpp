@@ -14,7 +14,8 @@ namespace ga
 
     template <class T>
     void MST<T>::Kruskal(ga::graphPtr<T> G)
-    {
+    {   
+        float total_cost = 0;
         // A is used to represent MST,
         // which is a set contains all the edges of MST
         std::vector<std::vector<T>> A;
@@ -49,7 +50,9 @@ namespace ga
                                 std::inserter(*S_union, S_union->begin()));
                 // all the element in S_union should have the same set pointer
                 for (auto ele: *S_union)
-                    Sets[ele] = S_union;              
+                    Sets[ele] = S_union;  
+                
+                total_cost += e.second;
             }
         }
 
@@ -61,24 +64,51 @@ namespace ga
             for (auto e:A)
             {
                 for (auto x:e)
-                    std::cout << x << ' ';
+                    std::cout << x << " ";
                 std::cout << std::endl;
             }
+            std::cout << "Total cost :" << total_cost << std::endl;
         }
 
     }
 
     template <class T>
     void MST<T>::Prim(ga::graphPtr<T> G, T r)
-    {
-        // the root of MST
-        ga::nodePtr<T> r_node = G->idxToNode[r];
-        r_node->distance = 0;
-        std::queue<T> Q;
+    {   
+        float total_cost = 0;
+        // set the distance of r node as 0
+        (G->idxToNode[r])->distance = 0;
+        // use min heap
+        auto comp = [](ga::nodePtr<T> a, ga::nodePtr<T> b) { return a->distance > b->distance; };
+	    std::priority_queue <ga::nodePtr<T>, std::vector<ga::nodePtr<T>>, decltype(comp)> Q(comp);
+        for (auto v_obj:G->V_obj)
+            Q.push(v_obj);
+        // make a copy of vector which contains all elements of Q
+        std::vector<T> Q_idx = G->V;
+        
         while (!Q.empty())
         {
-            
+            ga::nodePtr<T> u_node = Q.top();
+            for (auto v : G->adjList[u_node->nodeIdx])
+            {   
+                // edge (u,v)
+                std::vector<T> e_uv {u_node->nodeIdx, v};
+                // weight of edge (u,v)
+                float w_uv = G->E_w_map[e_uv];
+                // if v in Q_idx
+                if (std::find(Q_idx.begin(), Q_idx.end(), v) != Q_idx.end()
+                    && w_uv < (G->idxToNode[v])->distance )
+                {
+                    (G->idxToNode[v])->pred = u_node;
+                    (G->idxToNode[v])->distance = w_uv;
+                    std::cout << u_node->nodeIdx << ' ' << v << std::endl;
+                    total_cost += w_uv;
+                }
+            }
+            Q.pop();
+            Q_idx.erase(std::remove(Q_idx.begin(), Q_idx.end(), u_node->nodeIdx), Q_idx.end());     
         }
+        std::cout << "Total cost :" << total_cost << std::endl;
 
     }
 
