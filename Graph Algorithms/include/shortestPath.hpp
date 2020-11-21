@@ -48,4 +48,10 @@ namespace ga // graph algorithms
         }
     }
 
+    template <class T>
+    void ShortestPath<T>::Dijkstra(ga::graphPtr<T> graph, T s_idx)
+    {
+
+    }
+
 } // namespace ga
