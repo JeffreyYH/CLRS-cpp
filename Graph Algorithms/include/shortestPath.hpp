@@ -51,7 +51,8 @@ namespace ga // graph algorithms
     template <class T>
     void ShortestPath<T>::Dijkstra(ga::graphPtr<T> graph, T s_idx)
     {
-
+        std::set<T> S;
+        std::priority_queue<T, float> Q;
     }
 
 } // namespace ga
