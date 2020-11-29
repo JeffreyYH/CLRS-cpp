@@ -9,17 +9,23 @@ using std::endl;
 class RodCutting
 {
     public:
-    float cut_rod(std::vector<float>, int);
+    float recursive_cutRod(std::vector<float>, int);
+    float bottomUp_cutRod(std::vector<float>, int);
+    float memorized_curRod(std::vector<float>, int);
+    float memorized_curRod_aux(std::vector<float>, int, std::vector<float>);
+    float extended_bottom_up_cutRod(std::vector<float>, int);
+    void print_cutRod(std::vector<float>, int);
+
 };
 
-float RodCutting::cut_rod(std::vector<float> p, int n)
+float RodCutting::recursive_cutRod(std::vector<float> p, int n)
 {
     if (n==0)
         return 0;
     float q = -FLT_MAX;
     for (size_t i = 0; i<n; ++i)
     {
-        q = std::max(q, p[i] + cut_rod(p, n-1));
+        q = std::max(q, p[i] + recursive_cutRod(p, n-1));
     }
      return q;
 }
