@@ -24,4 +24,9 @@ float RodCutting::cut_rod(std::vector<float> p, int n)
      return q;
 }
 
+int main()
+{
+    std::shared_ptr<RodCutting> RC;
+}
+
 
