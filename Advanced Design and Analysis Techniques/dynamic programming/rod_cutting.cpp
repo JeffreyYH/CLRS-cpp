@@ -33,6 +33,7 @@ float RodCutting::recursive_cutRod(std::vector<float> p, int n)
 int main()
 {
     std::shared_ptr<RodCutting> RC;
+    std::vector<int> price {1, 5, 8, 9, 10, 17, 17, 20, 24, 30};
 }
 
 
