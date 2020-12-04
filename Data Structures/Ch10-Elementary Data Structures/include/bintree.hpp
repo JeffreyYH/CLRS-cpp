@@ -2,17 +2,8 @@
 #include <algorithm>
 using namespace std;
 
-template <typename DtypeTree>
-struct treeNode {
-    DtypeTree data;
-    treeNode *left;
-    treeNode *right;
-    treeNode (DtypeTree value) {data = value; left = nullptr; right = nullptr;};
-    ~treeNode () {delete left; delete right;};
-};
 
 // class treeNode
-/*
 template <class DtypeTree>
 class treeNode {
     public:
@@ -22,7 +13,17 @@ class treeNode {
     treeNode (DtypeTree value) {data = value; left = nullptr; right = nullptr;};
     ~treeNode () {delete left; delete right;};
 };
-*/
+
+// struct treeNode
+// template <typename DtypeTree>
+// struct treeNode {
+//     DtypeTree data;
+//     treeNode *left;
+//     treeNode *right;
+//     treeNode (DtypeTree value) {data = value; left = nullptr; right = nullptr;};
+//     ~treeNode () {delete left; delete right;};
+// };
+
 
 template <class T>
 class BinTree
@@ -104,7 +105,7 @@ int BinTree<T>::getDepth(treeNode<T> * root)
         return 0;
     else
     {
-        currDepth = std::max(getDepth(root->left), getDepth(root->right)) + 1;
+        int currDepth = std::max(getDepth(root->left), getDepth(root->right)) + 1;
         return currDepth;
     }
 }

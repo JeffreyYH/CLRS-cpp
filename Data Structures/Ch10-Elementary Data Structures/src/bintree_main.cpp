@@ -15,17 +15,17 @@ int main()
     BinTree<char> bintree;
 
     // root
-    treeNode<char> *root = new treeNode('A');
+    treeNode<char> *root = new treeNode<char>('A');
 
     // first level
-    root->left = new treeNode('B');
-    root->right = new treeNode('C');
+    root->left = new treeNode<char>('B');
+    root->right = new treeNode<char>('C');
 
     // second level
-    root->left->left = new treeNode('D');
-    root->left->right = new treeNode('E');
-    root->right->left = new treeNode('F');
-    root->right->right = new treeNode('G');
+    root->left->left = new treeNode<char>('D');
+    root->left->right = new treeNode<char>('E');
+    root->right->left = new treeNode<char>('F');
+    root->right->right = new treeNode<char>('G');
 
     // print the tree in in-order
     cout << "In-order traversal of the tree is " << endl;
