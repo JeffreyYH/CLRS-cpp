@@ -7,7 +7,7 @@ struct treeNode {
     DtypeTree data;
     treeNode *left;
     treeNode *right;
-    treeNode (DtypeTree value) {data = value; left = NULL; right = NULL;};
+    treeNode (DtypeTree value) {data = value; left = nullptr; right = nullptr;};
     ~treeNode () {delete left; delete right;};
 };
 
@@ -19,7 +19,7 @@ class treeNode {
     DtypeTree data;
     treeNode *left;
     treeNode *right;
-    treeNode (DtypeTree value) {data = value; left = NULL; right = NULL;};
+    treeNode (DtypeTree value) {data = value; left = nullptr; right = nullptr;};
     ~treeNode () {delete left; delete right;};
 };
 */
@@ -55,7 +55,7 @@ public:
 template <class T>
 void BinTree<T>::printInorder(treeNode<T>* node)
 {
-    if (node == NULL)
+    if (node == nullptr)
         return;
     printInorder(node->left);
     cout << node->data << ' ';
@@ -66,7 +66,7 @@ void BinTree<T>::printInorder(treeNode<T>* node)
 template <class T>
 void BinTree<T>::printPreOrder(treeNode<T>* node)
 {
-    if (node == NULL)
+    if (node == nullptr)
         return;
     cout << node->data << ' ';
     printPreOrder(node->left);
@@ -77,7 +77,7 @@ void BinTree<T>::printPreOrder(treeNode<T>* node)
 template <class T>
 void BinTree<T>::printPostOrder(treeNode<T>* node)
 {
-    if (node == NULL)
+    if (node == nullptr)
         return;
     printPostOrder(node->left);
     printPostOrder(node->right);
@@ -100,42 +100,35 @@ void BinTree<T>::printbyLevel (treeNode<T> * root, int level)
 template <class T>
 int BinTree<T>::getDepth(treeNode<T> * root)
 {
-    if (root == NULL)
+    if (root == nullptr)
         return 0;
     else
     {
-        // compute the depth of each subtree
-        int lDepth = getDepth(root->left);
-        int rDepth = getDepth(root->right);
-
-        // use the larger one as the depth of the tree
-        if (lDepth > rDepth)
-            return(lDepth+1);
-        else
-            return(rDepth+1);
+        currDepth = std::max(getDepth(root->left), getDepth(root->right)) + 1;
+        return currDepth;
     }
 }
 
 template <class T>
 int BinTree<T>::getDepth_2(treeNode<T> *root)
 {
-    // Corner case. Should never be hit unless the code is called on root = NULL
-    if (root == NULL)
+    // Corner case. Should never be hit unless the code is called on root = nullptr
+    if (root == nullptr)
         return 0;
 
     // Base case : Leaf treeNode. This accounts for height = 1.
-    if (root->left == NULL && root->right == NULL)
+    if (root->left == nullptr && root->right == nullptr)
         return 1;
 
-    // If left subtree is NULL, recur for right subtree
-    if (root->left == NULL)
+    // If left subtree is nullptr, recur for right subtree
+    if (root->left == nullptr)
         getDepth_2(root->right);
 
-    // If right subtree is NULL, recur for left subtree
-    if (root->right == NULL)
+    // If right subtree is nullptr, recur for left subtree
+    if (root->right == nullptr)
         getDepth_2(root->left);
 
-    int maxDepth = max(getDepth_2(root->left), getDepth_2(root->right)) + 1;
+    int maxDepth = std::max(getDepth_2(root->left), getDepth_2(root->right)) + 1;
 
     return maxDepth;
 }
