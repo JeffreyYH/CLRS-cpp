@@ -1,5 +1,8 @@
 #include <iostream>
-using namespace std;
+
+using std::cout;
+using std::cerr;
+using std::endl;
 
 template <class T>
 class Stack

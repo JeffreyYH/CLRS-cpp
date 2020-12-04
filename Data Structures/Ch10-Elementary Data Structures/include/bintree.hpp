@@ -1,7 +1,8 @@
 #include <iostream>
 #include <algorithm>
-using namespace std;
 
+using std::cout;
+using std::endl;
 
 // class treeNode
 template <class DtypeTree>

@@ -4,13 +4,12 @@
 #include "linkedlist_singly.hpp"
 #include "linkedlist_cirDoubly.hpp"
 
-using namespace std;
 
 void test_singlylist()
 {
     //===== test single linked list =======//
     SinglyLinkedList<int> listObj;
-    vector<int> testArr {5, 8, 9, 10, 12};
+    std::vector<int> testArr {5, 8, 9, 10, 12};
     for (int i:testArr)
         listObj.addTail(i);
     listObj.printList();

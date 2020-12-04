@@ -1,5 +1,7 @@
 #include <iostream>
-using namespace std;
+
+using std::cout;
+using std::endl;
 
 template <class T>
 class Queue
