@@ -1,8 +1,6 @@
 #include <iostream>
 #include "bintree.hpp"
 
-using namespace std;
-
 int main()
 {
     // test a binary tree:
