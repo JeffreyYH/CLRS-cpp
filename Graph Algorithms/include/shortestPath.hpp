@@ -6,8 +6,8 @@ namespace ga // graph algorithms
     class ShortestPath
     {
         public:
-        void Bellman_Ford(ga::graphPtr<T> graph, T s_idx);
-        void Dijkstra(ga::graphPtr<T> graph, T s_idx);
+        void Bellman_Ford(ga::graphPtr<T> G, T s_idx);
+        void Dijkstra(ga::graphPtr<T> G, T s_idx);
     };
 
     template <class T>
@@ -50,10 +50,19 @@ namespace ga // graph algorithms
 
 
     template <class T>
-    void ShortestPath<T>::Dijkstra(ga::graphPtr<T> graph, T s_idx)
+    void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx)
     {
         std::set<T> S;
         std::priority_queue<T, float> Q;
+        while (!Q.empty())
+        {
+            T u = Q.pop();
+            S.push(u);
+            for (auto v:G->adjList[u])
+            {
+                // relax (u, v, w)
+            }
+        }
     }
 
 } // namespace ga
