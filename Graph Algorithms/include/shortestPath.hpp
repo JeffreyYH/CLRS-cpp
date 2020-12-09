@@ -61,6 +61,14 @@ namespace ga // graph algorithms
             for (auto v:G->adjList[u])
             {
                 // relax (u, v, w)
+                ga::nodePtr<T> u_node = G->idxToNode[u];
+                ga::nodePtr<T> v_node = G->idxToNode[v];
+                float weight_uv ;
+                if (v_node->distance > u_node->distance + weight_uv)
+                {
+                    v_node->distance = u_node->distance + weight_uv;
+                    v_node->pred = u_node;
+                }
             }
         }
     }
