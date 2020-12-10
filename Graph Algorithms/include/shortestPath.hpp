@@ -26,7 +26,7 @@ namespace ga // graph algorithms
             {
                 ga::nodePtr<T> u_node = G->idxToNode[edge[0]];
                 ga::nodePtr<T> v_node = G->idxToNode[edge[1]];
-                float weight_uv = G->E_w[edge];
+                float weight_uv = G->E_w_map[edge];
                 // relax (u, v, weight_uv)
                 if (v_node->distance > u_node->distance + weight_uv)
                 {
@@ -40,7 +40,7 @@ namespace ga // graph algorithms
         {
             ga::nodePtr<T> u_node = G->idxToNode[edge[0]];
             ga::nodePtr<T> v_node = G->idxToNode[edge[1]];
-            if (v_node->distance > u_node->distance + G->E_w[edge])
+            if (v_node->distance > u_node->distance + G->E_w_map[edge])
             {
                 std::cout << "Megative-weight cycle exists" << std::endl;
                 return;
@@ -49,28 +49,28 @@ namespace ga // graph algorithms
     }
 
 
-    template <class T>
-    void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx)
-    {
-        std::set<T> S;
-        std::priority_queue<T, float> Q;
-        while (!Q.empty())
-        {
-            T u = Q.pop();
-            S.push(u);
-            for (auto v:G->adjList[u])
-            {
-                // relax (u, v, w)
-                ga::nodePtr<T> u_node = G->idxToNode[u];
-                ga::nodePtr<T> v_node = G->idxToNode[v];
-                float weight_uv ;
-                if (v_node->distance > u_node->distance + weight_uv)
-                {
-                    v_node->distance = u_node->distance + weight_uv;
-                    v_node->pred = u_node;
-                }
-            }
-        }
-    }
+    // template <class T>
+    // void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx)
+    // {
+    //     std::set<T> S;
+    //     std::priority_queue<T, float> Q;
+    //     while (!Q.empty())
+    //     {
+    //         T u = Q.pop();
+    //         S.push(u);
+    //         for (auto v:G->adjList[u])
+    //         {
+    //             // relax (u, v, w)
+    //             ga::nodePtr<T> u_node = G->idxToNode[u];
+    //             ga::nodePtr<T> v_node = G->idxToNode[v];
+    //             float weight_uv ;
+    //             if (v_node->distance > u_node->distance + weight_uv)
+    //             {
+    //                 v_node->distance = u_node->distance + weight_uv;
+    //                 v_node->pred = u_node;
+    //             }
+    //         }
+    //     }
+    // }
 
 } // namespace ga
