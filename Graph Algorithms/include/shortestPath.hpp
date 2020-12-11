@@ -71,6 +71,7 @@ namespace ga // graph algorithms
         while (!Q.empty())
         {
             std::pair<T, float> u_pair = Q.top();
+            Q.pop();
             T u = u_pair.first;
             S.insert(u);
             for (auto v:G->adjList[u])
