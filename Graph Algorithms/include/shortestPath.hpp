@@ -51,8 +51,12 @@ namespace ga // graph algorithms
 
     template <class T>
     void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx)
-    {
+    {   
+        // INITIALIZE-SINGLE-SOURCE(G, s)
+        G->idxToNode[s_idx]->distance = 0;
+
         std::set<T> S;
+
         // each element in prioty queue is a <vertex_type, verex's distance> pair
         auto comp = []( std::pair<T, float> a, std::pair<T, float> b ) { 
             return a.second> b.second; 
