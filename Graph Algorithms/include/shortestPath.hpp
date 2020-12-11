@@ -53,17 +53,33 @@ namespace ga // graph algorithms
     void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx)
     {
         std::set<T> S;
-        std::priority_queue<T, float> Q;
+        // each element in prioty queue is a <vertex_type, verex's distance> pair
+        auto comp = []( std::pair<T, float> a, std::pair<T, float> b ) { 
+            return a.second> b.second; 
+        };
+        std::priority_queue <std::pair<T, float>, 
+                            std::vector<std::pair<T, float>>, 
+                            decltype(comp)> Q(comp);
+        // put all vertices inside the queue
+        for (auto v:G->V)
+        {
+            float d_v = G->idxToNode[v]->distance;
+            Q.push(std::make_pair(v, d_v));
+            std::cout << v << ' ' << d_v << std::endl;
+        }
+
         while (!Q.empty())
         {
-            T u = Q.pop();
-            S.push(u);
+            std::pair<T, float> u_pair = Q.top();
+            T u = u_pair.first;
+            S.insert(u);
             for (auto v:G->adjList[u])
             {
                 // relax (u, v, w)
                 ga::nodePtr<T> u_node = G->idxToNode[u];
                 ga::nodePtr<T> v_node = G->idxToNode[v];
-                float weight_uv ;
+                std::vector<T> cur_edge {u, v};
+                float weight_uv = G->E_w_map[cur_edge];
                 if (v_node->distance > u_node->distance + weight_uv)
                 {
                     v_node->distance = u_node->distance + weight_uv;

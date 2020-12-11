@@ -25,6 +25,9 @@ namespace ga // graph algorithms
     template <class T>
     using nodePtr = std::shared_ptr<ga::GraphNode<T>>;
 
+    // define edge
+    template <typename T>
+    using edge = std::pair<T, T>;
 
     // graph
     template <class T>
