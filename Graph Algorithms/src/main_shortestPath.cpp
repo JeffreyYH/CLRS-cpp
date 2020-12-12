@@ -44,7 +44,6 @@ int main()
     // search shorted path with Bellman Ford
     std::shared_ptr<ga::ShortestPath<char>> shortestPath (new ga::ShortestPath<char>());
     char start_idx = 's', goal_idx = 'z';
-    // shortestPath->Bellman_Ford(graph, start_idx);
-
-    shortestPath->Dijkstra(graph, start_idx);
+    shortestPath->Bellman_Ford(graph, start_idx, goal_idx);
+    shortestPath->Dijkstra(graph, start_idx, goal_idx);
 }   

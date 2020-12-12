@@ -6,15 +6,45 @@ namespace ga // graph algorithms
     class ShortestPath
     {
         public:
-        void Bellman_Ford(ga::graphPtr<T> G, T s_idx);
-        void Dijkstra(ga::graphPtr<T> G, T s_idx);
+        void Bellman_Ford(ga::graphPtr<T> G, T s_idx, T g_idx);
+        void Dijkstra(ga::graphPtr<T> G, T s_idx, T g_idx);
+        std::vector<T> 
+        reconstruct_shortedPath(std::string method, ga::graphPtr<T> G, T s_idx, T g_idx)
+        {
+            // print all vertices' weights after running the algorithm
+            std::cout << "Vertices and distances after applying " << method << std::endl;
+            for (auto v:G->V)
+            {
+                std::cout << v << ' ' << G->idxToNode[v]->distance << std::endl;
+            }
+
+            // construct and print the shorted path backword
+            std::vector<T> shorted_path {g_idx};
+            T cur_idx = g_idx;
+            while(cur_idx != s_idx)
+            {
+                cur_idx = G->idxToNode[cur_idx]->pred->nodeIdx;
+                shorted_path.insert(shorted_path.begin(), cur_idx);
+            }
+            std::cout << "Shorted path by " << method << std::endl;
+            for (auto s_p : shorted_path)
+                std::cout << s_p << " ";
+            std::cout << std::endl;
+        }
     };
 
+
     template <class T>
-    void ShortestPath<T>::Bellman_Ford(ga::graphPtr<T> G, T s_idx)
+    void ShortestPath<T>::Bellman_Ford(ga::graphPtr<T> G, T s_idx, T g_idx)
     {
-        ga::nodePtr<T> s_node = G->idxToNode[s_idx];
-        s_node->distance = 0;
+        // initialize all vertices
+        for (auto v:G->V)
+        {
+            G->idxToNode[v]->distance = FLT_MAX;
+            G->idxToNode[v]->pred = nullptr;
+        }
+        G->idxToNode[s_idx]->distance = 0;
+
         // from start to each of these vertices:
         for (auto vertex:G->V)
         {   
@@ -46,13 +76,20 @@ namespace ga // graph algorithms
                 return;
             }
         }
+
+        reconstruct_shortedPath("Bellman-Ford", G, s_idx, g_idx);
     }
 
 
     template <class T>
-    void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx)
+    void ShortestPath<T>::Dijkstra(ga::graphPtr<T> G, T s_idx, T g_idx)
     {   
-        // INITIALIZE-SINGLE-SOURCE(G, s)
+        // initialize all vertices
+        for (auto v:G->V)
+        {
+            G->idxToNode[v]->distance = FLT_MAX;
+            G->idxToNode[v]->pred = nullptr;
+        }
         G->idxToNode[s_idx]->distance = 0;
 
         std::set<T> S;
@@ -69,7 +106,6 @@ namespace ga // graph algorithms
         {
             float d_v = G->idxToNode[v]->distance;
             Q.push(std::make_pair(v, d_v));
-            std::cout << v << ' ' << d_v << std::endl;
         }
 
         while (!Q.empty())
@@ -92,6 +128,8 @@ namespace ga // graph algorithms
                 }
             }
         }
+
+        reconstruct_shortedPath("Dijkstra", G, s_idx, g_idx);
     }
 
 } // namespace ga
