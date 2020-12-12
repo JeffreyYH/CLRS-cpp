@@ -137,7 +137,6 @@ namespace ga // graph algorithms
         for(auto tpsl:topoSortList)
             std::cout << tpsl << ' ';
         std::cout << std::endl;
-
     }
 
     template <class T>
