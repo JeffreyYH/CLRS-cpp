@@ -48,10 +48,10 @@ int main()
 
     // do BFS object
     cout << "BFS Object: " << endl;
-    ga::BasicSearchObj<int>::BFS(graph, start);
+    ga::ElementaryAlgo<int>::BFS(graph, start);
     // do queue based BFS
     cout << "BFS Queue: " << endl;
-    ga::BasicSearchObj<int>::BFS_queue(graph, start);
+    ga::ElementaryAlgo<int>::BFS_queue(graph, start);
 
     return 0;
 }

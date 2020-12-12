@@ -1,4 +1,8 @@
-#include "basicSearch_obj.hpp"
+/*
+DFS and BFS without using object
+*/
+
+#include "elementaryAlgo.hpp"
 
 #define None -100000
 

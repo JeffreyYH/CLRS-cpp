@@ -6,18 +6,21 @@ namespace ga // graph algorithms
     // twin class of BasicSearch
     // in this class we use object instead of idx to do searching
     template <class T>
-    class BasicSearchObj
+    class ElementaryAlgo
     {
     public:
         // input graph represented as adjacency lists
         static void BFS(ga::graphPtr<T> graph, T s_idx);
         static void BFS_queue(ga::graphPtr<T> graph, T s_idx);
-
         // DFS constists of DFS_visit and DFS
+        static void DFS(ga::graphPtr<T> graph);
+        static void DFS_visit(ga::graphPtr<T> graph, T u);
+        static void topologicalSort(ga::graphPtr<T> graph);
+        static void stronglyConnectedComponents(ga::graphPtr<T> graph);
     };
 
     template <class T>
-    void BasicSearchObj<T>::BFS(ga::graphPtr<T> graph, T s_idx)
+    void ElementaryAlgo<T>::BFS(ga::graphPtr<T> graph, T s_idx)
     {
         std::unordered_map<T, int> level;
         ga::nodePtr<T> s_node = graph->idxToNode[s_idx];
@@ -51,7 +54,7 @@ namespace ga // graph algorithms
 
     // implement CLRS pg.595, BFS, based on queue
     template <class T>
-    void BasicSearchObj<T>::BFS_queue
+    void ElementaryAlgo<T>::BFS_queue
     (ga::graphPtr<T> graph, T s_idx)
     {
         ga::nodePtr<T> s_node = graph->idxToNode[s_idx];
@@ -83,6 +86,30 @@ namespace ga // graph algorithms
             // black means visited
             u_node->color = "BLACK";
         }
+    }
+
+    template <class T>
+    void ElementaryAlgo<T>::DFS(ga::graphPtr<T> graph)
+    {
+
+    }
+
+    template <class T>
+    void ElementaryAlgo<T>::DFS_visit(ga::graphPtr<T> graph, T u)
+    {
+
+    }
+
+    template <class T>
+    void ElementaryAlgo<T>::topologicalSort(ga::graphPtr<T> graph)
+    {
+
+    }
+
+    template <class T>
+    void ElementaryAlgo<T>::stronglyConnectedComponents(ga::graphPtr<T> graph)
+    {
+        
     }
 
 
