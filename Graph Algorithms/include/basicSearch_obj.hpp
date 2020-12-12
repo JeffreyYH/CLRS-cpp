@@ -10,8 +10,8 @@ namespace ga // graph algorithms
     {
     public:
         // input graph represented as adjacency lists
-        void BFS(ga::graphPtr<T> graph, T s_idx);
-        void BFS_queue(ga::graphPtr<T> graph, T s_idx);
+        static void BFS(ga::graphPtr<T> graph, T s_idx);
+        static void BFS_queue(ga::graphPtr<T> graph, T s_idx);
 
         // DFS constists of DFS_visit and DFS
     };

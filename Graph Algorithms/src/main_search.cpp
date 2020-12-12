@@ -18,15 +18,15 @@ int main()
     // use smart pointer
     ga::graphPtr<int> graph (new ga::Graph<int>(isUndirected, vertices, edges));
 
-    // // print adj matrix
-    // cout << "Adjacency matrix:" << endl;
-    // std::vector<std::vector<int>> adjMat = graphRep->construct_adjMat(vertices, edges, isUndirected);
-    // for(size_t i=0; i<adjMat.size(); ++i)
-    // {
-    //     for (size_t j=0; j<adjMat[0].size(); ++j)
-    //         cout << adjMat[i][j] << ' ';
-    //     cout << endl;
-    // }
+    // print adj matrix
+    cout << "Adjacency matrix:" << endl;
+    std::vector<std::vector<int>> adjMat = graph->construct_adjMat(vertices, edges, isUndirected);
+    for(size_t i=0; i<adjMat.size(); ++i)
+    {
+        for (size_t j=0; j<adjMat[0].size(); ++j)
+            cout << adjMat[i][j] << ' ';
+        cout << endl;
+    }
 
     // print adj list
     cout << "Adjacency list:" << endl;
@@ -38,26 +38,20 @@ int main()
         cout << endl;
     }
 
-
-    // ga::BasicSearch<int> basicSearch;
-    std::shared_ptr<ga::BasicSearch<int>> basicSearch(new ga::BasicSearch<int>());
     // do BFS
     cout << "BFS: " << endl;
     int start = 0;
-    basicSearch->BFS(graph->adjList, start);
+    ga::BasicSearch<int>::BFS(graph->adjList, start);
     // do DFS
     cout << "DFS: " << endl;
-    basicSearch->DFS(vertices, graph->adjList);
+    ga::BasicSearch<int>::DFS(vertices, graph->adjList);
 
-
-    // do BFS obj and queue based BFS
-    std::shared_ptr<ga::BasicSearchObj<int>> basicSearchObj(new ga::BasicSearchObj<int>());
     // do BFS object
     cout << "BFS Object: " << endl;
-    basicSearchObj->BFS(graph, start);
+    ga::BasicSearchObj<int>::BFS(graph, start);
     // do queue based BFS
     cout << "BFS Queue: " << endl;
-    basicSearchObj->BFS_queue(graph, start);
+    ga::BasicSearchObj<int>::BFS_queue(graph, start);
 
     return 0;
 }

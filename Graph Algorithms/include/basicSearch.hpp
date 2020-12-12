@@ -9,12 +9,12 @@ namespace ga // graph algorithms
     {
     public:
         // input graph represented as adjacency lists
-        void BFS(std::unordered_map<T, std::list<T>> adjList, T s);
+        static void BFS(std::unordered_map<T, std::list<T>> adjList, T s);
 
         // DFS constists of DFS_visit and DFS
-        void DFS_visit(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList, 
+        static void DFS_visit(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList, 
                     T s, std::unordered_map<T, T> &parent);
-        void DFS(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList);
+        static void DFS(std::vector<T> vertices, std::unordered_map<T, std::list<T>> adjList);
     };
 
     template <class T>
