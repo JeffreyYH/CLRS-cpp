@@ -6,9 +6,9 @@ namespace ga // graph algorithms
     class ShortestPath
     {
         public:
-        void Bellman_Ford(ga::graphPtr<T> G, T s_idx, T g_idx);
-        void Dijkstra(ga::graphPtr<T> G, T s_idx, T g_idx);
-        void reconstruct_shortedPath(std::string method, ga::graphPtr<T> G, T s_idx, T g_idx)
+        static void Bellman_Ford(ga::graphPtr<T> G, T s_idx, T g_idx);
+        static void Dijkstra(ga::graphPtr<T> G, T s_idx, T g_idx);
+        static void reconstruct_shortedPath(std::string method, ga::graphPtr<T> G, T s_idx, T g_idx)
         {
             // print all vertices' weights after running the algorithm
             std::cout << "Vertices and distances after applying " << method << ':' << std::endl;
@@ -76,7 +76,7 @@ namespace ga // graph algorithms
             }
         }
 
-        reconstruct_shortedPath("Bellman-Ford", G, s_idx, g_idx);
+        ga::ShortestPath<T>::reconstruct_shortedPath("Bellman-Ford", G, s_idx, g_idx);
     }
 
 
@@ -128,7 +128,7 @@ namespace ga // graph algorithms
             }
         }
 
-        reconstruct_shortedPath("Dijkstra", G, s_idx, g_idx);
+        ga::ShortestPath<T>::reconstruct_shortedPath("Dijkstra", G, s_idx, g_idx);
     }
 
 } // namespace ga
