@@ -17,7 +17,7 @@ namespace ga // graph algorithms
                 std::cout << v << ' ' << G->idxToNode[v]->distance << std::endl;
             }
 
-            // construct and print the shorted path backword
+            // construct the shorted path backword and then print it
             std::vector<T> shorted_path {g_idx};
             T cur_idx = g_idx;
             while(cur_idx != s_idx)
