@@ -8,11 +8,10 @@ namespace ga // graph algorithms
         public:
         void Bellman_Ford(ga::graphPtr<T> G, T s_idx, T g_idx);
         void Dijkstra(ga::graphPtr<T> G, T s_idx, T g_idx);
-        std::vector<T> 
-        reconstruct_shortedPath(std::string method, ga::graphPtr<T> G, T s_idx, T g_idx)
+        void reconstruct_shortedPath(std::string method, ga::graphPtr<T> G, T s_idx, T g_idx)
         {
             // print all vertices' weights after running the algorithm
-            std::cout << "Vertices and distances after applying " << method << std::endl;
+            std::cout << "Vertices and distances after applying " << method << ':' << std::endl;
             for (auto v:G->V)
             {
                 std::cout << v << ' ' << G->idxToNode[v]->distance << std::endl;
@@ -26,7 +25,7 @@ namespace ga // graph algorithms
                 cur_idx = G->idxToNode[cur_idx]->pred->nodeIdx;
                 shorted_path.insert(shorted_path.begin(), cur_idx);
             }
-            std::cout << "Shorted path by " << method << std::endl;
+            std::cout << "Shorted path by " << method << ':' << std::endl;
             for (auto s_p : shorted_path)
                 std::cout << s_p << " ";
             std::cout << std::endl;
