@@ -8,10 +8,10 @@ namespace ga
     class MST  
     {
     public:
-        void Kruskal (ga::graphPtr<T> G);
-        void Prim_naive (ga::graphPtr<T> G, T r); 
-        void Prim (ga::graphPtr<T> G, T r); 
-        void printMST(std::string method, std::vector<std::vector<T>> MST_edges);    
+        static void Kruskal (ga::graphPtr<T> G);
+        static void Prim_naive (ga::graphPtr<T> G, T r); 
+        static void Prim (ga::graphPtr<T> G, T r); 
+        static void printMST(std::string method, std::vector<std::vector<T>> MST_edges);    
     };
 
     template <class T>
@@ -63,7 +63,7 @@ namespace ga
         if (PRINT)
         {
             // In processing order, aka increasing order by weights
-            this->printMST("Kruskal", MST_edges);
+            ga::MST<T>::printMST("Kruskal", MST_edges);
             std::cout << "Total cost: " << total_cost << std::endl;
         }
 
@@ -122,7 +122,6 @@ namespace ga
             std::cout << e_ltst[0] << ' ' << e_ltst[1] << std::endl;
             total_cost += w_min;
         }
-        // this->printMST("Prim_naive", A);
         std::cout << "Total cost: " << total_cost << std::endl;
     }
 

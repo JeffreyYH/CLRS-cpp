@@ -46,9 +46,8 @@ int main()
     graph->E_w_map = weightedEdge_map;
 
     // MST
-    std::shared_ptr<ga::MST<char>> mst;
-    mst->Kruskal(graph);
-    mst->Prim_naive(graph, 'a');
+    ga::MST<char>::Kruskal(graph);
+    ga::MST<char>::Prim_naive(graph, 'a');
 
 }
 
