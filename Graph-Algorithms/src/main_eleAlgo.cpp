@@ -12,7 +12,7 @@ int main()
                                 {2,3}, 
                                 {3,4}
                             };
-    bool isUndirected = true;
+    bool isUndirected = false;
     
 
     // use smart pointer
@@ -52,6 +52,19 @@ int main()
     // do queue based BFS
     cout << "BFS Queue: " << endl;
     ga::ElementaryAlgo<int>::BFS_queue(graph, start);
+    cout << "DFS object:" << endl;
+    ga::ElementaryAlgo<int>::DFS(graph);
+
+    // construct another graph and do topological sort
+    std::vector<int> vertices2 {0,1,2,3};
+    std::vector<std::vector<int>> edges2 {
+                                {0,1}, {0,2}, 
+                                {1,3},
+                                {2,3}
+                            };
+    ga::graphPtr<int> graph2 (new ga::Graph<int>(false, vertices2, edges2));
+    cout << "Topological sort:" << endl;
+    ga::ElementaryAlgo<int>::topologicalSort(graph2);
 
     return 0;
 }

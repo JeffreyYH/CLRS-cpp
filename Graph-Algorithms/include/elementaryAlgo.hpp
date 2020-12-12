@@ -3,8 +3,6 @@
 
 namespace ga // graph algorithms
 {
-    // twin class of BasicSearch
-    // in this class we use object instead of idx to do searching
     template <class T>
     class ElementaryAlgo
     {
@@ -17,7 +15,12 @@ namespace ga // graph algorithms
         static void DFS_visit(ga::graphPtr<T> graph, T u);
         static void topologicalSort(ga::graphPtr<T> graph);
         static void stronglyConnectedComponents(ga::graphPtr<T> graph);
+    public:
+        static std::vector<T> topoSortList;
     };
+
+    template <class T>
+    std::vector<T> ElementaryAlgo<T>::topoSortList {};
 
     template <class T>
     void ElementaryAlgo<T>::BFS(ga::graphPtr<T> graph, T s_idx)
@@ -89,27 +92,58 @@ namespace ga // graph algorithms
     }
 
     template <class T>
-    void ElementaryAlgo<T>::DFS(ga::graphPtr<T> graph)
+    void ElementaryAlgo<T>::DFS_visit(ga::graphPtr<T> graph, T u)
     {
+        graph->idxToNode[u]->color = "GRAY";
+        for (auto v:graph->adjList[u])
+        {
+            if (graph->idxToNode[v]->color == "WHITE")
+            {
+                std::cout << "Visiting vertex " << v << std::endl;
+                topoSortList.push_back(v);
+                graph->idxToNode[v]->pred = graph->idxToNode[u];
+                DFS_visit(graph, v);
+            }
+        }
+        graph->idxToNode[u]->color = "BLACK";
 
     }
 
     template <class T>
-    void ElementaryAlgo<T>::DFS_visit(ga::graphPtr<T> graph, T u)
-    {
-
+    void ElementaryAlgo<T>::DFS(ga::graphPtr<T> graph)
+    {   
+        topoSortList = {};
+        for (auto u:graph->V)
+        {
+            graph->idxToNode[u]->color = "WHITE";
+            graph->idxToNode[u]->pred = nullptr;
+        }
+        int step = 0;
+        for (auto u:graph->V)
+        {
+            if (graph->idxToNode[u]->color == "WHITE")
+            {
+                std::cout << "Visiting vertex " << u << std::endl;
+                topoSortList.push_back(u);
+                ElementaryAlgo<T>::DFS_visit(graph, u);
+            }
+        }
     }
 
     template <class T>
     void ElementaryAlgo<T>::topologicalSort(ga::graphPtr<T> graph)
     {
+        ga::ElementaryAlgo<T>::DFS(graph);
+        for(auto tpsl:topoSortList)
+            std::cout << tpsl << ' ';
+        std::cout << std::endl;
 
     }
 
     template <class T>
     void ElementaryAlgo<T>::stronglyConnectedComponents(ga::graphPtr<T> graph)
     {
-        
+
     }
 
 
