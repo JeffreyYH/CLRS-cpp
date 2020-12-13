@@ -16,11 +16,11 @@ namespace ga // graph algorithms
         static void topologicalSort(ga::graphPtr<T> graph);
         static void stronglyConnectedComponents(ga::graphPtr<T> graph);
     public:
-        static std::vector<T> topoSortList;
+        static std::list<T> topoSortList;
     };
 
     template <class T>
-    std::vector<T> ElementaryAlgo<T>::topoSortList {};
+    std::list<T> ElementaryAlgo<T>::topoSortList {};
 
     template <class T>
     void ElementaryAlgo<T>::BFS(ga::graphPtr<T> graph, T s_idx)
@@ -100,11 +100,11 @@ namespace ga // graph algorithms
             if (graph->idxToNode[v]->color == "WHITE")
             {
                 std::cout << "Visiting vertex " << v << std::endl;
-                topoSortList.push_back(v);
                 graph->idxToNode[v]->pred = graph->idxToNode[u];
                 DFS_visit(graph, v);
             }
         }
+        topoSortList.push_front(u);
         graph->idxToNode[u]->color = "BLACK";
 
     }
@@ -124,7 +124,6 @@ namespace ga // graph algorithms
             if (graph->idxToNode[u]->color == "WHITE")
             {
                 std::cout << "Visiting vertex " << u << std::endl;
-                topoSortList.push_back(u);
                 ElementaryAlgo<T>::DFS_visit(graph, u);
             }
         }
