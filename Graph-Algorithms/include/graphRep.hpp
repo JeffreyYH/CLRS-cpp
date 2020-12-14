@@ -17,8 +17,9 @@ namespace ga // graph algorithms
         std::string color; // WHITE: not visted, BLACK: visited, GRAY: prepare to visit
         std::shared_ptr<GraphNode<T>> pred;  // predecessor
         float distance;
+        int finish_step; //for DFS
         
-        GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; distance = FLT_MAX;};
+        GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; distance = FLT_MAX; finish_step = 0;};
     };
     
     // define a smart pointer for GraphNode object

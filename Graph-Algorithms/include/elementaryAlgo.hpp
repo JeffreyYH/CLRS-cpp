@@ -12,7 +12,7 @@ namespace ga // graph algorithms
         static void BFS_queue(ga::graphPtr<T> graph, T s_idx);
         // DFS constists of DFS_visit and DFS
         static void DFS(ga::graphPtr<T> graph);
-        static void DFS_visit(ga::graphPtr<T> graph, T u);
+        static void DFS_visit(ga::graphPtr<T> graph, T u, int &step);
         static void topologicalSort(ga::graphPtr<T> graph);
         static void stronglyConnectedComponents(ga::graphPtr<T> graph);
     public:
@@ -92,8 +92,10 @@ namespace ga // graph algorithms
     }
 
     template <class T>
-    void ElementaryAlgo<T>::DFS_visit(ga::graphPtr<T> graph, T u)
+    void ElementaryAlgo<T>::DFS_visit(ga::graphPtr<T> graph, T u, int &step)
     {
+        step ++;
+        graph->idxToNode[u]->distance = step;
         graph->idxToNode[u]->color = "GRAY";
         for (auto v:graph->adjList[u])
         {
@@ -101,11 +103,13 @@ namespace ga // graph algorithms
             {
                 std::cout << "Visiting vertex " << v << std::endl;
                 graph->idxToNode[v]->pred = graph->idxToNode[u];
-                DFS_visit(graph, v);
+                DFS_visit(graph, v, step);
             }
         }
         topoSortList.push_front(u);
         graph->idxToNode[u]->color = "BLACK";
+        step ++;
+
 
     }
 
@@ -124,7 +128,7 @@ namespace ga // graph algorithms
             if (graph->idxToNode[u]->color == "WHITE")
             {
                 std::cout << "Visiting vertex " << u << std::endl;
-                ElementaryAlgo<T>::DFS_visit(graph, u);
+                ElementaryAlgo<T>::DFS_visit(graph, u, step);
             }
         }
     }
