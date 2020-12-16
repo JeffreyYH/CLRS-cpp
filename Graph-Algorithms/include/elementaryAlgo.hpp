@@ -145,6 +145,10 @@ namespace ga // graph algorithms
     template <class T>
     void ElementaryAlgo<T>::stronglyConnectedComponents(ga::graphPtr<T> graph)
     {
+        // get finishing time of u
+        ga::ElementaryAlgo<T>::DFS(graph);
+
+        // compute transpose hraph G^T
 
     }
 
