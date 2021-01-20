@@ -8,3 +8,8 @@ public:
     static float find_max_crossing_subarray();
     static float find_max_subarray();
 };
+
+float MaximumSubarray::find_max_crossing_subarray()
+{
+    
+}
