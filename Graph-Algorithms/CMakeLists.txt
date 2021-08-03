@@ -4,5 +4,5 @@ project(graphAlgo)
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories("../utils/")
-include_directories("../Advanced_Data_Structures/Disjoint_Sets/include/")
+include_directories("../Advanced-Data-Structures/Disjoint-Sets/include/")
 add_subdirectory(src)
