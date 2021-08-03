@@ -37,13 +37,23 @@ void DisjointSet<T>::union_set (T a, T b)
 {
     auto a_set = find_set(a);
     auto b_set = find_set(b);
-    DisjointSet<T>::setReps[a] = b_set;
+    std::shared_ptr<std::set<T>> new_jointSet (new std::set<T>);
+    for (auto ele_a:*a_set)
+    { 
+        new_jointSet->insert(ele_a);
+        DisjointSet<T>::setReps[ele_a] = new_jointSet;
+    }
+    for (auto ele_b:*b_set)
+    {
+        new_jointSet->insert(ele_b);
+        DisjointSet<T>::setReps[ele_b] = new_jointSet;
+    }
 }
 
 template <class T>
 void DisjointSet<T>::print_sets () 
 {
-    for (auto hh : DisjointSet<int>::setReps)
+    for (auto hh : DisjointSet<T>::setReps)
     {
         std::cout << hh.first << " in set ";
         for (auto s: *(hh.second))

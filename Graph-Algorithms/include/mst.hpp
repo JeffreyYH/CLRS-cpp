@@ -1,5 +1,6 @@
 /* implementation of minimum spanning tree */
 #include "graphRep.hpp"
+#include "disjointSet.hpp"
 
 namespace ga
 {   
@@ -21,14 +22,9 @@ namespace ga
         // A is used to represent MST,
         // which is a set contains all the edges of MST
         std::vector<std::vector<T>> MST_edges;
-        std::unordered_map<T, std::shared_ptr<std::set<T>>> Sets;
-        for (auto v:G->V)
-        {
-            std::shared_ptr<std::set<T>> S (new std::set<T>);
-            S->insert(v);
-            Sets[v] = S;
-        }
-        
+        DisjointSet<T>::make_set(G->V);  
+        DisjointSet<T>::print_sets();
+
         // sort the edges of G:E into nondecreasing order by weight
         // using lambda feature of C++
         std::sort(G->E_w.begin(), G->E_w.end(), 
@@ -41,19 +37,11 @@ namespace ga
             T v = e.first[1];
             // is u and v in the same set, we will not use edge (u,v)
             // otherwise there will be a circle
-            if (Sets[u] != Sets[v])
+            if (DisjointSet<T>::find_set(u) != DisjointSet<T>::find_set(v))
             {
                 MST_edges.push_back(e.first);
-                // merge the sets which have u and v
-                std::shared_ptr<std::set<T>> S_union (new std::set<T>);
-                
-                std::set_union(Sets[u]->begin(), Sets[u]->end(),
-                                Sets[v]->begin(), Sets[v]->end(),
-                                std::inserter(*S_union, S_union->begin()));
-                // all the element in S_union should have the same set pointer
-                for (auto ele: *S_union)
-                    Sets[ele] = S_union;  
-                
+                // // merge the sets which have u and v
+                DisjointSet<T>::union_set(u, v);
                 total_cost += e.second;
             }
         }
@@ -122,6 +110,7 @@ namespace ga
             std::cout << e_ltst[0] << ' ' << e_ltst[1] << std::endl;
             total_cost += w_min;
         }
+        std::cout<< "using prim" << std::endl;
         std::cout << "Total cost: " << total_cost << std::endl;
     }
 
