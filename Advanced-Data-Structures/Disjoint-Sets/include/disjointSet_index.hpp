@@ -34,8 +34,9 @@ void DisjointSetIdx::union_sets (int a, int b)
     // find the root of the sets in which elements `a` and `b` belongs
     int a_root = DisjointSetIdx::find_set(a);
     int b_root = DisjointSetIdx::find_set(b);
-    if (a_root != b_root)
+    if (a_root != b_root) {
         DisjointSetIdx::parent[b_root] = a_root;
+    }
 }
 
 void DisjointSetIdx::print_sets () 
