@@ -1,4 +1,5 @@
 #include "disjointSet.hpp"
+#include "disjointSet_index.hpp"
 
 int main()
 {
@@ -14,4 +15,8 @@ int main()
     DisjointSet<int>::union_set(3, 4);
     std::cout << "After set union: " << std::endl;
     DisjointSet<int>::print_sets();
+    
+    // test index based implementation
+    DisjointSetIdx::make_set(allMembers);
+
 };

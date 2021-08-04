@@ -12,6 +12,8 @@ public:
     static void print_sets();
 };
 
+/* ===== Methods implementations ======*/
+
 template< class T >
 std::map<T, std::shared_ptr<std::set<T>>> DisjointSet<T>::setReps;
 
@@ -38,6 +40,7 @@ void DisjointSet<T>::union_set (T a, T b)
     auto a_set = find_set(a);
     auto b_set = find_set(b);
     std::shared_ptr<std::set<T>> new_jointSet (new std::set<T>);
+    // put all the elements previously in their old sets in new joint set
     for (auto ele_a:*a_set)
     { 
         new_jointSet->insert(ele_a);
@@ -53,10 +56,10 @@ void DisjointSet<T>::union_set (T a, T b)
 template <class T>
 void DisjointSet<T>::print_sets () 
 {
-    for (auto hh : DisjointSet<T>::setReps)
+    for (auto cur_setRep : DisjointSet<T>::setReps)
     {
-        std::cout << hh.first << " in set ";
-        for (auto s: *(hh.second))
+        std::cout << cur_setRep.first << " in set ";
+        for (auto s: *(cur_setRep.second))
             std::cout << s << ' ';
         std::cout << std::endl;
     }
