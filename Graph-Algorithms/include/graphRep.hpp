@@ -38,38 +38,38 @@ namespace ga // graph algorithms
         bool isUndirected;
         std::vector<nodePtr<T>> V_obj;
         std::vector<T> V;
-        std::vector<std::vector<T>> E;
+        std::vector<std::pair<T, T>> E;
         std::unordered_map<T, std::list<T>> adjList;
         // weighted edge, optional
-        std::vector<std::pair<std::vector<T>, float>> E_w;
-        std::map<std::vector<T>, float> E_w_map;  //std::map can map vector to float/int/etc.
+        std::vector<std::pair<std::pair<T, T>, float>> E_w;
+        std::map<std::pair<T, T>, float> E_w_map;  //std::map can map vector to float/int/etc.
         // use hashtable to map idx to object
         std::unordered_map<T, nodePtr<T>> idxToNode; 
     
     public:
         std::vector<std::vector<T>> 
-        construct_adjMat(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
+        construct_adjMat(std::vector<T> vertices, std::vector<std::pair<T, T>> edges, bool isUndirected)
         {   
             int size = vertices.size();
             std::vector<std::vector<T>> adjMat (size, std::vector<T>(size, 0));
             for(size_t i=0; i<edges.size(); ++i)
             {   
-                adjMat[edges[i][0]][edges[i][1]] = 1; 
+                adjMat[edges[i].first][edges[i].second] = 1; 
                 if (isUndirected)     
-                    adjMat[edges[i][1]][edges[i][0]] = 1;  
+                    adjMat[edges[i].second][edges[i].first] = 1;  
             }
 
             return adjMat;
         }
 
         std::unordered_map<T, std::list<T>> 
-        construct_adjList(std::vector<T> vertices, std::vector<std::vector<T>> edges, bool isUndirected)
+        construct_adjList(std::vector<T> vertices, std::vector<std::pair<T, T>> edges, bool isUndirected)
         {
             std::unordered_map<T, std::list<T>> adjList;
             for (size_t i=0; i<edges.size(); i++)
             {
-                T e0 = edges[i][0];
-                T e1 = edges[i][1];
+                T e0 = edges[i].first;
+                T e1 = edges[i].second;
 
                 // e1 not in adjList[e0]
                 // std::cout << "processing edge (" << e0 << ", " << e1 << ")" << std::endl;
@@ -90,7 +90,7 @@ namespace ga // graph algorithms
         // constructor
         Graph(bool _isUndirected_, 
             std::vector<T> _V_, 
-            std::vector<std::vector<T>> _E_) 
+            std::vector<std::pair<T, T>> _E_) 
         {
             isUndirected = _isUndirected_;
             V = _V_;

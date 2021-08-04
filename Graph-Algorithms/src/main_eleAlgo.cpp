@@ -6,7 +6,7 @@ using std::endl;
 int main()
 {
     std::vector<int> vertices {0,1,2,3,4};
-    std::vector<std::vector<int>> edges {
+    std::vector<std::pair<int, int>> edges {
                                 {0,1}, {0,4}, 
                                 {1,4}, {1,3}, {1,2},
                                 {2,3}, 
@@ -57,7 +57,7 @@ int main()
 
     // construct another graph and do topological sort
     std::vector<int> vertices2 {0,1,2,3};
-    std::vector<std::vector<int>> edges2 {
+    std::vector<std::pair<int, int>> edges2 {
                                 {0,1}, {0,2}, 
                                 {1,3},
                                 {2,3}
