@@ -9,6 +9,7 @@
 
 namespace ga // graph algorithms
 {   
+    // edge node in graph
     template <class T>
     class GraphNode
     {
@@ -20,15 +21,20 @@ namespace ga // graph algorithms
         int finish_step; //for DFS
         
         GraphNode(T idx) {nodeIdx = idx; color = "WHITE"; pred = nullptr; distance = FLT_MAX; finish_step = 0;};
-    };
-    
+    }; 
     // define a smart pointer for GraphNode object
     template <class T>
     using nodePtr = std::shared_ptr<ga::GraphNode<T>>;
 
-    // define edge
+    // edge in graph
     template <typename T>
-    using edge = std::pair<T, T>;
+    class Edge
+    {
+    public:
+        std::vector<T> edge;
+        float w;
+    };
+    using edgePtr = std::shared_ptr<ga::Edge<T>>;
 
     // graph
     template <class T>
@@ -104,7 +110,6 @@ namespace ga // graph algorithms
             }
         };
     };
-
     // define a smart pointer for Graph object
     template <class T>
     using graphPtr = std::shared_ptr<ga::Graph<T>>;

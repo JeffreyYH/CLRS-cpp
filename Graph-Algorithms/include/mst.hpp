@@ -41,7 +41,7 @@ namespace ga
             {
                 MST_edges.push_back(e.first);
                 // // merge the sets which have u and v
-                DisjointSet<T>::union_set(u, v);
+                DisjointSet<T>::union_sets(u, v);
                 total_cost += e.second;
             }
         }
