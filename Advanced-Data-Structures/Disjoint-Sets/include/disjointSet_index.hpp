@@ -3,7 +3,7 @@
 class DisjointSetIdx  
 {
 public:
-    static std::vector<int> setReps_Idx;
+    static std::map<int, int> setRoots;
 public:
     static void make_set (std::vector<int> &allMembers);
     static void union_set (int a, int b); 
@@ -12,25 +12,31 @@ public:
 };
 
 /* ===== Methods implementations ======*/
-std::vector<int> DisjointSetIdx::setReps_Idx;
+std::map<int, int> DisjointSetIdx::setRoots;
 
 void DisjointSetIdx::make_set(std::vector<int> &allMembers)
 {
     for (auto m:allMembers)
-        setReps_Idx.push_back(m);
+        setRoots[m] = m;
 }
 
+// find root of the set which x in
 int DisjointSetIdx::find_set (int x)
 {  
-    return DisjointSetIdx::setReps_Idx[x];
+    if (x == DisjointSetIdx::setRoots[x])
+        return x;
+    return DisjointSetIdx::find_set(DisjointSetIdx::setRoots[x]);
 }
 
 void DisjointSetIdx::union_set (int a, int b)
 {
-    return;
+    int a_setIdx = DisjointSetIdx::find_set(a);
+    int b_setIdx = DisjointSetIdx::find_set(b);
+    DisjointSetIdx::setRoots[b] = a_setIdx;
 }
 
 void DisjointSetIdx::print_sets () 
 {
-    return;
+    for (auto cur_set : DisjointSetIdx::setRoots)
+        std::cout << cur_set.first << " in set " << cur_set.second << std::endl;
 }

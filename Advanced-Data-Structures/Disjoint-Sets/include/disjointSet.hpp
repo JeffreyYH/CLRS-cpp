@@ -58,7 +58,8 @@ void DisjointSet<T>::print_sets ()
 {
     for (auto cur_setRep : DisjointSet<T>::setReps)
     {
-        std::cout << cur_setRep.first << " in set ";
+        std::cout << cur_setRep.first << " in set " << cur_setRep.second;
+        std::cout << " with member: ";
         for (auto s: *(cur_setRep.second))
             std::cout << s << ' ';
         std::cout << std::endl;
