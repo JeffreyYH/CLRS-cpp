@@ -3,40 +3,43 @@
 class DisjointSetIdx  
 {
 public:
-    static std::map<int, int> setRoots;
+    static std::map<int, int> parent;
 public:
     static void make_set (std::vector<int> &allMembers);
-    static void union_set (int a, int b); 
+    static void union_sets (int a, int b); 
     static int find_set (int x); 
     static void print_sets();
 };
 
 /* ===== Methods implementations ======*/
-std::map<int, int> DisjointSetIdx::setRoots;
+std::map<int, int> DisjointSetIdx::parent;
 
 void DisjointSetIdx::make_set(std::vector<int> &allMembers)
 {
     for (auto m:allMembers)
-        setRoots[m] = m;
+        parent[m] = m;
 }
 
-// find root of the set which x in
+// find the root of the set in which element x belongs
 int DisjointSetIdx::find_set (int x)
 {  
-    if (x == DisjointSetIdx::setRoots[x])
+    if (x == DisjointSetIdx::parent[x])
         return x;
-    return DisjointSetIdx::find_set(DisjointSetIdx::setRoots[x]);
+    // recur for the parent until we find the root
+    return DisjointSetIdx::find_set(DisjointSetIdx::parent[x]);
 }
 
-void DisjointSetIdx::union_set (int a, int b)
+void DisjointSetIdx::union_sets (int a, int b)
 {
-    int a_setIdx = DisjointSetIdx::find_set(a);
-    int b_setIdx = DisjointSetIdx::find_set(b);
-    DisjointSetIdx::setRoots[b] = a_setIdx;
+    // find the root of the sets in which elements `a` and `b` belongs
+    int a_root = DisjointSetIdx::find_set(a);
+    int b_root = DisjointSetIdx::find_set(b);
+    if (a_root != b_root)
+        DisjointSetIdx::parent[b_root] = a_root;
 }
 
 void DisjointSetIdx::print_sets () 
 {
-    for (auto cur_set : DisjointSetIdx::setRoots)
-        std::cout << cur_set.first << " in set " << cur_set.second << std::endl;
+    for (auto cur_set : DisjointSetIdx::parent)
+        std::cout << cur_set.first << " in set with root " << find_set(cur_set.first) << std::endl;
 }

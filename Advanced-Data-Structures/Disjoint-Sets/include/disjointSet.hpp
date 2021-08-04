@@ -7,7 +7,7 @@ public:
     static std::map<T, std::shared_ptr<std::set<T>>> setReps;
 public:
     static void make_set (std::vector<T> &allMembers);
-    static void union_set (T a, T b); 
+    static void union_sets (T a, T b); 
     static std::shared_ptr<std::set<T>> find_set (T x); 
     static void print_sets();
 };
@@ -35,7 +35,7 @@ std::shared_ptr<std::set<T>> DisjointSet<T>::find_set (T x)
 }
 
 template <class T>
-void DisjointSet<T>::union_set (T a, T b)
+void DisjointSet<T>::union_sets (T a, T b)
 {
     auto a_set = find_set(a);
     auto b_set = find_set(b);
