@@ -1,11 +1,4 @@
-#include <iostream>
-#include <memory>
-#include <list>
-#include <vector>
-#include <algorithm>
-#include <map>
-#include <unordered_map>
-#include <bits/stdc++.h>
+#include "commonInclude.h"
 
 namespace ga // graph algorithms
 {   

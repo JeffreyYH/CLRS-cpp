@@ -48,6 +48,7 @@ int main()
     // MST
     ga::MST<char>::Kruskal(graph);
     ga::MST<char>::Prim_naive(graph, 'a');
+    ga::MST<char>::Prim(graph, 'a');
 
 }
 

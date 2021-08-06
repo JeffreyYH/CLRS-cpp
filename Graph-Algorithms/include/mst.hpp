@@ -114,10 +114,17 @@ namespace ga
         std::cout << "Total cost: " << total_cost << std::endl;
     }
 
+    // another implementation based on min-priority queue
     template <class T>
     void MST<T>::Prim (ga::graphPtr<T> G, T r)
     {
-
+        for (auto u : G->V)
+        {
+            G->idxToNode[u]->distance = std::numeric_limits<float>::max();
+            G->idxToNode[u]->pred = nullptr;
+        }
+        G->idxToNode[r]->distance = 0;
+        // TODO:
     }
 
 
