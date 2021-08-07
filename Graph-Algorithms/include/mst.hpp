@@ -110,8 +110,15 @@ namespace ga
             std::cout << e_ltst[0] << ' ' << e_ltst[1] << std::endl;
             total_cost += w_min;
         }
-        std::cout<< "using prim" << std::endl;
-        std::cout << "Total cost: " << total_cost << std::endl;
+
+        // print MST
+        const bool PRINT = 1;
+        if (PRINT)
+        {
+            // In processing order, aka increasing order by weights
+            ga::MST<T>::printMST("Prim (naive)", A);
+            std::cout << "Total cost: " << total_cost << std::endl;
+        }
     }
 
     // another implementation based on min-priority queue
