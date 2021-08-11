@@ -93,7 +93,7 @@ namespace ga // graph algorithms
 
         std::set<T> S;
 
-        // each element in prioty queue is a <vertex_type, verex's distance> pair
+        // each element in prioty queue is a <vertex_type, vetex's distance> pair
         auto comp = []( std::pair<T, float> a, std::pair<T, float> b ) { 
             return a.second> b.second; 
         };

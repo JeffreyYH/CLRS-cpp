@@ -131,7 +131,23 @@ namespace ga
             G->idxToNode[u]->pred = nullptr;
         }
         G->idxToNode[r]->distance = 0;
-        // TODO:
+        // each element in prioty queue is a <vertex_type, vetex's distance> pair
+        auto comp = []( std::pair<T, float> a, std::pair<T, float> b ) { 
+            return a.second> b.second; 
+        };
+        std::priority_queue <std::pair<T, float>, 
+                            std::vector<std::pair<T, float>>, 
+                            decltype(comp)> Q(comp);
+        // put all vertices inside the queue
+        for (auto v:G->V)
+        {
+            float d_v = G->idxToNode[v]->distance;
+            Q.push(std::make_pair(v, d_v));
+        }
+
+        // while (!Q.empty())
+        // {
+        // }
     }
 
 
